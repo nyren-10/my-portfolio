@@ -31,8 +31,12 @@ export const projects = [
     architecture:
       "Driver smartphones send GPS pings via WebSockets to our Node.js backend, which stores route logs in PostgreSQL and broadcasts live coordinates to students' browser maps in real time.",
     links: {
-      github: "https://github.com/Tauqeer-Raza/BusBuddy-Backend",
-      demo: "https://github.com/Tauqeer-Raza",
+      github: "https://github.com/nyren-10/BusBuddy-Backend",
+      githubLabel: "Backend Repo",
+      demo: "https://github.com/nyren-10/BusBuddy-Student",
+      demoLabel: "Student App Repo",
+      driver: "https://github.com/nyren-10/BusBuddy-Driver",
+      driverLabel: "Driver GPS App",
     },
     accentColor: "#f59e0b",
   },
@@ -67,8 +71,10 @@ export const projects = [
     architecture:
       "A React frontend connects to a local backend gateway running on the internal network. The gateway manages local quantized Ollama model runtimes on private hardware.",
     links: {
-      github: "https://github.com/Tauqeer-Raza/Omnitrix",
-      demo: "https://github.com/Tauqeer-Raza/Omnitrix",
+      github: "https://github.com/nyren-10/Omnitrix",
+      githubLabel: "Forked Omnitrix Repo",
+      demo: "https://github.com/nyren-10/Omnitrix",
+      demoLabel: "GitHub Source",
     },
     accentColor: "#22c55e",
   },

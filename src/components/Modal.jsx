@@ -184,15 +184,15 @@ export default function Modal({ project, onClose }) {
 
             {/* Action Bar / Links */}
             <div className="pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200">
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2.5">
                 {project.links?.github && (
                   <a
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-900 text-white font-mono text-xs font-bold rounded shadow hover:bg-slate-800 active:scale-95 transition-all"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-900 text-white font-mono text-xs font-bold rounded shadow hover:bg-slate-800 active:scale-95 transition-all"
                   >
-                    <span>View Repository</span>
+                    <span>{project.links.githubLabel || "View Repository"}</span>
                     <ExternalLinkIcon className="w-3.5 h-3.5" />
                   </a>
                 )}
@@ -201,9 +201,20 @@ export default function Modal({ project, onClose }) {
                     href={project.links.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-white text-slate-900 border-2 border-slate-900 font-mono text-xs font-bold rounded shadow hover:bg-slate-100 active:scale-95 transition-all"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white text-slate-900 border-2 border-slate-900 font-mono text-xs font-bold rounded shadow hover:bg-slate-100 active:scale-95 transition-all"
                   >
-                    <span>Interactive Link</span>
+                    <span>{project.links.demoLabel || "Interactive Link"}</span>
+                    <ExternalLinkIcon className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                {project.links?.driver && (
+                  <a
+                    href={project.links.driver}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-amber-50 text-slate-900 border-2 border-slate-900 font-mono text-xs font-bold rounded shadow hover:bg-amber-100 active:scale-95 transition-all"
+                  >
+                    <span>{project.links.driverLabel || "Driver App Repo"}</span>
                     <ExternalLinkIcon className="w-3.5 h-3.5" />
                   </a>
                 )}
