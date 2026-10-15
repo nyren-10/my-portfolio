@@ -2,16 +2,15 @@ import React from "react";
 
 export default function NotebookItem() {
   return (
-    <div className="relative w-64 h-80 select-none group pointer-events-auto">
+    <div className="relative w-68 h-84 select-none group pointer-events-auto">
       {/* Notebook Paper with Spiral & Tape */}
       <svg
-        viewBox="0 0 260 320"
+        viewBox="0 0 260 330"
         className="w-full h-full drop-shadow-desk group-hover:drop-shadow-lifted transition-all duration-200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Grid pattern for the notebook page */}
           <pattern
             id="notebookGrid"
             width="14"
@@ -26,30 +25,27 @@ export default function NotebookItem() {
               opacity="0.85"
             />
           </pattern>
-          {/* Subtle drop shadow for spiral rings */}
           <filter id="spiralShadow" x="-20%" y="-20%" width="140%" height="140%">
             <feDropShadow dx="1" dy="2" stdDeviation="1" floodColor="#000" floodOpacity="0.3" />
           </filter>
         </defs>
 
         {/* Notebook Cover Back Shadow / Thickness */}
-        <rect x="18" y="10" width="232" height="302" rx="8" fill="#1e293b" />
-        <rect x="22" y="6" width="230" height="302" rx="6" fill="#334155" />
+        <rect x="18" y="10" width="232" height="312" rx="8" fill="#1e293b" />
+        <rect x="22" y="6" width="230" height="312" rx="6" fill="#334155" />
 
         {/* Top Paper Page with Grid Pattern */}
-        <rect x="28" y="2" width="224" height="304" rx="4" fill="#fafafa" />
-        <rect x="28" y="2" width="224" height="304" rx="4" fill="url(#notebookGrid)" />
+        <rect x="28" y="2" width="224" height="314" rx="4" fill="#fafafa" />
+        <rect x="28" y="2" width="224" height="314" rx="4" fill="url(#notebookGrid)" />
 
         {/* Left Margin Red Rule Line */}
-        <line x1="60" y1="2" x2="60" y2="306" stroke="#f87171" strokeWidth="1.2" opacity="0.75" />
+        <line x1="60" y1="2" x2="60" y2="316" stroke="#f87171" strokeWidth="1.2" opacity="0.75" />
 
         {/* Spiral Binding Holes & Metallic Rings */}
-        {[20, 50, 80, 110, 140, 170, 200, 230, 260, 290].map((y, i) => (
+        {[20, 50, 80, 110, 140, 170, 200, 230, 260, 290, 310].map((y, i) => (
           <g key={i}>
-            {/* Punch Hole */}
             <circle cx="34" cy={y} r="4" fill="#475569" opacity="0.6" />
             <circle cx="34" cy={y} r="3" fill="#1e293b" />
-            {/* Wire Spiral Ring */}
             <path
               d={`M 14 ${y - 4} C 8 ${y - 2}, 8 ${y + 6}, 36 ${y + 3}`}
               stroke="#94a3b8"
@@ -76,14 +72,14 @@ export default function NotebookItem() {
           transform="rotate(3 210 10)"
         />
 
-        {/* Hand-drawn BUS DOODLE */}
-        <g transform="translate(75, 45)">
+        {/* Hand-drawn CAMPUS BUS DOODLE */}
+        <g transform="translate(75, 40)">
           {/* Bus Body */}
           <rect
             x="0"
             y="12"
             width="135"
-            height="72"
+            height="70"
             rx="12"
             fill="#facc15"
             stroke="#1e293b"
@@ -114,36 +110,9 @@ export default function NotebookItem() {
             strokeWidth="2.5"
           />
           {/* Side Windows */}
-          <rect
-            x="12"
-            y="20"
-            width="24"
-            height="22"
-            rx="3"
-            fill="#e0f2fe"
-            stroke="#1e293b"
-            strokeWidth="2"
-          />
-          <rect
-            x="42"
-            y="20"
-            width="24"
-            height="22"
-            rx="3"
-            fill="#e0f2fe"
-            stroke="#1e293b"
-            strokeWidth="2"
-          />
-          <rect
-            x="72"
-            y="20"
-            width="18"
-            height="22"
-            rx="3"
-            fill="#e0f2fe"
-            stroke="#1e293b"
-            strokeWidth="2"
-          />
+          <rect x="12" y="20" width="24" height="22" rx="3" fill="#e0f2fe" stroke="#1e293b" strokeWidth="2" />
+          <rect x="42" y="20" width="24" height="22" rx="3" fill="#e0f2fe" stroke="#1e293b" strokeWidth="2" />
+          <rect x="72" y="20" width="18" height="22" rx="3" fill="#e0f2fe" stroke="#1e293b" strokeWidth="2" />
 
           {/* Window Reflections */}
           <line x1="98" y1="24" x2="115" y2="44" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" />
@@ -156,86 +125,99 @@ export default function NotebookItem() {
 
           {/* Wheels */}
           <g>
-            <circle cx="32" cy="84" r="14" fill="#1e293b" />
-            <circle cx="32" cy="84" r="6" fill="#94a3b8" stroke="#0f172a" strokeWidth="2" />
-            <circle cx="106" cy="84" r="14" fill="#1e293b" />
-            <circle cx="106" cy="84" r="6" fill="#94a3b8" stroke="#0f172a" strokeWidth="2" />
+            <circle cx="32" cy="82" r="13" fill="#1e293b" />
+            <circle cx="32" cy="82" r="5" fill="#94a3b8" stroke="#0f172a" strokeWidth="2" />
+            <circle cx="106" cy="82" r="13" fill="#1e293b" />
+            <circle cx="106" cy="82" r="5" fill="#94a3b8" stroke="#0f172a" strokeWidth="2" />
           </g>
 
-          {/* Bus Grill & Destination Board */}
+          {/* Destination Board */}
           <rect x="94" y="14" width="34" height="6" rx="2" fill="#0f172a" />
-          <text x="96" y="19" fill="#22c55e" fontSize="5" fontFamily="monospace" fontWeight="bold">042 LIVE</text>
-
-          {/* Speed Doodles */}
-          <path d="M -10 32 L -20 32 M -12 42 L -26 42 M -8 52 L -18 52" stroke="#64748b" strokeWidth="2" strokeLinecap="round" />
+          <text x="96" y="19" fill="#22c55e" fontSize="5" fontFamily="monospace" fontWeight="bold">CAMPUS LIVE</text>
         </g>
 
         {/* Hand-drawn Route Map & Doodles */}
-        <g transform="translate(68, 160)">
-          {/* Transit Route Line */}
+        <g transform="translate(68, 150)">
           <path
-            d="M 10 30 Q 50 10, 85 40 T 150 25"
+            d="M 10 25 Q 50 5, 85 30 T 150 18"
             stroke="#3b82f6"
-            strokeWidth="3.5"
-            strokeDasharray="4 4"
+            strokeWidth="3"
+            strokeDasharray="4 3"
             fill="none"
           />
-          {/* Station Pins */}
-          <circle cx="10" cy="30" r="5" fill="#3b82f6" stroke="#fff" strokeWidth="2" />
-          <circle cx="85" cy="40" r="5" fill="#10b981" stroke="#fff" strokeWidth="2" />
-          <circle cx="150" cy="25" r="5" fill="#ef4444" stroke="#fff" strokeWidth="2" />
-          <text x="80" y="55" fill="#64748b" fontSize="8" fontFamily="'Patrick Hand', cursive">Downtown</text>
+          <circle cx="10" cy="25" r="4.5" fill="#3b82f6" stroke="#fff" strokeWidth="1.5" />
+          <circle cx="85" cy="30" r="4.5" fill="#10b981" stroke="#fff" strokeWidth="1.5" />
+          <circle cx="150" cy="18" r="4.5" fill="#ef4444" stroke="#fff" strokeWidth="1.5" />
+          <text x="75" y="42" fill="#64748b" fontSize="8" fontFamily="'Patrick Hand', cursive">Hostel ➔ Campus</text>
         </g>
 
-        {/* Handwritten Title & Details */}
+        {/* Handwritten Title & Real Project Description */}
         <text
           x="72"
-          y="238"
+          y="222"
           fontFamily="'Caveat', cursive"
-          fontSize="23"
+          fontSize="24"
           fontWeight="bold"
           fill="#0f172a"
         >
-          BusBuddy Admin 🚌
+          BusBuddy Platform 🚌
+        </text>
+        <text
+          x="72"
+          y="240"
+          fontFamily="'Patrick Hand', cursive"
+          fontSize="12.5"
+          fill="#334155"
+        >
+          • Complete College Bus Tracking System
         </text>
         <text
           x="72"
           y="256"
           fontFamily="'Patrick Hand', cursive"
-          fontSize="13"
-          fill="#475569"
+          fontSize="12.5"
+          fill="#334155"
         >
-          • Fleet Schedules & Dispatch
+          • Student App • Driver GPS • Admin
         </text>
         <text
           x="72"
           y="272"
           fontFamily="'Patrick Hand', cursive"
-          fontSize="13"
-          fill="#475569"
+          fontSize="12.5"
+          fill="#334155"
         >
-          • Driver Match-Maker & Presets
+          • WebSockets • Node/Express • Postgres
+        </text>
+        <text
+          x="72"
+          y="288"
+          fontFamily="'Caveat', cursive"
+          fontSize="13"
+          fontWeight="bold"
+          fill="#b45309"
+        >
+          Idea, Lead Dev & Full-Stack + DevOps
         </text>
 
         {/* Interactive Badge / Click Cue */}
         <rect
           x="72"
-          y="283"
-          width="105"
-          height="18"
+          y="298"
+          width="130"
+          height="19"
           rx="4"
           fill="#0284c7"
-          opacity="0.9"
         />
         <text
           x="80"
-          y="295"
+          y="311"
           fontFamily="'Space Mono', monospace"
-          fontSize="9"
+          fontSize="8.5"
           fill="#ffffff"
           fontWeight="bold"
         >
-          OPEN BLUEPRINT ↗
+          FULL ECOSYSTEM GDD ↗
         </text>
       </svg>
     </div>

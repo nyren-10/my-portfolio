@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { projects } from "./data/projects";
+import OmnitrixItem from "./components/desk-items/OmnitrixItem";
 import NotebookItem from "./components/desk-items/NotebookItem";
 import FloppyDiskItem from "./components/desk-items/FloppyDiskItem";
 import PolaroidItem from "./components/desk-items/PolaroidItem";
 import CassetteItem from "./components/desk-items/CassetteItem";
-import GhostFiberItem from "./components/desk-items/GhostFiberItem";
 import CoffeeMugItem from "./components/desk-items/CoffeeMugItem";
 import {
   CoffeeStain,
@@ -18,14 +18,14 @@ import Modal from "./components/Modal";
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [topZIndex, setTopZIndex] = useState(20);
+  const [topZIndex, setTopZIndex] = useState(25);
   const [zIndexes, setZIndexes] = useState({
-    "noicee-dashboard": 6,
-    busbuddy: 5,
-    "visual-hanoi": 7,
-    "speech-recognition": 8,
-    ghostfiber: 9,
-    "coffee-about": 10,
+    omnitrix: 12,
+    busbuddy: 11,
+    "noicee-dashboard": 10,
+    "coffee-about": 9,
+    "visual-hanoi": 8,
+    "speech-recognition": 7,
   });
   const [positionsKey, setPositionsKey] = useState(0);
 
@@ -53,9 +53,11 @@ export default function App() {
     setPositionsKey((prev) => prev + 1);
   };
 
-  // Component mapper for Nyren's real project desk artifacts
+  // Component mapper for Nyren's real project artifacts
   const renderItemGraphic = (type) => {
     switch (type) {
+      case "omnitrix":
+        return <OmnitrixItem />;
       case "notebook":
         return <NotebookItem />;
       case "floppy":
@@ -64,8 +66,6 @@ export default function App() {
         return <PolaroidItem />;
       case "cassette":
         return <CassetteItem />;
-      case "shader-card":
-        return <GhostFiberItem />;
       case "coffee":
         return <CoffeeMugItem />;
       default:
