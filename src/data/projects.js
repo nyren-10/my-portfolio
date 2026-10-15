@@ -191,37 +191,37 @@ export const projects = [
   {
     id: "coffee-about",
     type: "coffee",
-    title: "Developer Dossier: Nyren",
-    subtitle: "Full-Stack Web & Python Developer",
-    docNumber: "PILOT-ID // nyren-10",
-    status: "COLLABORATOR & DEV",
-    stamp: "VERIFIED",
-    stampColor: "text-rose-800 border-rose-800 bg-rose-50",
+    title: "System Architecture & Problem Solving",
+    subtitle: "Backend Engineering, Data Flow Modeling & LLM Environments",
+    docNumber: "SPECS // SYSTEM-DESIGN-01",
+    status: "ENGINEERING PHILOSOPHY",
+    stamp: "SYSTEM ARCHITECT",
+    stampColor: "text-amber-800 border-amber-800 bg-amber-50",
     initialPos: { x: 120, y: 460 },
     rotation: 6,
     description:
-      "Full-stack and systems developer passionate about solving real user problems—from engineering complete campus-wide bus tracking services to building air-gapped sovereign AI workbenches for hackathons and automated command hubs.",
+      "Deep love for end-to-end problem solving, sketching holistic system architectures, and blueprinting data flows before diving into code. Seasoned in resilient backend engineering, event-driven pipelines, and orchestrating LLMs within both cloud and air-gapped enterprise environments.",
     tech: [
-      "Full-Stack Engineering",
-      "Python / Flask",
-      "React 19 & TypeScript",
-      "WebSockets & Real-Time Sync",
-      "Docker & DevOps",
-      "PostgreSQL",
-      "AI / Offline LLM Integration"
+      "System Architecture",
+      "Data Flow Modeling",
+      "Backend (Node.js & Python)",
+      "LLMs (Gemini & Ollama)",
+      "WebSockets & Real-Time",
+      "PostgreSQL Schemas",
+      "Docker & DevOps"
     ],
     features: [
-      "BusBuddy Campus Platform: Conceived idea, built backend, frontend, WebSockets & Docker DevOps",
-      "Omnitrix (SIH Hackathon): Sovereign AI Workbench running multi-model routing 100% offline",
-      "Noicee Command Center: AI research hub with Gemini API, Ollama, and Three.js spatial viewports",
-      "Collaborative repositories: Tauqeer-Raza/Omnitrix, Tauqeer-Raza/BusBuddy, nyren-10/Noicee-dashboard",
-      "Coursework: University of Helsinki Full Stack Open (modern web dev & certifications)"
+      "Architectural Blueprinting: Mapping data flow boundaries, state transitions, and API contracts before implementation",
+      "Heavy Backend Core: Building high-throughput Node.js & Python Flask backends with event streaming and WebSockets",
+      "Real-World LLM Integration: Designing dual cloud (Gemini) and local air-gapped (Ollama) inference pipelines",
+      "Environment & DevOps Mastery: Managing Docker multi-service setups, network isolation, and production pipelines",
+      "Core Mindset: Identifying real-world user bottlenecks and solving them with pragmatic, scalable engineering"
     ],
     architecture:
-      "Problem-first engineering: Identifying real bottlenecks, designing practical architectures, and executing cleanly across frontend, backend, and infrastructure.",
+      "Philosophy: 'A week of coding can save an hour of architectural planning.' Strong belief in designing clean data flows, clear database boundaries, and reliable error recovery.",
     links: {
       github: "https://github.com/nyren-10",
-      demo: "mailto:contact@nyren.dev",
+      demo: "https://github.com/nyren-10",
     },
     accentColor: "#b45309",
   },

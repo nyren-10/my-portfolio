@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "./data/projects";
+import BookCoverLanding from "./components/book/BookCoverLanding";
 import OmnitrixItem from "./components/desk-items/OmnitrixItem";
 import NotebookItem from "./components/desk-items/NotebookItem";
 import FloppyDiskItem from "./components/desk-items/FloppyDiskItem";
@@ -16,6 +17,7 @@ import {
 import Modal from "./components/Modal";
 
 export default function App() {
+  const [activeView, setActiveView] = useState("cover"); // "cover" | "projects"
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [topZIndex, setTopZIndex] = useState(15);
@@ -74,140 +76,174 @@ export default function App() {
   };
 
   return (
-    <div
-      ref={deskRef}
-      className={`relative w-screen h-screen overflow-hidden select-none bg-desk-wood ${isModalOpen ? "pointer-events-none" : ""}`}
-    >
-      {/* Architect / Designer Cutting Mat in Center */}
-      <div className="absolute inset-3 sm:inset-6 rounded-2xl bg-cutting-mat shadow-2xl border-4 border-[#2f4f46] overflow-hidden pointer-events-none">
-        {/* Metric Grid Ruler Lines on Edge */}
-        <div className="absolute top-0 left-0 right-0 h-4 border-b border-white/10 flex justify-between px-6 text-[9px] font-mono text-emerald-400/50">
-          <span>0cm</span>
-          <span>10cm</span>
-          <span>20cm</span>
-          <span>30cm</span>
-          <span>40cm</span>
-          <span>50cm</span>
-          <span>60cm</span>
-          <span>70cm</span>
-          <span>80cm</span>
-        </div>
-        <div className="absolute top-0 bottom-0 left-0 w-4 border-r border-white/10 flex flex-col justify-between py-6 text-[9px] font-mono text-emerald-400/50">
-          <span>0</span>
-          <span>10</span>
-          <span>20</span>
-          <span>30</span>
-          <span>40</span>
-          <span>50</span>
-        </div>
+    <AnimatePresence mode="wait">
+      {activeView === "cover" ? (
+        <motion.div
+          key="cover-view"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 0.35 }}
+          className="w-screen h-screen overflow-hidden"
+        >
+          <BookCoverLanding onOpenProjects={() => setActiveView("projects")} />
+        </motion.div>
+      ) : (
+        <motion.div
+          key="projects-desk-view"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.96 }}
+          transition={{ duration: 0.35 }}
+          ref={deskRef}
+          className={`relative w-screen h-screen overflow-hidden select-none bg-desk-wood ${
+            isModalOpen ? "pointer-events-none" : ""
+          }`}
+        >
+          {/* Architect / Designer Cutting Mat in Center */}
+          <div className="absolute inset-3 sm:inset-6 rounded-2xl bg-cutting-mat shadow-2xl border-4 border-[#2f4f46] overflow-hidden pointer-events-none">
+            {/* Metric Grid Ruler Lines on Edge */}
+            <div className="absolute top-0 left-0 right-0 h-4 border-b border-white/10 flex justify-between px-6 text-[9px] font-mono text-emerald-400/50">
+              <span>0cm</span>
+              <span>10cm</span>
+              <span>20cm</span>
+              <span>30cm</span>
+              <span>40cm</span>
+              <span>50cm</span>
+              <span>60cm</span>
+              <span>70cm</span>
+              <span>80cm</span>
+            </div>
+            <div className="absolute top-0 bottom-0 left-0 w-4 border-r border-white/10 flex flex-col justify-between py-6 text-[9px] font-mono text-emerald-400/50">
+              <span>0</span>
+              <span>10</span>
+              <span>20</span>
+              <span>30</span>
+              <span>40</span>
+              <span>50</span>
+            </div>
 
-        {/* Ambient Coffee Stain Rings on the mat */}
-        <CoffeeStain className="absolute top-24 left-44" />
-        <CoffeeStain className="absolute bottom-24 right-88 transform scale-75" />
-      </div>
+            {/* Ambient Coffee Stain Rings on the mat */}
+            <CoffeeStain className="absolute top-24 left-44" />
+            <CoffeeStain className="absolute bottom-24 right-88 transform scale-75" />
+          </div>
 
-      {/* Desk Lamp Ambient Glow */}
-      <div className="absolute inset-0 lamp-glow pointer-events-none z-10" />
+          {/* Desk Lamp Ambient Glow */}
+          <div className="absolute inset-0 lamp-glow pointer-events-none z-10" />
 
-      {/* Top Desk Header / Quick Controls */}
-      <header className="absolute top-3 left-6 right-6 z-30 flex items-center justify-between pointer-events-none">
-        <div className="flex items-center gap-3 bg-[#111c19]/90 backdrop-blur-md px-4 py-2 rounded-xl border border-emerald-900/60 shadow-lg pointer-events-auto">
-          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-          <h1 className="font-mono text-xs sm:text-sm font-bold text-emerald-300 tracking-wider">
-            NYREN // TOP-DOWN WORKSPACE
-          </h1>
-          <span className="hidden sm:inline-block text-[11px] font-mono text-emerald-400/60 border-l border-emerald-900/80 pl-3">
-            Full-Stack & Systems Developer • GitHub: nyren-10
-          </span>
-        </div>
+          {/* Top Desk Header / Quick Controls */}
+          <header className="absolute top-3 left-6 right-6 z-30 flex items-center justify-between pointer-events-none">
+            <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
+              {/* Back to Book Cover Navigation Button */}
+              <button
+                onClick={() => setActiveView("cover")}
+                className="px-3 py-1.5 bg-[#facc15] hover:bg-[#eab308] text-slate-950 border-2 border-slate-950 rounded-lg font-mono text-xs font-bold shadow-[2px_2px_0px_#0f172a] transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                title="Return to Book Cover Landing Page"
+              >
+                <span>📖</span>
+                <span>Cover / Index</span>
+              </button>
 
-        <div className="flex items-center gap-2 pointer-events-auto">
-          <button
-            onClick={handleResetPositions}
-            className="px-3 py-1.5 bg-[#111c19]/90 hover:bg-[#1a2c27] text-emerald-300 border border-emerald-900/70 rounded-lg font-mono text-xs shadow-md transition-all active:scale-95 flex items-center gap-1.5"
-            title="Reset items to default positions"
-          >
-            <span>↺</span>
-            <span>Reset Desk</span>
-          </button>
+              <div className="hidden sm:flex items-center gap-2.5 bg-[#111c19]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-emerald-900/60 shadow-lg">
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <h1 className="font-mono text-xs font-bold text-emerald-300 tracking-wider">
+                  PROJECTS DESK
+                </h1>
+                <span className="text-[10px] font-mono text-emerald-400/60 border-l border-emerald-900/80 pl-2.5">
+                  Drag & Inspect Artifacts
+                </span>
+              </div>
+            </div>
 
-          <a
-            href="https://github.com/nyren-10"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5"
-          >
-            <span>GitHub Profile</span>
-            <span>↗</span>
-          </a>
-        </div>
-      </header>
+            <div className="flex items-center gap-2 pointer-events-auto">
+              <button
+                onClick={handleResetPositions}
+                className="px-3 py-1.5 bg-[#111c19]/90 hover:bg-[#1a2c27] text-emerald-300 border border-emerald-900/70 rounded-lg font-mono text-xs shadow-md transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                title="Reset items to default positions"
+              >
+                <span>↺</span>
+                <span>Reset Desk</span>
+              </button>
 
-      {/* Instructions Card Note */}
-      <InstructionsNote initial={{ x: 28, y: 64 }} />
+              <a
+                href="https://github.com/nyren-10"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5"
+              >
+                <span>GitHub</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </header>
 
-      {/* Draggable Ambient Desk Props */}
-      <React.Fragment key={`decorations-${positionsKey}`}>
-        <DraggablePencil initial={{ x: 1140, y: 220 }} rotation={28} />
-        <DraggableSticker initial={{ x: 380, y: 390 }} rotation={-8} />
-      </React.Fragment>
+          {/* Instructions Card Note */}
+          <InstructionsNote initial={{ x: 28, y: 64 }} />
 
-      {/* Main Draggable Interactive Project Artifacts */}
-      <div key={`projects-${positionsKey}`} className="relative w-full h-full">
-        {projects.map((proj) => {
-          let isDragging = false;
+          {/* Draggable Ambient Desk Props */}
+          <React.Fragment key={`decorations-${positionsKey}`}>
+            <DraggablePencil initial={{ x: 1140, y: 220 }} rotation={28} />
+            <DraggableSticker initial={{ x: 380, y: 390 }} rotation={-8} />
+          </React.Fragment>
 
-          return (
-            <motion.div
-              key={proj.id}
-              drag
-              dragConstraints={deskRef}
-              dragElastic={0.15}
-              dragMomentum={true}
-              onDragStart={() => {
-                isDragging = true;
-                bringToFront(proj.id);
-              }}
-              onDragEnd={() => {
-                setTimeout(() => {
-                  isDragging = false;
-                }, 80);
-              }}
-              onTap={() => {
-                if (!isDragging) {
-                  bringToFront(proj.id);
-                  handleItemClick(proj);
-                }
-              }}
-              initial={{
-                x: proj.initialPos.x,
-                y: proj.initialPos.y,
-                rotate: proj.rotation,
-              }}
-              whileHover={{
-                scale: 1.04,
-                cursor: "grab",
-                transition: { duration: 0.15 },
-              }}
-              whileTap={{
-                scale: 0.98,
-                cursor: "grabbing",
-              }}
-              style={{
-                zIndex: zIndexes[proj.id] || 10,
-              }}
-              className="absolute cursor-grab touch-none"
-            >
-              {renderItemGraphic(proj.type)}
-            </motion.div>
-          );
-        })}
-      </div>
+          {/* Main Draggable Interactive Project Artifacts */}
+          <div key={`projects-${positionsKey}`} className="relative w-full h-full">
+            {projects.map((proj) => {
+              let isDragging = false;
 
-      {/* Single Reusable Game Design Document (GDD) Modal */}
-      {isModalOpen && selectedProject && (
-        <Modal project={selectedProject} onClose={handleCloseModal} />
+              return (
+                <motion.div
+                  key={proj.id}
+                  drag
+                  dragConstraints={deskRef}
+                  dragElastic={0.15}
+                  dragMomentum={true}
+                  onDragStart={() => {
+                    isDragging = true;
+                    bringToFront(proj.id);
+                  }}
+                  onDragEnd={() => {
+                    setTimeout(() => {
+                      isDragging = false;
+                    }, 80);
+                  }}
+                  onTap={() => {
+                    if (!isDragging) {
+                      bringToFront(proj.id);
+                      handleItemClick(proj);
+                    }
+                  }}
+                  initial={{
+                    x: proj.initialPos.x,
+                    y: proj.initialPos.y,
+                    rotate: proj.rotation,
+                  }}
+                  whileHover={{
+                    scale: 1.04,
+                    cursor: "grab",
+                    transition: { duration: 0.15 },
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                    cursor: "grabbing",
+                  }}
+                  style={{
+                    zIndex: zIndexes[proj.id] || 10,
+                  }}
+                  className="absolute cursor-grab touch-none"
+                >
+                  {renderItemGraphic(proj.type)}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Single Reusable Game Design Document (GDD) Modal */}
+          {isModalOpen && selectedProject && (
+            <Modal project={selectedProject} onClose={handleCloseModal} />
+          )}
+        </motion.div>
       )}
-    </div>
+    </AnimatePresence>
   );
 }

@@ -10,13 +10,11 @@ export default function CoffeeMugItem() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Radial gradient for hot brewed coffee surface */}
           <radialGradient id="coffeeSurface" cx="45%" cy="45%" r="55%">
             <stop offset="0%" stopColor="#451a03" />
             <stop offset="60%" stopColor="#290e02" />
             <stop offset="100%" stopColor="#170601" />
           </radialGradient>
-          {/* Coaster cardboard pattern */}
           <radialGradient id="coasterTexture" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#fef3c7" />
             <stop offset="100%" stopColor="#fde68a" />
@@ -36,26 +34,25 @@ export default function CoffeeMugItem() {
             strokeWidth="1.5"
             strokeDasharray="4 2"
           />
-          {/* Coaster text logo */}
           <text
-            x="24"
-            y="32"
+            x="20"
+            y="30"
             fontFamily="'Space Mono', monospace"
-            fontSize="9"
+            fontSize="8"
             fontWeight="bold"
             fill="#92400e"
-            letterSpacing="1"
+            letterSpacing="0.8"
           >
-            NYREN // DEV FUEL
+            ARCHITECTURE & DATA FLOW
           </text>
           <text
-            x="24"
+            x="22"
             y="165"
             fontFamily="'Patrick Hand', cursive"
             fontSize="12"
             fill="#b45309"
           >
-            Click mug for bio & contacts ☕
+            Backend & LLM Blueprint Philosophy ☕
           </text>
         </g>
 
@@ -82,30 +79,25 @@ export default function CoffeeMugItem() {
 
         {/* Ceramic Mug Outer Rim */}
         <circle cx="100" cy="100" r="64" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="4" />
-        {/* Mug Inner Rim Wall */}
         <circle cx="100" cy="100" r="54" fill="#334155" />
 
         {/* Coffee Liquid Surface */}
         <circle cx="100" cy="100" r="50" fill="url(#coffeeSurface)" />
-
-        {/* Coffee Crema Ring & Latte Art Heart */}
         <circle cx="100" cy="100" r="49" fill="none" stroke="#b45309" strokeWidth="2.5" opacity="0.4" />
         
-        {/* Latte Art Foam */}
-        <g transform="translate(100, 96) scale(0.9)">
-          <path
-            d="M 0 16 C -18 -8, -32 6, 0 -22 C 32 6, 18 -8, 0 16 Z"
-            fill="#fef3c7"
-            opacity="0.9"
-          />
-          <path
-            d="M 0 20 L 0 -18"
-            stroke="#b45309"
-            strokeWidth="2"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-          <circle cx="0" cy="-20" r="3" fill="#fef3c7" />
+        {/* Latte Art: Network Nodes / Flow Diagram Doodle inside the foam */}
+        <g transform="translate(100, 100) scale(0.85)">
+          {/* Node 1 */}
+          <circle cx="-18" cy="-10" r="6" fill="#fef3c7" stroke="#b45309" strokeWidth="1.5" />
+          {/* Node 2 */}
+          <circle cx="18" cy="-10" r="6" fill="#fef3c7" stroke="#b45309" strokeWidth="1.5" />
+          {/* Node 3 (Bottom) */}
+          <circle cx="0" cy="16" r="7" fill="#fef3c7" stroke="#b45309" strokeWidth="1.5" />
+          
+          {/* Connecting Data Flow lines */}
+          <path d="M -12 -10 L 12 -10" stroke="#b45309" strokeWidth="1.5" strokeDasharray="2 2" />
+          <path d="M -15 -4 L -3 12" stroke="#b45309" strokeWidth="1.5" />
+          <path d="M 15 -4 L 3 12" stroke="#b45309" strokeWidth="1.5" />
         </g>
 
         {/* Animated Steam Trails */}
@@ -126,11 +118,11 @@ export default function CoffeeMugItem() {
           />
         </g>
 
-        {/* Little Floating Pill */}
+        {/* Floating Pill Tag */}
         <rect
-          x="48"
+          x="34"
           y="180"
-          width="104"
+          width="132"
           height="20"
           rx="10"
           fill="#1e293b"
@@ -138,14 +130,14 @@ export default function CoffeeMugItem() {
           strokeWidth="1.5"
         />
         <text
-          x="60"
+          x="44"
           y="194"
           fontFamily="'Space Mono', monospace"
-          fontSize="8"
+          fontSize="7.5"
           fontWeight="bold"
           fill="#38bdf8"
         >
-          [ ABOUT NYREN ]
+          [ ARCHITECTURE & LLMS ]
         </text>
       </svg>
     </div>
