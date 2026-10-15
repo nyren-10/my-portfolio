@@ -1,86 +1,209 @@
-// src/App.jsx
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { useDrag } from "@use-gesture/react";
+import { projects } from "./data/projects";
+import NotebookItem from "./components/desk-items/NotebookItem";
+import FloppyDiskItem from "./components/desk-items/FloppyDiskItem";
+import PolaroidItem from "./components/desk-items/PolaroidItem";
+import CoffeeMugItem from "./components/desk-items/CoffeeMugItem";
+import StickyNoteItem from "./components/desk-items/StickyNoteItem";
+import {
+  CoffeeStain,
+  DraggablePencil,
+  DraggableSticker,
+  InstructionsNote,
+} from "./components/desk-items/Decorations";
 import Modal from "./components/Modal";
 
-const projects = [
-  {
-    id: "busbuddy",
-    title: "BusBuddy",
-    description: "A real‑time bus tracking web app.",
-    tech: ["React", "Firebase", "Tailwind"],
-    // simple placeholder SVG – in a real project replace with actual artwork
-    svg: "<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><circle cx='50' cy='50' r='40' fill='#ffcc00' /><text x='50' y='55' font-size='20' text-anchor='middle' fill='#333'>🚌</text></svg>",
-    initial: { x: 100, y: 150 }
-  },
-  {
-    id: "firebase-backend",
-    title: "Firebase Backend",
-    description: "Serverless APIs and auth for my projects.",
-    tech: ["Firebase", "Functions", "Firestore"],
-    svg: "<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><rect width='80' height='80' x='10' y='10' fill='#ff6666' /><text x='50' y='55' font-size='20' text-anchor='middle' fill='#fff'>⚡</text></svg>",
-    initial: { x: 300, y: 250 }
-  },
-  {
-    id: "polaroid",
-    title: "Polaroid",
-    description: "Snapshots of my side projects.",
-    tech: ["React", "Vite"],
-    svg: "<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><rect width='70' height='90' x='15' y='5' fill='#fff' stroke='#000' stroke-width='2' /><text x='50' y='60' font-size='12' text-anchor='middle' fill='#000'>📸</text></svg>",
-    initial: { x: 600, y: 120 }
-  },
-];
-
-function App() {
+export default function App() {
+  const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [topZIndex, setTopZIndex] = useState(20);
+  const [zIndexes, setZIndexes] = useState({
+    busbuddy: 5,
+    "firebase-backend": 6,
+    "polaroid-lab": 4,
+    "coffee-about": 7,
+    "sticky-skills": 8,
+  });
+  const [positionsKey, setPositionsKey] = useState(0);
 
-  const openModal = (project) => {
-    setSelected(project);
+  const deskRef = useRef(null);
+
+  const bringToFront = (id) => {
+    setTopZIndex((prev) => {
+      const next = prev + 1;
+      setZIndexes((curr) => ({ ...curr, [id]: next }));
+      return next;
+    });
+  };
+
+  const handleItemClick = (project) => {
+    setSelectedProject(project);
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelected(null);
+    setSelectedProject(null);
+  };
+
+  const handleResetPositions = () => {
+    setPositionsKey((prev) => prev + 1);
+  };
+
+  // Component mapper for project desk SVGs
+  const renderItemGraphic = (type) => {
+    switch (type) {
+      case "notebook":
+        return <NotebookItem />;
+      case "floppy":
+        return <FloppyDiskItem />;
+      case "polaroid":
+        return <PolaroidItem />;
+      case "coffee":
+        return <CoffeeMugItem />;
+      case "sticky":
+        return <StickyNoteItem />;
+      default:
+        return null;
+    }
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[url('/desk.jpg')] bg-cover">
-      {/* Draggable items */}
-      {projects.map((proj) => (
-        <DraggableItem key={proj.id} project={proj} onClick={() => openModal(proj)} />
-      ))}
+    <div
+      ref={deskRef}
+      className="relative w-screen h-screen overflow-hidden select-none bg-desk-wood"
+    >
+      {/* Architect / Designer Cutting Mat in Center */}
+      <div className="absolute inset-4 sm:inset-8 rounded-2xl bg-cutting-mat shadow-2xl border-4 border-[#2f4f46] overflow-hidden pointer-events-none">
+        {/* Metric Grid Ruler Lines on Edge */}
+        <div className="absolute top-0 left-0 right-0 h-4 border-b border-white/10 flex justify-between px-6 text-[9px] font-mono text-emerald-400/50">
+          <span>0cm</span>
+          <span>10cm</span>
+          <span>20cm</span>
+          <span>30cm</span>
+          <span>40cm</span>
+          <span>50cm</span>
+          <span>60cm</span>
+          <span>70cm</span>
+          <span>80cm</span>
+        </div>
+        <div className="absolute top-0 bottom-0 left-0 w-4 border-r border-white/10 flex flex-col justify-between py-6 text-[9px] font-mono text-emerald-400/50">
+          <span>0</span>
+          <span>10</span>
+          <span>20</span>
+          <span>30</span>
+          <span>40</span>
+          <span>50</span>
+        </div>
 
-      {/* Modal */}
-      {isModalOpen && selected && (
-        <Modal project={selected} onClose={closeModal} />
+        {/* Ambient Coffee Stain Rings on the mat */}
+        <CoffeeStain className="absolute top-28 left-48" />
+        <CoffeeStain className="absolute bottom-20 right-80 transform scale-75" />
+      </div>
+
+      {/* Desk Lamp Ambient Glow */}
+      <div className="absolute inset-0 lamp-glow pointer-events-none z-10" />
+
+      {/* Top Desk Header / Quick Controls */}
+      <header className="absolute top-4 left-6 right-6 z-30 flex items-center justify-between pointer-events-none">
+        <div className="flex items-center gap-3 bg-[#111c19]/90 backdrop-blur-md px-4 py-2 rounded-xl border border-emerald-900/60 shadow-lg pointer-events-auto">
+          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
+          <h1 className="font-mono text-xs sm:text-sm font-bold text-emerald-300 tracking-wider">
+            NYREN // TOP-DOWN DESK PORTFOLIO
+          </h1>
+          <span className="hidden sm:inline-block text-[11px] font-mono text-emerald-400/60 border-l border-emerald-900/80 pl-3">
+            Full-Stack Web Engineer
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2 pointer-events-auto">
+          <button
+            onClick={handleResetPositions}
+            className="px-3 py-1.5 bg-[#111c19]/90 hover:bg-[#1a2c27] text-emerald-300 border border-emerald-900/70 rounded-lg font-mono text-xs shadow-md transition-all active:scale-95 flex items-center gap-1.5"
+            title="Reset items to default positions"
+          >
+            <span>↺</span>
+            <span>Reset Desk</span>
+          </button>
+
+          <a
+            href="https://github.com/nyren-10"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5"
+          >
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </header>
+
+      {/* Instructions Card Note */}
+      <InstructionsNote initial={{ x: 36, y: 70 }} />
+
+      {/* Draggable Ambient Desk Props */}
+      <React.Fragment key={`decorations-${positionsKey}`}>
+        <DraggablePencil initial={{ x: 1020, y: 260 }} rotation={28} />
+        <DraggableSticker initial={{ x: 360, y: 520 }} rotation={-8} />
+      </React.Fragment>
+
+      {/* Main Draggable Interactive Projects */}
+      <div key={`projects-${positionsKey}`} className="relative w-full h-full">
+        {projects.map((proj) => {
+          let isDragging = false;
+
+          return (
+            <motion.div
+              key={proj.id}
+              drag
+              dragConstraints={deskRef}
+              dragElastic={0.15}
+              dragMomentum={true}
+              onDragStart={() => {
+                isDragging = true;
+                bringToFront(proj.id);
+              }}
+              onDragEnd={() => {
+                setTimeout(() => {
+                  isDragging = false;
+                }, 80);
+              }}
+              onTap={() => {
+                if (!isDragging) {
+                  bringToFront(proj.id);
+                  handleItemClick(proj);
+                }
+              }}
+              initial={{
+                x: proj.initialPos.x,
+                y: proj.initialPos.y,
+                rotate: proj.rotation,
+              }}
+              whileHover={{
+                scale: 1.04,
+                cursor: "grab",
+                transition: { duration: 0.15 },
+              }}
+              whileTap={{
+                scale: 0.98,
+                cursor: "grabbing",
+              }}
+              style={{
+                zIndex: zIndexes[proj.id] || 10,
+              }}
+              className="absolute cursor-grab touch-none"
+            >
+              {renderItemGraphic(proj.type)}
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Single Reusable Game Design Document (GDD) Modal */}
+      {isModalOpen && selectedProject && (
+        <Modal project={selectedProject} onClose={handleCloseModal} />
       )}
     </div>
   );
 }
-
-function DraggableItem({ project, onClick }) {
-  const bind = useDrag(({ offset: [x, y] }) => {
-    setStyle({ left: x, top: y });
-  });
-
-  const [style, setStyle] = React.useState({ left: project.initial.x, top: project.initial.y });
-
-  return (
-    <motion.div
-      {...bind()}
-      className="absolute cursor-move"
-      style={{ left: style.left, top: style.top, width: 100, height: 100 }}
-      onClick={onClick}
-    >
-      <div
-        className="w-full h-full"
-        dangerouslySetInnerHTML={{ __html: project.svg }}
-      />
-    </motion.div>
-  );
-}
-
-export default App;

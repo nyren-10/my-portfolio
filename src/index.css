@@ -1,20 +1,67 @@
-/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom sketchy border using Rough.js style */
-.sketchy-border {
-  position: relative;
-  padding: 1rem;
-  background: white;
-  border: 2px solid black; /* fallback */
+@layer utilities {
+  /* Architectural Cutting Mat Pattern */
+  .bg-cutting-mat {
+    background-color: #1a2f2b;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  }
+
+  /* Warm desk wood grain / textured base */
+  .bg-desk-wood {
+    background: radial-gradient(circle at 50% 30%, #3a2e26 0%, #221a15 65%, #140f0c 100%);
+  }
+
+  /* Graph Paper for GDD Modal */
+  .bg-graph-paper {
+    background-color: #fbf9f4;
+    background-image: 
+      linear-gradient(rgba(45, 90, 160, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 90, 160, 0.09) 1px, transparent 1px),
+      linear-gradient(rgba(45, 90, 160, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 90, 160, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+  }
+
+  /* Ambient light overlay */
+  .lamp-glow {
+    background: radial-gradient(circle at 75% 20%, rgba(255, 235, 180, 0.15) 0%, rgba(255, 215, 120, 0.05) 45%, transparent 75%);
+    pointer-events: none;
+  }
+
+  /* Notebook paper lines */
+  .bg-notebook-ruled {
+    background-color: #faf6eb;
+    background-image: linear-gradient(#e0d7c3 1px, transparent 1px);
+    background-size: 100% 24px;
+  }
 }
 
-.sketchy-border::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M0,0 L100,0 L100,100 L0,100 Z" stroke="black" stroke-width="2" fill="none" stroke-dasharray="4 2"/></svg>') repeat;
-  pointer-events: none;
+/* Custom scrollbar for modal content */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Prevent accidental text selection during item dragging */
+* {
+  -webkit-user-drag: none;
+  user-select: none;
 }
