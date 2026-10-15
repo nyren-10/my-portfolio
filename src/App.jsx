@@ -4,8 +4,9 @@ import { projects } from "./data/projects";
 import NotebookItem from "./components/desk-items/NotebookItem";
 import FloppyDiskItem from "./components/desk-items/FloppyDiskItem";
 import PolaroidItem from "./components/desk-items/PolaroidItem";
+import CassetteItem from "./components/desk-items/CassetteItem";
+import GhostFiberItem from "./components/desk-items/GhostFiberItem";
 import CoffeeMugItem from "./components/desk-items/CoffeeMugItem";
-import StickyNoteItem from "./components/desk-items/StickyNoteItem";
 import {
   CoffeeStain,
   DraggablePencil,
@@ -19,11 +20,12 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [topZIndex, setTopZIndex] = useState(20);
   const [zIndexes, setZIndexes] = useState({
+    "noicee-dashboard": 6,
     busbuddy: 5,
-    "firebase-backend": 6,
-    "polaroid-lab": 4,
-    "coffee-about": 7,
-    "sticky-skills": 8,
+    "visual-hanoi": 7,
+    "speech-recognition": 8,
+    ghostfiber: 9,
+    "coffee-about": 10,
   });
   const [positionsKey, setPositionsKey] = useState(0);
 
@@ -51,7 +53,7 @@ export default function App() {
     setPositionsKey((prev) => prev + 1);
   };
 
-  // Component mapper for project desk SVGs
+  // Component mapper for Nyren's real project desk artifacts
   const renderItemGraphic = (type) => {
     switch (type) {
       case "notebook":
@@ -60,10 +62,12 @@ export default function App() {
         return <FloppyDiskItem />;
       case "polaroid":
         return <PolaroidItem />;
+      case "cassette":
+        return <CassetteItem />;
+      case "shader-card":
+        return <GhostFiberItem />;
       case "coffee":
         return <CoffeeMugItem />;
-      case "sticky":
-        return <StickyNoteItem />;
       default:
         return null;
     }
@@ -75,7 +79,7 @@ export default function App() {
       className="relative w-screen h-screen overflow-hidden select-none bg-desk-wood"
     >
       {/* Architect / Designer Cutting Mat in Center */}
-      <div className="absolute inset-4 sm:inset-8 rounded-2xl bg-cutting-mat shadow-2xl border-4 border-[#2f4f46] overflow-hidden pointer-events-none">
+      <div className="absolute inset-3 sm:inset-6 rounded-2xl bg-cutting-mat shadow-2xl border-4 border-[#2f4f46] overflow-hidden pointer-events-none">
         {/* Metric Grid Ruler Lines on Edge */}
         <div className="absolute top-0 left-0 right-0 h-4 border-b border-white/10 flex justify-between px-6 text-[9px] font-mono text-emerald-400/50">
           <span>0cm</span>
@@ -98,22 +102,22 @@ export default function App() {
         </div>
 
         {/* Ambient Coffee Stain Rings on the mat */}
-        <CoffeeStain className="absolute top-28 left-48" />
-        <CoffeeStain className="absolute bottom-20 right-80 transform scale-75" />
+        <CoffeeStain className="absolute top-24 left-44" />
+        <CoffeeStain className="absolute bottom-24 right-88 transform scale-75" />
       </div>
 
       {/* Desk Lamp Ambient Glow */}
       <div className="absolute inset-0 lamp-glow pointer-events-none z-10" />
 
       {/* Top Desk Header / Quick Controls */}
-      <header className="absolute top-4 left-6 right-6 z-30 flex items-center justify-between pointer-events-none">
+      <header className="absolute top-3 left-6 right-6 z-30 flex items-center justify-between pointer-events-none">
         <div className="flex items-center gap-3 bg-[#111c19]/90 backdrop-blur-md px-4 py-2 rounded-xl border border-emerald-900/60 shadow-lg pointer-events-auto">
           <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
           <h1 className="font-mono text-xs sm:text-sm font-bold text-emerald-300 tracking-wider">
-            NYREN // TOP-DOWN DESK PORTFOLIO
+            NYREN // TOP-DOWN WORKSPACE
           </h1>
           <span className="hidden sm:inline-block text-[11px] font-mono text-emerald-400/60 border-l border-emerald-900/80 pl-3">
-            Full-Stack Web Engineer
+            Full-Stack & Systems Developer • GitHub: nyren-10
           </span>
         </div>
 
@@ -133,22 +137,22 @@ export default function App() {
             rel="noopener noreferrer"
             className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5"
           >
-            <span>GitHub</span>
+            <span>GitHub Profile</span>
             <span>↗</span>
           </a>
         </div>
       </header>
 
       {/* Instructions Card Note */}
-      <InstructionsNote initial={{ x: 36, y: 70 }} />
+      <InstructionsNote initial={{ x: 28, y: 64 }} />
 
       {/* Draggable Ambient Desk Props */}
       <React.Fragment key={`decorations-${positionsKey}`}>
-        <DraggablePencil initial={{ x: 1020, y: 260 }} rotation={28} />
-        <DraggableSticker initial={{ x: 360, y: 520 }} rotation={-8} />
+        <DraggablePencil initial={{ x: 1140, y: 220 }} rotation={28} />
+        <DraggableSticker initial={{ x: 380, y: 390 }} rotation={-8} />
       </React.Fragment>
 
-      {/* Main Draggable Interactive Projects */}
+      {/* Main Draggable Interactive Project Artifacts */}
       <div key={`projects-${positionsKey}`} className="relative w-full h-full">
         {projects.map((proj) => {
           let isDragging = false;

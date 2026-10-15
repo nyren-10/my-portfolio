@@ -192,11 +192,11 @@ export default function NotebookItem() {
           x="72"
           y="238"
           fontFamily="'Caveat', cursive"
-          fontSize="24"
+          fontSize="23"
           fontWeight="bold"
           fill="#0f172a"
         >
-          BusBuddy 🚌
+          BusBuddy Admin 🚌
         </text>
         <text
           x="72"
@@ -205,7 +205,7 @@ export default function NotebookItem() {
           fontSize="13"
           fill="#475569"
         >
-          • Live Transit GPS Tracking
+          • Fleet Schedules & Dispatch
         </text>
         <text
           x="72"
@@ -214,7 +214,7 @@ export default function NotebookItem() {
           fontSize="13"
           fill="#475569"
         >
-          • Sub-second arrival estimates
+          • Driver Match-Maker & Presets
         </text>
 
         {/* Interactive Badge / Click Cue */}

@@ -10,7 +10,6 @@ export default function PolaroidItem() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Polaroid paper drop shadow */}
           <filter id="photoShadow" x="-10%" y="-10%" width="120%" height="120%">
             <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#000" floodOpacity="0.25" />
           </filter>
@@ -28,7 +27,7 @@ export default function PolaroidItem() {
             stroke="#d4cebe"
             strokeWidth="1.5"
           />
-          <rect x="35" y="35" width="170" height="150" fill="#1e1e24" />
+          <rect x="35" y="35" width="170" height="150" fill="#0f172a" />
         </g>
 
         {/* Main Top Polaroid Photo */}
@@ -46,43 +45,57 @@ export default function PolaroidItem() {
             filter="url(#photoShadow)"
           />
 
-          {/* Photo Inner Window with Synthwave / Creative Graphic */}
+          {/* Photo Inner Window with Tower of Hanoi Illustration */}
           <rect x="32" y="26" width="177" height="160" rx="3" fill="#090d16" />
 
-          {/* Creative Graphic: Neon wireframe sphere & mountain grid */}
+          {/* Visual Hanoi Simulation Graphic */}
           <g transform="translate(32, 26)">
-            {/* Horizon Glow */}
-            <circle cx="88" cy="80" r="45" fill="#f43f5e" opacity="0.8" />
-            <rect x="0" y="80" width="177" height="80" fill="#111827" />
+            {/* Dark grid background */}
+            <rect x="0" y="0" width="177" height="160" fill="#0f172a" />
 
-            {/* Sun horizontal stripes */}
-            {[45, 53, 61, 68, 74].map((y, i) => (
-              <line key={i} x1="43" y1={y} x2="133" y2={y} stroke="#090d16" strokeWidth="2.5" />
-            ))}
+            {/* Base platform */}
+            <rect x="15" y="135" width="147" height="8" rx="2" fill="#334155" />
 
-            {/* Perspective grid floor */}
+            {/* Rods A, B, C */}
+            {/* Rod A */}
+            <rect x="42" y="55" width="6" height="80" rx="3" fill="#64748b" />
+            <text x="41" y="152" fill="#94a3b8" fontSize="8" fontFamily="'Space Mono', monospace" fontWeight="bold">A</text>
+
+            {/* Rod B */}
+            <rect x="86" y="55" width="6" height="80" rx="3" fill="#64748b" />
+            <text x="85" y="152" fill="#94a3b8" fontSize="8" fontFamily="'Space Mono', monospace" fontWeight="bold">B</text>
+
+            {/* Rod C */}
+            <rect x="130" y="55" width="6" height="80" rx="3" fill="#64748b" />
+            <text x="129" y="152" fill="#94a3b8" fontSize="8" fontFamily="'Space Mono', monospace" fontWeight="bold">C</text>
+
+            {/* Disks stacked on Rod A (Actual hex spectrum from Nyren's code) */}
+            {/* Largest Disk (Rose) */}
+            <rect x="17" y="125" width="56" height="10" rx="3" fill="#FB7185" />
+            {/* Amber Disk */}
+            <rect x="21" y="114" width="48" height="10" rx="3" fill="#FBBF24" />
+            {/* Fuchsia Disk */}
+            <rect x="25" y="103" width="40" height="10" rx="3" fill="#E879F9" />
+            {/* Violet Disk */}
+            <rect x="29" y="92" width="32" height="10" rx="3" fill="#A78BFA" />
+
+            {/* Moving Disk on Rod C (Teal Disk) */}
+            <rect x="121" y="125" width="24" height="10" rx="3" fill="#2DD4BF" />
+
+            {/* Curved Motion Arc of Sky Disk translating */}
             <path
-              d="M 0 160 L 88 80 L 177 160 M 35 160 L 88 80 L 142 160 M 65 160 L 88 80 L 112 160"
-              stroke="#06b6d4"
-              strokeWidth="1.2"
-              opacity="0.8"
-            />
-            {[90, 102, 118, 138].map((y, i) => (
-              <line key={i} x1="0" y1={y} x2="177" y2={y} stroke="#06b6d4" strokeWidth="1" opacity="0.7" />
-            ))}
-
-            {/* Floating 3D polygon doodle */}
-            <polygon
-              points="88,25 118,45 88,65 58,45"
-              fill="none"
-              stroke="#38bdf8"
+              d="M 45 90 Q 88 35, 133 90"
+              stroke="#38BDF8"
               strokeWidth="2"
+              strokeDasharray="4 3"
+              fill="none"
             />
-            <polygon
-              points="88,25 118,45 88,50"
-              fill="#38bdf8"
-              opacity="0.3"
-            />
+            {/* Floating Sky-400 Disk mid-air */}
+            <rect x="79" y="38" width="20" height="9" rx="3" fill="#38BDF8" stroke="#fff" strokeWidth="1" />
+
+            {/* Top HUD badge */}
+            <rect x="8" y="8" width="70" height="16" rx="4" fill="#1e293b" opacity="0.9" />
+            <text x="14" y="19" fill="#2dd4bf" fontSize="8" fontFamily="'Space Mono', monospace" fontWeight="bold">2^n - 1 MOVES</text>
           </g>
 
           {/* Glossy glare line over photo */}
@@ -101,7 +114,7 @@ export default function PolaroidItem() {
             fontWeight="bold"
             fill="#0f172a"
           >
-            Creative Canvas & UI Lab ✨
+            Visual Hanoi Solver 🗼
           </text>
           <text
             x="40"
@@ -110,12 +123,11 @@ export default function PolaroidItem() {
             fontSize="12"
             fill="#64748b"
           >
-            Three.js • Framer • Shaders
+            React 19 • Framer Motion • Recursion
           </text>
 
           {/* Metallic Paperclip on top-left corner */}
           <g transform="translate(42, 6)">
-            {/* Paperclip Loop */}
             <path
               d="M 8 0 L 8 36 A 6 6 0 0 0 20 36 L 20 8 A 10 10 0 0 0 0 8 L 0 42 A 14 14 0 0 0 28 42 L 28 12"
               stroke="#64748b"
@@ -139,17 +151,17 @@ export default function PolaroidItem() {
             width="78"
             height="18"
             rx="4"
-            fill="#6366f1"
+            fill="#0d9488"
           />
           <text
-            x="140"
+            x="139"
             y="238"
             fontFamily="'Space Mono', monospace"
             fontSize="8"
             fontWeight="bold"
             fill="#ffffff"
           >
-            VIEW LAB ↗
+            VIEW SOLVER ↗
           </text>
         </g>
       </svg>

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FloppyDiskItem() {
   return (
-    <div className="relative w-60 h-64 select-none group pointer-events-auto">
+    <div className="relative w-64 h-68 select-none group pointer-events-auto">
       <svg
         viewBox="0 0 240 250"
         className="w-full h-full drop-shadow-desk group-hover:drop-shadow-lifted transition-all duration-200"
@@ -19,8 +19,8 @@ export default function FloppyDiskItem() {
           </linearGradient>
           {/* Disk casing texture gradient */}
           <linearGradient id="diskBody" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1e293b" />
-            <stop offset="100%" stopColor="#0f172a" />
+            <stop offset="0%" stopColor="#1e1b2e" />
+            <stop offset="100%" stopColor="#0f0c1b" />
           </linearGradient>
         </defs>
 
@@ -28,7 +28,7 @@ export default function FloppyDiskItem() {
         <path
           d="M 15 15 L 205 15 L 225 35 L 225 235 L 15 235 Z"
           fill="url(#diskBody)"
-          stroke="#334155"
+          stroke="#4c1d95"
           strokeWidth="3"
         />
 
@@ -45,13 +45,13 @@ export default function FloppyDiskItem() {
         />
 
         {/* Shutter Window Cutout exposing magnetic disk hole */}
-        <rect x="75" y="30" width="22" height="50" rx="3" fill="#0f172a" />
+        <rect x="75" y="30" width="22" height="50" rx="3" fill="#0f0c1b" />
         <line x1="86" y1="30" x2="86" y2="80" stroke="#334155" strokeWidth="2" />
 
         {/* Disk center arrow indicator */}
         <path
           d="M 195 25 L 205 35 L 195 45"
-          stroke="#94a3b8"
+          stroke="#c084fc"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -65,13 +65,13 @@ export default function FloppyDiskItem() {
           width="170"
           height="115"
           rx="5"
-          fill="#fef08a"
-          stroke="#eab308"
+          fill="#fdf4ff"
+          stroke="#c084fc"
           strokeWidth="1.5"
         />
 
-        {/* Red header stripe on sticker */}
-        <rect x="35" y="105" width="170" height="24" rx="3" fill="#dc2626" />
+        {/* Purple header stripe on sticker */}
+        <rect x="35" y="105" width="170" height="24" rx="3" fill="#6d28d9" />
         <text
           x="44"
           y="121"
@@ -81,81 +81,71 @@ export default function FloppyDiskItem() {
           fill="#ffffff"
           letterSpacing="1"
         >
-          FIREBASE CLOUD SYS
+          NOICEE // AI COMMAND
         </text>
-        <circle cx="190" cy="117" r="4" fill="#22c55e" className="animate-pulse" />
+        <circle cx="190" cy="117" r="4" fill="#a855f7" className="animate-pulse" />
 
-        {/* Hand-drawn Firebase Flame Doodle */}
-        <g transform="translate(45, 138)">
-          {/* Flame background */}
-          <path
-            d="M 14 36 C 5 36, 0 30, 0 20 C 0 8, 12 2, 14 0 C 16 6, 18 10, 24 12 C 26 5, 29 2, 33 0 C 35 6, 35 14, 30 20 C 38 22, 38 36, 14 36 Z"
-            fill="#f97316"
-            stroke="#c2410c"
-            strokeWidth="1.5"
-          />
-          {/* Flame inner yellow core */}
-          <path
-            d="M 14 34 C 8 34, 5 30, 5 22 C 5 13, 14 8, 14 8 C 14 12, 16 15, 20 16 C 22 12, 23 10, 26 8 C 28 13, 27 18, 23 22 C 28 24, 27 34, 14 34 Z"
-            fill="#fde047"
-          />
+        {/* AI Brain / Spark Doodle */}
+        <g transform="translate(44, 138)">
+          <rect x="0" y="2" width="34" height="34" rx="8" fill="#ede9fe" stroke="#7c3aed" strokeWidth="1.5" />
+          <text x="7" y="24" fontSize="20">🤖</text>
         </g>
 
-        {/* Handwritten Specs on Label */}
+        {/* Real Repository Specs on Label */}
         <text
-          x="90"
-          y="146"
+          x="88"
+          y="148"
           fontFamily="'Caveat', cursive"
-          fontSize="18"
+          fontSize="19"
           fontWeight="bold"
-          fill="#1e293b"
+          fill="#4c1d95"
         >
-          Backend & APIs
+          Noicee Dashboard
         </text>
         <text
-          x="90"
-          y="163"
+          x="88"
+          y="164"
           fontFamily="'Patrick Hand', cursive"
           fontSize="12"
           fill="#334155"
         >
-          • Cloud Firestore
+          • Flask + Gemini AI & Ollama
         </text>
         <text
-          x="90"
+          x="88"
           y="178"
           fontFamily="'Patrick Hand', cursive"
           fontSize="12"
           fill="#334155"
         >
-          • Functions v2 & Auth
+          • React 19 + Three.js 3D
         </text>
 
         {/* Interactive Badge / Click Cue */}
-        <g transform="translate(45, 190)">
+        <g transform="translate(42, 192)">
           <rect
             x="0"
             y="0"
-            width="150"
-            height="22"
+            width="156"
+            height="21"
             rx="4"
-            fill="#0f172a"
+            fill="#5b21b6"
           />
           <text
-            x="20"
-            y="15"
+            x="14"
+            y="14"
             fontFamily="'Space Mono', monospace"
-            fontSize="9"
-            fill="#38bdf8"
+            fontSize="8.5"
+            fill="#f5f3ff"
             fontWeight="bold"
           >
-            [ READ ARCHITECTURE ]
+            [ OPEN NOICEE GDD ↗ ]
           </text>
         </g>
 
         {/* Write-protect notch slider hole at bottom left */}
         <rect x="25" y="215" width="12" height="12" rx="2" fill="#334155" />
-        <rect x="27" y="217" width="8" height="8" rx="1" fill="#0f172a" />
+        <rect x="27" y="217" width="8" height="8" rx="1" fill="#0f0c1b" />
       </svg>
     </div>
   );
