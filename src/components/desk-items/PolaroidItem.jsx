@@ -114,7 +114,7 @@ export default function PolaroidItem() {
             fontWeight="bold"
             fill="#0f172a"
           >
-            Visual Hanoi Solver 🗼
+            Visual Hanoi Solver
           </text>
           <text
             x="40"

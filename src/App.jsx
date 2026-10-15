@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "./data/projects";
 import BookCoverLanding from "./components/book/BookCoverLanding";
+import AboutMeSection from "./components/book/AboutMeSection";
 import OmnitrixItem from "./components/desk-items/OmnitrixItem";
 import NotebookItem from "./components/desk-items/NotebookItem";
 import FloppyDiskItem from "./components/desk-items/FloppyDiskItem";
@@ -15,9 +16,10 @@ import {
   InstructionsNote,
 } from "./components/desk-items/Decorations";
 import Modal from "./components/Modal";
+import { BookOpenIcon, ExternalLinkIcon, UserIcon } from "./components/ui/Icons";
 
 export default function App() {
-  const [activeView, setActiveView] = useState("cover"); // "cover" | "projects"
+  const [activeView, setActiveView] = useState("cover"); // "cover" | "about" | "projects"
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [topZIndex, setTopZIndex] = useState(15);
@@ -77,18 +79,39 @@ export default function App() {
 
   return (
     <AnimatePresence mode="wait">
-      {activeView === "cover" ? (
+      {activeView === "cover" && (
         <motion.div
           key="cover-view"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.35 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.3 }}
           className="w-screen h-screen overflow-hidden"
         >
-          <BookCoverLanding onOpenProjects={() => setActiveView("projects")} />
+          <BookCoverLanding
+            onOpenProjects={() => setActiveView("projects")}
+            onOpenAboutMe={() => setActiveView("about")}
+          />
         </motion.div>
-      ) : (
+      )}
+
+      {activeView === "about" && (
+        <motion.div
+          key="about-view"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.3 }}
+          className="w-screen h-screen overflow-hidden"
+        >
+          <AboutMeSection
+            onBackToCover={() => setActiveView("cover")}
+            onGoToProjects={() => setActiveView("projects")}
+          />
+        </motion.div>
+      )}
+
+      {activeView === "projects" && (
         <motion.div
           key="projects-desk-view"
           initial={{ opacity: 0, scale: 0.96 }}
@@ -131,8 +154,8 @@ export default function App() {
           {/* Desk Lamp Ambient Glow */}
           <div className="absolute inset-0 lamp-glow pointer-events-none z-10" />
 
-          {/* Top Desk Header / Quick Controls */}
-          <header className="absolute top-3 left-6 right-6 z-30 flex items-center justify-between pointer-events-none">
+          {/* Top Desk Header / Navigation Bar */}
+          <header className="absolute top-3 left-4 sm:left-6 right-4 sm:right-6 z-30 flex items-center justify-between pointer-events-none">
             <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
               {/* Back to Book Cover Navigation Button */}
               <button
@@ -140,17 +163,26 @@ export default function App() {
                 className="px-3 py-1.5 bg-[#facc15] hover:bg-[#eab308] text-slate-950 border-2 border-slate-950 rounded-lg font-mono text-xs font-bold shadow-[2px_2px_0px_#0f172a] transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
                 title="Return to Book Cover Landing Page"
               >
-                <span>📖</span>
-                <span>Cover / Index</span>
+                <BookOpenIcon className="w-3.5 h-3.5 text-slate-950" />
+                <span>Book Cover</span>
               </button>
 
-              <div className="hidden sm:flex items-center gap-2.5 bg-[#111c19]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-emerald-900/60 shadow-lg">
+              <button
+                onClick={() => setActiveView("about")}
+                className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-950 border-2 border-slate-950 rounded-lg font-mono text-xs font-bold shadow-[2px_2px_0px_#0f172a] transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                title="Open About Me Dossier"
+              >
+                <UserIcon className="w-3.5 h-3.5 text-slate-950" />
+                <span>About Me</span>
+              </button>
+
+              <div className="hidden md:flex items-center gap-2.5 bg-[#111c19]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-emerald-900/60 shadow-lg">
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <h1 className="font-mono text-xs font-bold text-emerald-300 tracking-wider">
-                  PROJECTS DESK
+                  2D DESK
                 </h1>
                 <span className="text-[10px] font-mono text-emerald-400/60 border-l border-emerald-900/80 pl-2.5">
-                  Drag & Inspect Artifacts
+                  Drag items • Click to inspect
                 </span>
               </div>
             </div>
@@ -161,7 +193,6 @@ export default function App() {
                 className="px-3 py-1.5 bg-[#111c19]/90 hover:bg-[#1a2c27] text-emerald-300 border border-emerald-900/70 rounded-lg font-mono text-xs shadow-md transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
                 title="Reset items to default positions"
               >
-                <span>↺</span>
                 <span>Reset Desk</span>
               </button>
 
@@ -172,7 +203,7 @@ export default function App() {
                 className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5"
               >
                 <span>GitHub</span>
-                <span>↗</span>
+                <ExternalLinkIcon className="w-3.5 h-3.5" />
               </a>
             </div>
           </header>

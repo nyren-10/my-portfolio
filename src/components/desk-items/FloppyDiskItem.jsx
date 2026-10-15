@@ -85,10 +85,14 @@ export default function FloppyDiskItem() {
         </text>
         <circle cx="190" cy="117" r="4" fill="#a855f7" className="animate-pulse" />
 
-        {/* AI Brain / Spark Doodle */}
+        {/* AI Brain / Vector Robot Doodle */}
         <g transform="translate(44, 138)">
           <rect x="0" y="2" width="34" height="34" rx="8" fill="#ede9fe" stroke="#7c3aed" strokeWidth="1.5" />
-          <text x="7" y="24" fontSize="20">🤖</text>
+          <path d="M 12 14 L 22 14 M 17 9 L 17 14" stroke="#6d28d9" strokeWidth="2" strokeLinecap="round" />
+          <rect x="9" y="14" width="16" height="12" rx="3" fill="#6d28d9" />
+          <circle cx="13" cy="19" r="1.5" fill="#f5f3ff" />
+          <circle cx="21" cy="19" r="1.5" fill="#f5f3ff" />
+          <line x1="13" y1="23" x2="21" y2="23" stroke="#f5f3ff" strokeWidth="1" strokeLinecap="round" />
         </g>
 
         {/* Real Repository Specs on Label */}

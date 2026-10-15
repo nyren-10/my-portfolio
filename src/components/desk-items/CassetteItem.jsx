@@ -74,7 +74,7 @@ export default function CassetteItem() {
           fontWeight="bold"
           fill="#1e293b"
         >
-          Speech Recognition 🎙️
+          Speech Recognition
         </text>
         <text
           x="35"

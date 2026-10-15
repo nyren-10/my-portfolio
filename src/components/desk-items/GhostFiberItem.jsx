@@ -95,7 +95,7 @@ export default function GhostFiberItem() {
           fontWeight="bold"
           fill="#ecfeff"
         >
-          GhostFiber Visualizer ⚡
+          GhostFiber Visualizer
         </text>
         <text
           x="24"

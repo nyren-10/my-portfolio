@@ -148,7 +148,7 @@ export default function NotebookItem() {
           <circle cx="10" cy="25" r="4.5" fill="#3b82f6" stroke="#fff" strokeWidth="1.5" />
           <circle cx="85" cy="30" r="4.5" fill="#10b981" stroke="#fff" strokeWidth="1.5" />
           <circle cx="150" cy="18" r="4.5" fill="#ef4444" stroke="#fff" strokeWidth="1.5" />
-          <text x="75" y="42" fill="#64748b" fontSize="8" fontFamily="'Patrick Hand', cursive">Hostel ➔ Campus</text>
+          <text x="75" y="42" fill="#64748b" fontSize="8" fontFamily="'Patrick Hand', cursive">Hostel -&gt; Campus</text>
         </g>
 
         {/* Handwritten Title & Real Project Description */}
@@ -160,7 +160,7 @@ export default function NotebookItem() {
           fontWeight="bold"
           fill="#0f172a"
         >
-          BusBuddy Platform 🚌
+          BusBuddy Platform
         </text>
         <text
           x="72"

@@ -128,7 +128,7 @@ export default function OmnitrixItem() {
             fontWeight="bold"
             fill="#1e293b"
           >
-            Sovereign AI Workbench ⚡
+            Sovereign AI Workbench
           </text>
         </g>
       </svg>

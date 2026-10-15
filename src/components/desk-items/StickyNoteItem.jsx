@@ -48,7 +48,7 @@ export default function StickyNoteItem() {
           fontWeight="bold"
           fill="#0f172a"
         >
-          Dev Arsenal ⚡
+          Dev Arsenal
         </text>
 
         {/* Checkmark items */}

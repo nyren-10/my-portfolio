@@ -52,7 +52,7 @@ export default function CoffeeMugItem() {
             fontSize="12"
             fill="#b45309"
           >
-            Backend & LLM Blueprint Philosophy ☕
+            Backend & LLM Blueprint Philosophy
           </text>
         </g>
 
