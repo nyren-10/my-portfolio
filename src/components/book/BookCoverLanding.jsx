@@ -119,11 +119,11 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                 </motion.button>
               </div>
 
-              {/* Title & Subtitle from Sketch: "Yo wassuh !" & "I create blunders" */}
+              {/* Title & Subtitle from Sketch: "Yo Wassup!!" & "I create blunders" */}
               <div className="flex-1 mt-1 sm:mt-0">
                 <div className="inline-block">
                   <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold font-hand tracking-tight text-slate-950 leading-none">
-                    Yo wassuh !
+                    Yo Wassup!!
                   </h1>
                   {/* Hand-drawn underline stroke */}
                   <div className="w-full h-1.5 bg-slate-950 rounded-full mt-1 transform -rotate-0.5" />

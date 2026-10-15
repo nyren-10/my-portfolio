@@ -300,21 +300,13 @@ export default function AboutMeSection({ onBackToCover, onGoToProjects }) {
           </div>
 
           {/* Action Footer Bar */}
-          <div className="pt-4 border-t-3 border-slate-950 flex flex-wrap items-center justify-between gap-4">
+          <div className="pt-4 border-t-3 border-slate-950 flex items-center justify-between">
             <button
               onClick={onBackToCover}
               className="font-mono text-xs font-bold text-slate-800 hover:text-slate-950 underline underline-offset-4 cursor-pointer flex items-center gap-1.5"
             >
               <ArrowLeftIcon className="w-3.5 h-3.5" />
               <span>Return to Book Cover</span>
-            </button>
-
-            <button
-              onClick={onGoToProjects}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-950 text-white font-mono text-xs font-bold rounded-lg shadow-md hover:bg-slate-800 transition-all cursor-pointer"
-            >
-              <span>Check Out Interactive Projects Desk</span>
-              <ArrowRightIcon className="w-4 h-4 text-yellow-300" />
             </button>
           </div>
 

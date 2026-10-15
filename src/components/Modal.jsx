@@ -41,13 +41,6 @@ export default function Modal({ project, onClose }) {
         stroke: "#64748b",
         strokeWidth: 1.2,
       });
-
-      // Divider line under header
-      rc.line(20, 115, rect.width - 20, 115, {
-        roughness: 2,
-        stroke: "#94a3b8",
-        strokeWidth: 1.8,
-      });
     };
 
     drawRoughBorder();
@@ -108,7 +101,7 @@ export default function Modal({ project, onClose }) {
           </button>
 
           {/* Header Area */}
-          <div className="relative pl-4 pr-12 pb-4 mb-4">
+          <div className="relative pl-4 pr-12 pb-3 mb-4 border-b-2 border-dashed border-slate-300/90">
             <div className="flex flex-wrap items-center gap-2 mb-1.5 font-mono text-xs">
               <span className="font-bold text-slate-600 bg-slate-200/80 px-2 py-0.5 rounded">
                 {project.docNumber || "GDD // ARCHIVE"}
