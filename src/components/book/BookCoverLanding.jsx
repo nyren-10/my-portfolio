@@ -15,6 +15,8 @@ import {
   TerminalIcon,
   CpuIcon,
   BusIcon,
+  GitHubIcon,
+  ExternalLinkIcon,
 } from "../ui/Icons";
 import { PythonLogo, NodeLogo, ReactLogo, PostgresLogo, DockerLogo, GeminiLogo } from "../ui/TechLogos";
 
@@ -82,10 +84,9 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
         {/* Architectural Graph Paper & Sketch Grid Overlay */}
         <div className="absolute inset-0 bg-graph-paper opacity-50 pointer-events-none" />
 
-        {/* Vintage Drafting Tape Strips on Corners */}
+        {/* Vintage Drafting Tape Strips on Top Corners */}
         <div className="absolute top-3 left-20 w-28 h-6 bg-[#fef08a]/85 border-t border-b border-amber-300 transform -rotate-2 pointer-events-none shadow-sm" />
         <div className="absolute top-3 right-6 w-32 h-6 bg-[#fef08a]/85 border-t border-b border-amber-300 transform rotate-1 pointer-events-none shadow-sm" />
-        <div className="absolute bottom-3 right-8 w-36 h-6 bg-[#fef08a]/85 border-t border-b border-amber-300 transform -rotate-1 pointer-events-none shadow-sm" />
 
         {/* --- MAIN PAGE CONTENT CANVAS (FULL SCREEN SPREAD) --- */}
         <div className="relative flex-1 pl-6 sm:pl-16 md:pl-20 pr-6 sm:pr-10 py-5 sm:py-7 flex flex-col justify-between overflow-y-auto custom-scrollbar z-20">
@@ -344,22 +345,20 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
               <span className="hidden sm:inline text-slate-600">Techno NJR Institute of Technology, Udaipur</span>
             </div>
             
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => handleButtonClick("about")}
-                className="font-bold hover:text-slate-950 underline underline-offset-2 cursor-pointer"
-              >
-                [ Read About Me ]
-              </button>
-              <a
+            <div className="flex items-center">
+              <motion.a
+                whileHover={{ scale: 1.05, y: -1 }}
+                whileTap={{ scale: 0.96 }}
                 href="https://github.com/nyren-10"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold text-slate-950 hover:underline flex items-center gap-1"
+                className="px-3.5 py-1.5 bg-slate-950 hover:bg-slate-800 text-white font-mono text-xs font-bold rounded-md shadow-[2px_2px_0px_#0f172a] transition-all flex items-center gap-2 cursor-pointer"
+                title="Visit Mayank's GitHub Profile (@nyren-10)"
               >
+                <GitHubIcon className="w-3.5 h-3.5 fill-current" />
                 <span>GitHub @nyren-10</span>
-                <ArrowRightIcon className="w-3 h-3" />
-              </a>
+                <ExternalLinkIcon className="w-3 h-3 text-amber-300" />
+              </motion.a>
             </div>
           </div>
 
