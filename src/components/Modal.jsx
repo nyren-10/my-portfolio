@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import rough from "roughjs/bin/rough";
 
@@ -57,10 +58,10 @@ export default function Modal({ project, onClose }) {
 
   if (!project) return null;
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md overflow-y-auto"
         onClick={onClose}
       >
         <motion.div
@@ -69,7 +70,7 @@ export default function Modal({ project, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.92, y: 15 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-2xl bg-graph-paper rounded-sm shadow-gdd p-6 sm:p-8 text-[#181b22] my-auto custom-scrollbar overflow-hidden"
+          className="relative w-full max-w-2xl bg-graph-paper rounded-sm shadow-gdd p-6 sm:p-8 text-[#181b22] my-auto custom-scrollbar overflow-hidden z-20"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Rough.js Canvas Sketch Border */}
@@ -91,7 +92,7 @@ export default function Modal({ project, onClose }) {
           {/* Close Button [ ✕ ] */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-30 px-3 py-1 bg-white/90 border-2 border-slate-900 rounded font-mono text-xs font-bold text-slate-900 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-700 transition-colors shadow-sm"
+            className="absolute top-4 right-4 z-30 px-3 py-1 bg-white/90 border-2 border-slate-900 rounded font-mono text-xs font-bold text-slate-900 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-700 transition-colors shadow-sm cursor-pointer"
             title="Close GDD (Esc)"
           >
             ✕ ESC
@@ -189,7 +190,7 @@ export default function Modal({ project, onClose }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-900 text-white font-mono text-xs font-bold rounded shadow hover:bg-slate-800 active:scale-95 transition-all"
                   >
-                    <span>View on GitHub</span>
+                    <span>View Repository</span>
                     <span>↗</span>
                   </a>
                 )}
@@ -208,7 +209,7 @@ export default function Modal({ project, onClose }) {
 
               <button
                 onClick={onClose}
-                className="px-4 py-2 text-xs font-mono text-slate-600 hover:text-slate-900 underline underline-offset-4"
+                className="px-4 py-2 text-xs font-mono text-slate-600 hover:text-slate-900 underline underline-offset-4 cursor-pointer"
               >
                 [ Close Document ]
               </button>
@@ -218,4 +219,6 @@ export default function Modal({ project, onClose }) {
       </div>
     </AnimatePresence>
   );
+
+  return createPortal(modalContent, document.body);
 }

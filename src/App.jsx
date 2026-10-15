@@ -18,7 +18,7 @@ import Modal from "./components/Modal";
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [topZIndex, setTopZIndex] = useState(25);
+  const [topZIndex, setTopZIndex] = useState(15);
   const [zIndexes, setZIndexes] = useState({
     omnitrix: 12,
     busbuddy: 11,
@@ -33,7 +33,7 @@ export default function App() {
 
   const bringToFront = (id) => {
     setTopZIndex((prev) => {
-      const next = prev + 1;
+      const next = prev >= 30 ? 15 : prev + 1;
       setZIndexes((curr) => ({ ...curr, [id]: next }));
       return next;
     });
@@ -76,7 +76,7 @@ export default function App() {
   return (
     <div
       ref={deskRef}
-      className="relative w-screen h-screen overflow-hidden select-none bg-desk-wood"
+      className={`relative w-screen h-screen overflow-hidden select-none bg-desk-wood ${isModalOpen ? "pointer-events-none" : ""}`}
     >
       {/* Architect / Designer Cutting Mat in Center */}
       <div className="absolute inset-3 sm:inset-6 rounded-2xl bg-cutting-mat shadow-2xl border-4 border-[#2f4f46] overflow-hidden pointer-events-none">
