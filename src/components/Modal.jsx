@@ -133,7 +133,7 @@ export default function Modal({ project, onClose }) {
             <div>
               <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 mb-1 flex items-center gap-1.5">
                 <ClipboardIcon className="w-3.5 h-3.5 text-slate-700" />
-                <span>Executive Summary & Quest Objective</span>
+                <span>What This Project Is About</span>
               </h3>
               <p className="text-slate-800 leading-relaxed font-sans text-[13.5px] bg-white/70 p-3 rounded border border-slate-200/80">
                 {project.description}
@@ -144,7 +144,7 @@ export default function Modal({ project, onClose }) {
             <div>
               <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 mb-2 flex items-center gap-1.5">
                 <GearIcon className="w-3.5 h-3.5 text-slate-700" />
-                <span>Equipped Inventory & Tech Stack</span>
+                <span>Tech Stack & Tools Used</span>
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {project.tech?.map((t, idx) => (
@@ -158,12 +158,12 @@ export default function Modal({ project, onClose }) {
               </div>
             </div>
 
-            {/* Key Features / Mechanics */}
+            {/* Key Features / Highlights */}
             {project.features && (
               <div>
                 <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 mb-1.5 flex items-center gap-1.5">
                   <TargetIcon className="w-3.5 h-3.5 text-slate-700" />
-                  <span>Core Mechanics & Capabilities</span>
+                  <span>What I Built & Key Highlights</span>
                 </h3>
                 <ul className="space-y-1.5 font-sans text-xs bg-white/60 p-3 rounded border border-slate-200/80">
                   {project.features.map((feat, idx) => (
@@ -181,7 +181,7 @@ export default function Modal({ project, onClose }) {
               <div className="p-3 bg-amber-50/70 border border-amber-300/80 rounded">
                 <div className="text-[11px] font-mono font-bold text-amber-900 mb-1 flex items-center gap-1.5">
                   <RulerIcon className="w-3.5 h-3.5 text-amber-800" />
-                  <span>SYSTEM ARCHITECTURE NOTE</span>
+                  <span>HOW IT'S PUT TOGETHER (ARCHITECTURE)</span>
                 </div>
                 <p className="text-xs text-amber-950/90 font-mono leading-relaxed">
                   {project.architecture}

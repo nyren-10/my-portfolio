@@ -43,7 +43,7 @@ export default function CoffeeMugItem() {
             fill="#92400e"
             letterSpacing="0.8"
           >
-            ARCHITECTURE & DATA FLOW
+            MY PROJECT INTERESTS
           </text>
           <text
             x="22"
@@ -52,7 +52,7 @@ export default function CoffeeMugItem() {
             fontSize="12"
             fill="#b45309"
           >
-            Backend & LLM Blueprint Philosophy
+            How I Build & What I Enjoy
           </text>
         </g>
 
@@ -130,14 +130,14 @@ export default function CoffeeMugItem() {
           strokeWidth="1.5"
         />
         <text
-          x="44"
+          x="38"
           y="194"
           fontFamily="'Space Mono', monospace"
           fontSize="7.5"
           fontWeight="bold"
           fill="#38bdf8"
         >
-          [ ARCHITECTURE & LLMS ]
+          [ MY PROJECT INTERESTS ]
         </text>
       </svg>
     </div>

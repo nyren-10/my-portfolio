@@ -1,57 +1,17 @@
 export const projects = [
   {
-    id: "omnitrix",
-    type: "omnitrix",
-    title: "Omnitrix // Sovereign AI Workbench",
-    subtitle: "SIH Project • Multi-Model Offline AI Orchestrator & Air-Gapped Workbench",
-    docNumber: "SIH-PROJECT // OMNITRIX-AI",
-    status: "SIH HACKATHON // COLLABORATION",
-    stamp: "SOVEREIGN AI",
-    stampColor: "text-emerald-800 border-emerald-800 bg-emerald-50",
-    initialPos: { x: 490, y: 120 },
-    rotation: 4,
-    description:
-      "Our Smart India Hackathon (SIH) flagship project: A Sovereign AI Workbench engineered with multiple specialized offline models. When a user submits an enterprise task, an intelligent orchestrator model analyzes the requirement and dynamically delegates the workload to the best-suited local model—running 100% offline under the company's private intranet without leaking a single byte to external clouds.",
-    tech: [
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS v4",
-      "@shadcn/react",
-      "Multi-Model Routing",
-      "Offline LLMs",
-      "Air-Gapped Intranet",
-      "docx / exceljs / jspdf",
-      "Recharts",
-      "Vite"
-    ],
-    features: [
-      "Dynamic Multi-Model Dispatcher: Analyzes task intent and automatically routes to the optimal offline model (code, document parsing, spreadsheet analysis, agentic reasoning)",
-      "Zero-Data Egress / Air-Gapped Security: Completely self-contained under the organization's private corporate intranet for sovereign data governance",
-      "Full Offline Document Intelligence: In-browser and local generation/manipulation of Word (docx), Excel (exceljs), and PDF (jspdf) files",
-      "Enterprise UI Workbench: Resizable multi-panel layout built with React 19, TypeScript, Shadcn UI, cmdk command palette, and Recharts metrics",
-      "Collaborative SIH Engineering: High-intensity hackathon sprint with rigorous unit testing via Vitest and zero-dependency offline bundling"
-    ],
-    architecture:
-      "Air-gapped on-premise architecture. The React 19 frontend coordinates through a local offline inference gateway that switches between specialized quantized models running on private hardware.",
-    links: {
-      github: "https://github.com/Tauqeer-Raza/Omnitrix",
-      demo: "https://github.com/Tauqeer-Raza/Omnitrix",
-    },
-    accentColor: "#22c55e",
-  },
-  {
     id: "busbuddy",
     type: "notebook",
-    title: "BusBuddy Campus Transit Service",
-    subtitle: "Complete College Bus Tracking Platform (Backend + Frontend + DevOps)",
-    docNumber: "CAMPUS-TRANSIT // BUSBUDDY-FULL",
-    status: "COLLEGE SYSTEM // IN USE",
-    stamp: "LEAD DEV & FOUNDER",
+    title: "BusBuddy College Transit",
+    subtitle: "Live campus bus tracking ecosystem I built from scratch for our college",
+    docNumber: "CAMPUS-TRANSIT // BUSBUDDY",
+    status: "COLLEGE TRANSIT // IN USE",
+    stamp: "LEAD DEV & CREATOR",
     stampColor: "text-amber-800 border-amber-800 bg-amber-50",
-    initialPos: { x: 80, y: 100 },
+    initialPos: { x: 70, y: 100 },
     rotation: -4,
     description:
-      "A complete live bus tracking and transit management ecosystem built for our college campus. Identified the critical transit delay and communication dilemma students faced daily, conceived the entire architecture, and spearheaded end-to-end development across Backend, Frontend, and DevOps (handling everything from WebSocket streams to Docker deployments).",
+      "BusBuddy was born out of pure frustration with our college bus schedule. Students had no clue when the bus would arrive, and people were constantly missing rides or stranded waiting. I took the idea, designed the whole flow, and ended up building the entire system—from the backend WebSocket server and PostgreSQL database to the student web portal, the Android driver GPS app, and Docker setups. Basically an all-in-one developer here! Seeing students actually use it every morning to catch their bus made all the late-night debugging completely worth it.",
     tech: [
       "Node.js & Express",
       "WebSockets (ws)",
@@ -59,18 +19,17 @@ export const projects = [
       "Docker & Compose",
       "React 19 (Student Portal)",
       "Google Maps JS API",
-      "Android Kotlin (Driver GPS)",
-      "Web Push API"
+      "Android Kotlin (Driver GPS)"
     ],
     features: [
-      "Full Ecosystem Engineering: Conceived the concept and developed Student App, Driver Android App, Web Admin, and High-Throughput WebSocket Server",
-      "Sub-Second Live GPS Telemetry: WebSockets pipeline broadcasting live bus coordinates directly from driver smartphones to student map viewports",
-      "Driver Android Application: Native Kotlin app tracking real-time route progress, turn updates, and automated geofencing arrivals",
-      "Student Web Portal: Interactive Google Maps interface calculating real-time ETAs, bus stops, and arrival countdowns",
-      "Full-Stack & DevOps Responsibility: Orchestrated PostgreSQL migrations/seeders, Docker Compose development environments, rate-limiting, and Helmet security"
+      "Built the entire ecosystem: Conceived the idea and built the student web portal, driver Android GPS tracker, and admin controls.",
+      "Live coordinate streaming: Used WebSockets so bus locations update smoothly on the map in sub-seconds without lag.",
+      "Android Driver App: Built a simple Kotlin app for bus drivers with big buttons and auto route tracking.",
+      "Student Map UI: Interactive map showing bus stops, live vehicle locations, and estimated arrival times.",
+      "DevOps & Database: Set up PostgreSQL for routes and schedules, and Dockerized everything so it's easy to spin up and maintain."
     ],
     architecture:
-      "Distributed multi-client architecture: Native Kotlin driver app publishes GPS telemetry via WebSockets to an Express/PostgreSQL gateway; the gateway broadcasts spatial deltas to student React clients with Web Push notification triggers.",
+      "Driver smartphones send GPS pings via WebSockets to our Node.js backend, which stores route logs in PostgreSQL and broadcasts live coordinates to students' browser maps in real time.",
     links: {
       github: "https://github.com/Tauqeer-Raza/BusBuddy-Backend",
       demo: "https://github.com/Tauqeer-Raza",
@@ -78,18 +37,54 @@ export const projects = [
     accentColor: "#f59e0b",
   },
   {
+    id: "omnitrix",
+    type: "omnitrix",
+    title: "Omnitrix // Sovereign AI Workbench",
+    subtitle: "Our SIH hackathon project: an offline, multi-model AI system for private intranets",
+    docNumber: "SIH-PROJECT // OMNITRIX-AI",
+    status: "SIH HACKATHON // TEAM WORK",
+    stamp: "SIH HACKATHON",
+    stampColor: "text-emerald-800 border-emerald-800 bg-emerald-50",
+    initialPos: { x: 480, y: 120 },
+    rotation: 4,
+    description:
+      "This was our team project for the Smart India Hackathon (SIH). A lot of organizations deal with confidential data and can't send documents or code out to cloud AI services. We built Omnitrix—a sovereign AI workbench that runs 100% offline inside a company's private intranet. It hosts several local models (using Ollama). When you give it a task, an orchestrator model figures out which local model is best suited (like writing code, summarizing files, or analyzing spreadsheets) and delegates the work—zero internet required, zero data leaked.",
+    tech: [
+      "React 19",
+      "TypeScript",
+      "Offline LLMs (Ollama)",
+      "Intranet Multi-Model Routing",
+      "docx / exceljs / jspdf",
+      "Tailwind CSS",
+      "Vite"
+    ],
+    features: [
+      "Smart task routing: An orchestrator model checks your prompt and sends it to the best local model for that specific job.",
+      "100% Air-gapped & Offline: Runs completely inside the local company intranet without pinging external servers.",
+      "Local document generator: Can read and generate Word (.docx), Excel (.xlsx), and PDF files directly offline.",
+      "SIH Team Sprint: Built under tight hackathon pressure, coordinating with teammates to connect the UI, local models, and document pipelines."
+    ],
+    architecture:
+      "A React frontend connects to a local backend gateway running on the internal network. The gateway manages local quantized Ollama model runtimes on private hardware.",
+    links: {
+      github: "https://github.com/Tauqeer-Raza/Omnitrix",
+      demo: "https://github.com/Tauqeer-Raza/Omnitrix",
+    },
+    accentColor: "#22c55e",
+  },
+  {
     id: "noicee-dashboard",
     type: "floppy",
-    title: "Noicee Command Center",
-    subtitle: "AI Research, Personal Command Center & Predictive Tracking",
+    title: "Noicee Dashboard",
+    subtitle: "My personal AI command center and college study tracker",
     docNumber: "REPO // nyren-10/Noicee-dashboard",
-    status: "PERSONAL OPS // ACTIVE",
+    status: "PERSONAL PROJECT",
     stamp: "AI HUB",
     stampColor: "text-purple-800 border-purple-800 bg-purple-50",
     initialPos: { x: 920, y: 110 },
     rotation: 5,
     description:
-      "My automated personal command center and productivity engine featuring dual AI research synthesis, automated task management, structured note-taking, and predictive academic tracking.",
+      "I built this for myself because I wanted one clean, central place to organize college assignments, notes, and research. It connects to both Google's Gemini API for smart cloud lookups and a local Ollama model when I want to work completely offline. I also added some 3D interactive graphics using Three.js just because experimenting with 3D on the web is super fun.",
     tech: [
       "Python Flask",
       "Google Gemini AI",
@@ -97,20 +92,16 @@ export const projects = [
       "React 19",
       "Three.js (R3F)",
       "PostgreSQL",
-      "APScheduler",
-      "Render"
+      "APScheduler"
     ],
     features: [
-      "Dual AI integration: Cloud Google Gemini API + local Ollama LLMs for private research queries",
-      "Automated background scheduling via APScheduler for academic deadline and milestone alerts",
-      "Interactive 3D spatial data visualizations using React Three Fiber, Drei, and OGL",
-      "Persistent relational storage with PostgreSQL (psycopg2-binary) and Flask RESTful API",
-      "Web scraping pipeline with BeautifulSoup4 for automated academic research gathering",
-      "PWA offline-ready frontend powered by React 19, Vite, Recharts, and Tailwind CSS",
-      "Continuous deployment pipeline hosted on Render"
+      "Dual AI setup: Uses Gemini for quick cloud research and local Ollama when working offline.",
+      "Task & deadline alerts: Background scheduler keeps track of college assignment due dates.",
+      "Interactive 3D canvas: Built mini 3D scenes using React Three Fiber and Three.js.",
+      "PostgreSQL & Flask: Clean REST API with database storage for notes and logs."
     ],
     architecture:
-      "Python Flask backend serving REST endpoints and background job queues, paired with a React 19 SPA frontend with 3D canvas rendering and PostgreSQL persistence.",
+      "Flask backend with PostgreSQL handling data storage and background cron jobs, hooked up to a React 19 frontend with 3D canvas elements.",
     links: {
       github: "https://github.com/nyren-10/Noicee-dashboard",
       demo: "https://github.com/nyren-10",
@@ -121,7 +112,7 @@ export const projects = [
     id: "visual-hanoi",
     type: "polaroid",
     title: "Visual Hanoi Solver",
-    subtitle: "Interactive Recursive Tower of Hanoi Simulation & Puzzle Engine",
+    subtitle: "Watching recursion solve the classic puzzle step-by-step",
     docNumber: "PROJECT // VISUAL-HANOI",
     status: "ALGORITHM ENGINE",
     stamp: "RECURSION",
@@ -129,24 +120,21 @@ export const projects = [
     initialPos: { x: 1360, y: 220 },
     rotation: -6,
     description:
-      "An interactive algorithmic visualization platform demonstrating the classic Tower of Hanoi mathematical puzzle. Features a step-by-step recursive auto-solver, manual play mode, and fluid spring animations.",
+      "Recursion is one of those concepts that makes complete sense on paper, but seeing it visually in motion is so satisfying. I built this interactive Tower of Hanoi tool with smooth spring animations so you can watch the recursive algorithm solve the puzzle step-by-step, adjust the speed, or pause and try solving it yourself.",
     tech: [
       "React 19",
       "Framer Motion",
-      "Tailwind CSS v4",
-      "Lucide React",
-      "Vite",
-      "Algorithms (Recursion)"
+      "Tailwind CSS",
+      "Algorithms (Recursion)",
+      "Vite"
     ],
     features: [
-      "Pure algorithmic recursive solver generating optimal 2^n - 1 move sequences",
-      "Step-by-step execution controls: Play, Pause, Step Forward, Step Backward, and Instant Reset",
-      "Color-coded disk spectrum mapping each disk tier to individual hex spectrum palettes",
-      "Physics-driven disk translation animations powered by Framer Motion layout springs",
-      "Move counter and live rod state inspector across Rods A, B, and C"
+      "Step-by-step recursive player: Step forward, backward, auto-play, or pause at any move.",
+      "Fluid physics animations: Smooth disk movements powered by Framer Motion springs.",
+      "Manual puzzle mode: Move disks yourself and try matching the optimal 2^n - 1 move count."
     ],
     architecture:
-      "Modular separation of concerns: Pure recursive solver generator function decoupling algorithmic calculation from the reactive Framer Motion UI rendering layer.",
+      "A pure recursive generator computes the optimal sequence of rod transitions, decoupled from the reactive Framer Motion animated UI.",
     links: {
       github: "https://github.com/nyren-10",
       demo: "https://github.com/nyren-10",
@@ -157,15 +145,15 @@ export const projects = [
     id: "speech-recognition",
     type: "cassette",
     title: "Basic Speech Recognition",
-    subtitle: "Python Voice Assistant & Ambient Noise Calibrated Synthesizer",
+    subtitle: "A Python script that listens to your voice and talks back",
     docNumber: "REPO // nyren-10/Basic_Speech_Recognition",
-    status: "PUBLIC REPO // OSS",
+    status: "PYTHON EXPERIMENT",
     stamp: "VOICE I/O",
     stampColor: "text-blue-800 border-blue-800 bg-blue-50",
     initialPos: { x: 500, y: 580 },
     rotation: -3,
     description:
-      "Voice recognition and speech synthesis utility built with Python. Captures real-time microphone input, dynamically adjusts for ambient background acoustic noise, and recognizes spoken speech via Google Speech API with audio feedback.",
+      "A fun little Python weekend project where I wanted to experiment with voice input and audio processing. It listens through your microphone, calibrates for ambient room noise so it doesn't get thrown off by background sounds, transcribes what you said, and replies back with speech synthesis.",
     tech: [
       "Python 3",
       "SpeechRecognition (sr)",
@@ -174,14 +162,13 @@ export const projects = [
       "Audio Signal Processing"
     ],
     features: [
-      "Microphone calibration loop with dynamic ambient noise adjustment (adjust_for_ambient_noise)",
-      "Speech-to-text transcription utilizing Google Speech API with Indian English ('en-in') language model",
-      "Offline Text-to-Speech (TTS) verbal feedback loop via pyttsx3",
-      "Configurable audio timeout and listening phrase time limits",
-      "Lightweight command-line integration ready for voice-activated scripting"
+      "Ambient noise calibration: Automatically adjusts mic sensitivity so background noises don't mess up speech.",
+      "Speech-to-text: Uses Google Speech recognition tuned for Indian English accents.",
+      "Voice feedback: Speaks responses back aloud using offline pyttsx3 TTS.",
+      "Fun CLI tool: Quick to run from the command line whenever you want to test audio hooks."
     ],
     architecture:
-      "Synchronous audio capture pipeline that reads raw microphone PCM stream, normalizes acoustic threshold, and dispatches to recognition API with immediate auditory feedback.",
+      "Simple Python pipeline: mic input -> noise thresholding -> audio transcription -> spoken TTS feedback.",
     links: {
       github: "https://github.com/nyren-10/Basic_Speech_Recognition",
       demo: "https://github.com/nyren-10/Basic_Speech_Recognition",
@@ -191,34 +178,33 @@ export const projects = [
   {
     id: "coffee-about",
     type: "coffee",
-    title: "System Architecture & Problem Solving",
-    subtitle: "Backend Engineering, Data Flow Modeling & LLM Environments",
-    docNumber: "SPECS // SYSTEM-DESIGN-01",
-    status: "ENGINEERING PHILOSOPHY",
-    stamp: "SYSTEM ARCHITECT",
+    title: "My Project Interests & How I Build",
+    subtitle: "Architecture, data flows, backend tinkering, and the fun in figuring things out",
+    docNumber: "INTERESTS // HOW-I-WORK",
+    status: "DEVELOPER MINDSET",
+    stamp: "MY INTERESTS",
     stampColor: "text-amber-800 border-amber-800 bg-amber-50",
     initialPos: { x: 80, y: 560 },
     rotation: 6,
     description:
-      "Deep love for end-to-end problem solving, sketching holistic system architectures, and blueprinting data flows before diving into code. Seasoned in resilient backend engineering, event-driven pipelines, and orchestrating LLMs within both cloud and air-gapped enterprise environments.",
+      "Whenever I start a project, I don't just dive head-first into writing code. I love sitting down with a notebook and drawing out the system architecture and data flows first. Figuring out how everything connects, finding where things might break, and exploring around to find the cleanest design—even though it gets messy pretty often and I end up re-sketching it a bunch of times! Most of my time goes into backend development with Node.js and Python, designing database schemas, and experimenting with LLMs in real and air-gapped environments.",
     tech: [
-      "System Architecture",
-      "Data Flow Modeling",
+      "System Architecture & Flow Diagrams",
       "Backend (Node.js & Python)",
-      "LLMs (Gemini & Ollama)",
-      "WebSockets & Real-Time",
+      "LLMs (Gemini & Local Ollama)",
+      "WebSockets & Real-Time Streams",
       "PostgreSQL Schemas",
-      "Docker & DevOps"
+      "Docker & DevOps Basics"
     ],
     features: [
-      "Architectural Blueprinting: Mapping data flow boundaries, state transitions, and API contracts before implementation",
-      "Heavy Backend Core: Building high-throughput Node.js & Python Flask backends with event streaming and WebSockets",
-      "Real-World LLM Integration: Designing dual cloud (Gemini) and local air-gapped (Ollama) inference pipelines",
-      "Environment & DevOps Mastery: Managing Docker multi-service setups, network isolation, and production pipelines",
-      "Core Mindset: Identifying real-world user bottlenecks and solving them with pragmatic, scalable engineering"
+      "Drawing architecture first: Exploring how data travels between the client, backend, and database before writing APIs.",
+      "Embracing the mess: Sketching out multiple designs, testing what holds up, and iterating until the flow feels right.",
+      "Backend focus: Building the server logic with Node.js and Python Flask, handling real-time WebSockets, and setting up PostgreSQL.",
+      "Tinkering with LLMs: Running local models with Ollama and cloud models with Gemini, especially figuring out how to make them work in private/offline networks.",
+      "Getting things to run: Packaging services with Docker and getting hands dirty with DevOps so the project actually works in production."
     ],
     architecture:
-      "Philosophy: 'A week of coding can save an hour of architectural planning.' Strong belief in designing clean data flows, clear database boundaries, and reliable error recovery.",
+      "My approach is simple: figure out the real problem first, map the data flow on paper, build a solid backend, and don't be afraid to scrap an architecture if a simpler, better one comes along.",
     links: {
       github: "https://github.com/nyren-10",
       demo: "https://github.com/nyren-10",

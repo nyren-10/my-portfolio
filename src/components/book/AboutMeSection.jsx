@@ -7,7 +7,6 @@ import {
   CpuIcon,
   TerminalIcon,
   UserIcon,
-  BusIcon,
   SparkleStarIcon,
   TargetIcon,
   GearIcon,
@@ -52,7 +51,7 @@ export default function AboutMeSection({ onBackToCover, onGoToProjects }) {
 
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs font-extrabold text-slate-700 bg-slate-200/90 px-3 py-1 rounded border border-slate-400">
-              CHAPTER 01 // ARCHITECT DOSSIER
+              CHAPTER 01 // ABOUT MAYANK TELI
             </span>
           </div>
 
@@ -68,144 +67,236 @@ export default function AboutMeSection({ onBackToCover, onGoToProjects }) {
         {/* Scrollable Chapter Content */}
         <div className="relative z-20 flex-1 overflow-y-auto custom-scrollbar p-6 sm:p-10 space-y-6 max-w-5xl mx-auto w-full">
           
-          {/* Top Hero: Avatar & Mission Statement */}
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 bg-white/85 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a]">
-            <AvatarDoodle className="w-24 h-24 shrink-0" />
-            <div className="text-center sm:text-left flex-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-slate-950 text-white font-mono text-xs font-bold rounded mb-2">
-                <SparkleStarIcon className="w-3 h-3 text-yellow-300" />
-                <span>NYREN // LEAD DEVELOPER & ARCHITECT</span>
+          {/* ======================================================== */}
+          {/* WHO I AM: Personal Introduction */}
+          {/* ======================================================== */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 bg-white/90 p-6 sm:p-7 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a]">
+            <AvatarDoodle className="w-24 h-24 sm:w-28 sm:h-28 shrink-0" />
+            
+            <div className="text-center sm:text-left flex-1 space-y-2">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <span className="px-3 py-0.5 bg-slate-950 text-white font-mono text-xs font-bold rounded">
+                  MAYANK TELI // @nyren-10
+                </span>
+                <span className="px-2.5 py-0.5 bg-amber-100 text-amber-900 border border-amber-300 font-mono text-[11px] font-bold rounded">
+                  Udaipur, Rajasthan
+                </span>
+                <span className="px-2.5 py-0.5 bg-blue-100 text-blue-900 border border-blue-300 font-mono text-[11px] font-bold rounded">
+                  Techno NJR Institute of Technology
+                </span>
               </div>
+
               <h1 className="text-3xl sm:text-4xl font-extrabold font-hand text-slate-950 leading-tight">
-                Problem Solver, Backend Engineer & System Architect
+                Hey, I'm Mayank!
               </h1>
-              <p className="font-sans text-sm sm:text-base text-slate-800 font-medium leading-relaxed mt-2">
-                I love dissecting real-world problems, blueprinting system architectures, and mapping comprehensive data flows before writing a single line of code. My primary wheelhouse is resilient backend infrastructure, event-driven streams, and orchestrating LLMs inside secure, real-world and air-gapped enterprise environments.
+              
+              <p className="font-sans text-sm sm:text-base text-slate-800 leading-relaxed font-normal">
+                I'm from Udaipur, Rajasthan, currently pursuing my B.Tech degree at <strong>Techno NJR Institute of Technology</strong>. My heart is set on becoming a <strong>game developer and game designer</strong>, but right now I'm having a blast exploring around <strong>full-stack development</strong> and getting my hands dirty with <strong>DevOps</strong>.
+              </p>
+              
+              <p className="font-sans text-sm sm:text-base text-slate-800 leading-relaxed font-normal">
+                Whenever I start a project, you'll rarely see me type code right away. I genuinely love sitting down with a pen and notebook, drawing out the system architecture, and mapping out the data flows to figure out the cleanest way things can connect—even if I end up creating a mess and having to redraw it multiple times!
               </p>
 
-              {/* Real Tech Logo Strip */}
-              <div className="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center gap-3">
-                <span className="font-mono text-[11px] font-bold text-slate-500 uppercase">
-                  Core Technologies:
+              {/* Quick Tech Badge Strip */}
+              <div className="pt-2 flex flex-wrap items-center gap-2 font-mono text-xs text-slate-700">
+                <span className="font-bold text-slate-900">Tech I fiddle with:</span>
+                <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
+                  <NodeLogo className="w-3.5 h-3.5" /> Node.js
                 </span>
-                <div className="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded border border-slate-300 text-xs font-mono font-semibold text-slate-800">
-                  <NodeLogo className="w-3.5 h-3.5" />
-                  <span>Node.js / Express</span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded border border-slate-300 text-xs font-mono font-semibold text-slate-800">
-                  <PythonLogo className="w-3.5 h-3.5" />
-                  <span>Python / Flask</span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded border border-slate-300 text-xs font-mono font-semibold text-slate-800">
-                  <PostgresLogo className="w-3.5 h-3.5" />
-                  <span>PostgreSQL</span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded border border-slate-300 text-xs font-mono font-semibold text-slate-800">
-                  <DockerLogo className="w-3.5 h-3.5" />
-                  <span>Docker & Compose</span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded border border-slate-300 text-xs font-mono font-semibold text-slate-800">
-                  <GeminiLogo className="w-3.5 h-3.5" />
-                  <span>Gemini & Ollama</span>
-                </div>
+                <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
+                  <PythonLogo className="w-3.5 h-3.5" /> Python / Flask
+                </span>
+                <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
+                  <ReactLogo className="w-3.5 h-3.5" /> React 19
+                </span>
+                <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
+                  <PostgresLogo className="w-3.5 h-3.5" /> PostgreSQL
+                </span>
+                <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
+                  <DockerLogo className="w-3.5 h-3.5" /> Docker
+                </span>
+                <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
+                  <GeminiLogo className="w-3.5 h-3.5" /> LLMs (Gemini & Ollama)
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Architecture & Data Flow Philosophy */}
-          <div className="bg-white/90 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-4">
-            <div className="flex items-center gap-2.5 border-b-2 border-slate-200 pb-3">
-              <CodeIcon className="w-5 h-5 text-amber-600" />
+          {/* ======================================================== */}
+          {/* HOW I THINK & HOW I BUILD */}
+          {/* ======================================================== */}
+          <div className="bg-white/90 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-3">
+            <div className="flex items-center gap-2 border-b-2 border-slate-200 pb-2">
+              <CodeIcon className="w-5 h-5 text-amber-700" />
               <h2 className="font-hand text-2xl sm:text-3xl font-extrabold text-slate-950">
-                System Architecture & Data Flow Philosophy
+                How I Think & What I Love Doing
               </h2>
             </div>
+
+            <p className="font-sans text-sm sm:text-base text-slate-800 leading-relaxed">
+              Yes, I love problem solving. But for me, the most exciting part is <strong>drawing the architecture and tracing the data flow</strong>. I explore different architectures to find the best one—testing how requests enter, where state lives, how the database handles it, and how things recover when something breaks.
+            </p>
             
-            <p className="font-sans text-sm text-slate-800 leading-relaxed">
-              "A week of coding can save an hour of architectural planning." I operate with an architecture-first mindset. Before spinning up servers or drafting API routes, I map out every state transition, data pipeline, and fault tolerance boundary.
+            <p className="font-sans text-sm sm:text-base text-slate-800 leading-relaxed">
+              Does it get messy? Absolutely. Half the time my first sketch looks like a plate of spaghetti and I have to cross it out and start over. But that trial-and-error process is where the real learning happens. Once the architecture is solid and simple, writing the actual code feels smooth and rewarding.
             </p>
 
-            {/* Hand-Drawn Flow Diagram Card */}
-            <div className="p-4 bg-[#f8fafc] border-2 border-dashed border-slate-400 rounded-lg font-mono text-xs">
-              <div className="text-[11px] font-bold text-slate-600 mb-3 uppercase tracking-wider flex items-center gap-1.5">
-                <TargetIcon className="w-4 h-4 text-slate-700" />
-                <span>My Standard Engineering Lifecycle</span>
+            {/* Hand-drawn flow card */}
+            <div className="p-4 bg-[#fefce8] border-2 border-dashed border-amber-400 rounded-lg font-mono text-xs text-amber-950 space-y-1.5">
+              <div className="font-bold uppercase tracking-wider text-amber-900">
+                [ My Natural Workflow ]
               </div>
-              <div className="flex flex-wrap items-center gap-2 text-slate-900 font-bold">
-                <span className="px-3 py-1.5 bg-white border-2 border-slate-950 rounded shadow-sm">
-                  1. Real Problem Discovery
-                </span>
-                <span className="text-slate-400">→</span>
-                <span className="px-3 py-1.5 bg-white border-2 border-slate-950 rounded shadow-sm">
-                  2. Architecture & Data Flow Mapping
-                </span>
-                <span className="text-slate-400">→</span>
-                <span className="px-3 py-1.5 bg-white border-2 border-slate-950 rounded shadow-sm">
-                  3. Resilient Backend Core & Sockets
-                </span>
-                <span className="text-slate-400">→</span>
-                <span className="px-3 py-1.5 bg-white border-2 border-slate-950 rounded shadow-sm">
-                  4. Client Web/Mobile Experience
-                </span>
-                <span className="text-slate-400">→</span>
-                <span className="px-3 py-1.5 bg-white border-2 border-slate-950 rounded shadow-sm">
-                  5. Docker DevOps & Deployment
-                </span>
-              </div>
+              <p className="font-sans text-xs sm:text-sm text-slate-800">
+                1. Notice a real pain point (like college buses running blind) → 2. Grab a notebook and sketch out how data should flow → 3. Realize the first design has flaws, tweak and re-sketch → 4. Build the backend core (Node/Python, PostgreSQL, WebSockets) → 5. Craft the frontend client → 6. Dockerize and get it working in the real world.
+              </p>
             </div>
           </div>
 
-          {/* Two-Column Grid: Deep Dive */}
+          {/* ======================================================== */}
+          {/* WHAT I'VE BUILT & LEARNT (The Journey So Far) */}
+          {/* ======================================================== */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            {/* Column 1: Backend & Distributed Data */}
-            <div className="bg-white/90 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-3">
+            {/* Backend & Systems */}
+            <div className="bg-white/90 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-2.5">
               <div className="flex items-center gap-2 border-b-2 border-slate-200 pb-2">
-                <TerminalIcon className="w-5 h-5 text-blue-600" />
+                <TerminalIcon className="w-5 h-5 text-blue-700" />
                 <h3 className="font-hand text-2xl font-bold text-slate-950">
-                  Backend & Systems Engineering
+                  Backend & Real-Time Stuff
                 </h3>
               </div>
-              <ul className="space-y-3 font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-blue-600 font-mono">▸</span>
-                  <span><strong>Distributed Real-Time Messaging:</strong> Engineered low-latency sub-second WebSocket streams for live coordinate broadcasting powering BusBuddy.</span>
+              <p className="font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">
+                Most of my engineering hours go into the backend. With <strong>BusBuddy</strong>, I built the entire transit tracking system for our college because students were constantly struggling with bus timings.
+              </p>
+              <ul className="space-y-1.5 font-sans text-xs sm:text-sm text-slate-800">
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-blue-700 font-mono">▸</span>
+                  <span><strong>WebSockets:</strong> Pushing live bus coordinates to student map screens with zero noticeable delay.</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-blue-600 font-mono">▸</span>
-                  <span><strong>Relational Data Modeling:</strong> Normalized PostgreSQL schemas with strict foreign constraints, migration pipelines, and index optimizations.</span>
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-blue-700 font-mono">▸</span>
+                  <span><strong>PostgreSQL:</strong> Designing normalized tables for routes, stops, schedules, and driver logs.</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-blue-600 font-mono">▸</span>
-                  <span><strong>DevOps Containerization:</strong> Docker Compose setups with network isolation, health-checks, rate limiters, and Helmet security headers.</span>
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-blue-700 font-mono">▸</span>
+                  <span><strong>DevOps:</strong> Wrapping everything with Docker Compose so spinning up the whole stack takes one command.</span>
                 </li>
               </ul>
             </div>
 
-            {/* Column 2: LLMs in Air-Gapped Environments */}
-            <div className="bg-white/90 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-3">
+            {/* Dealing with LLMs & Environments */}
+            <div className="bg-white/90 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-2.5">
               <div className="flex items-center gap-2 border-b-2 border-slate-200 pb-2">
-                <CpuIcon className="w-5 h-5 text-emerald-600" />
+                <CpuIcon className="w-5 h-5 text-emerald-700" />
                 <h3 className="font-hand text-2xl font-bold text-slate-950">
-                  LLMs & Sovereign AI
+                  LLMs & Offline Intranets
                 </h3>
               </div>
-              <ul className="space-y-3 font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 font-mono">▸</span>
-                  <span><strong>Air-Gapped Intranet Intelligence:</strong> Built SIH Omnitrix, orchestrating multiple offline Ollama models to handle queries dynamically under corporate networks without external egress.</span>
+              <p className="font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">
+                I've also dealt heavily with LLMs in real-world constrained environments. In our Smart India Hackathon project (<strong>Omnitrix</strong>):
+              </p>
+              <ul className="space-y-1.5 font-sans text-xs sm:text-sm text-slate-800">
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-emerald-700 font-mono">▸</span>
+                  <span><strong>Sovereign AI:</strong> Companies can't leak internal data to public cloud APIs, so we hosted multiple local Ollama models inside an air-gapped private intranet.</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 font-mono">▸</span>
-                  <span><strong>Document Automation:</strong> Programmatically generated Word (.docx), Excel (.xlsx), and PDF reports from offline LLM outputs.</span>
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-emerald-700 font-mono">▸</span>
+                  <span><strong>Intelligent Dispatching:</strong> An orchestrator model figures out whether to send a prompt to a coding model, a summarizer, or a spreadsheet analyzer.</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 font-mono">▸</span>
-                  <span><strong>Cloud & Local Hybrid:</strong> Leveraging Google Gemini API for cloud synthesis and local Ollama for private developer tools (Noicee Dashboard).</span>
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-emerald-700 font-mono">▸</span>
+                  <span><strong>Hybrid Workflow:</strong> Using Google Gemini for cloud research and local Ollama for private offline experiments in my personal dashboard (Noicee).</span>
                 </li>
               </ul>
             </div>
 
+          </div>
+
+          {/* ======================================================== */}
+          {/* HOBBIES & OFF-SCREEN LIFE */}
+          {/* ======================================================== */}
+          <div className="bg-white/90 p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-3">
+            <div className="flex items-center gap-2 border-b-2 border-slate-200 pb-2">
+              <SparkleStarIcon className="w-5 h-5 text-amber-500" />
+              <h2 className="font-hand text-2xl sm:text-3xl font-extrabold text-slate-950">
+                When I'm Not Coding (Hobbies & Chill)
+              </h2>
+            </div>
+
+            <p className="font-sans text-sm text-slate-700">
+              When I step away from terminal windows and server logs, here's what keeps me happy and inspired:
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-1">
+              
+              {/* Poetry */}
+              <div className="p-3.5 bg-amber-50/70 border-2 border-amber-300 rounded-lg space-y-1">
+                <div className="font-hand text-lg font-bold text-amber-950 flex items-center gap-1.5">
+                  <span>Writing Poetries</span>
+                </div>
+                <p className="font-sans text-xs text-amber-900 leading-relaxed">
+                  I love writing poetries whenever thoughts pile up or inspiration strikes. It's my favorite way to express feelings beyond logic.
+                </p>
+              </div>
+
+              {/* Quick Doodles */}
+              <div className="p-3.5 bg-blue-50/70 border-2 border-blue-300 rounded-lg space-y-1">
+                <div className="font-hand text-lg font-bold text-blue-950 flex items-center gap-1.5">
+                  <span>Quick Doodle Drawing</span>
+                </div>
+                <p className="font-sans text-xs text-blue-900 leading-relaxed">
+                  Grabbing a pen and sketching silly characters, expressive doodles, and notebook cartoons (just like the doodles across this portfolio!).
+                </p>
+              </div>
+
+              {/* Peaceful Games */}
+              <div className="p-3.5 bg-emerald-50/70 border-2 border-emerald-300 rounded-lg space-y-1">
+                <div className="font-hand text-lg font-bold text-emerald-950 flex items-center gap-1.5">
+                  <span>Peaceful Gaming</span>
+                </div>
+                <p className="font-sans text-xs text-emerald-900 leading-relaxed">
+                  Cozy games where you can just relax and enjoy great game design: <em>Animal Crossing: New Horizons</em>, <em>Pokémon: Let's Go, Pikachu!</em>, and <em>Minecraft</em>.
+                </p>
+              </div>
+
+              {/* Mystery Novels */}
+              <div className="p-3.5 bg-purple-50/70 border-2 border-purple-300 rounded-lg space-y-1">
+                <div className="font-hand text-lg font-bold text-purple-950 flex items-center gap-1.5">
+                  <span>Mystery Thrillers</span>
+                </div>
+                <p className="font-sans text-xs text-purple-900 leading-relaxed">
+                  Very rarely, when I actually have plenty of quiet time, I love diving into a gripping mystery or detective thriller novel.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* ======================================================== */}
+          {/* THE BIG DREAM: Game Dev & Design */}
+          {/* ======================================================== */}
+          <div className="bg-[#f0fdf4] p-5 rounded-xl border-3 border-emerald-950 shadow-[3px_3px_0px_#0f172a] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="space-y-1 text-center sm:text-left">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-200/60 px-2 py-0.5 rounded">
+                The Long-Term Dream
+              </span>
+              <h4 className="font-hand text-2xl font-extrabold text-emerald-950">
+                Becoming a Game Developer & Designer
+              </h4>
+              <p className="font-sans text-xs sm:text-sm text-emerald-900 leading-relaxed">
+                Everything I'm learning right now—from state management to multiplayer WebSockets and interactive UI—is part of my journey toward creating games that bring people peaceful, memorable experiences.
+              </p>
+            </div>
+            
+            <button
+              onClick={onGoToProjects}
+              className="shrink-0 px-5 py-2.5 bg-slate-950 text-white hover:bg-slate-800 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-2 cursor-pointer"
+            >
+              <span>Explore My Desk</span>
+              <ArrowRightIcon className="w-4 h-4 text-yellow-300" />
+            </button>
           </div>
 
           {/* Action Footer Bar */}
@@ -222,7 +313,7 @@ export default function AboutMeSection({ onBackToCover, onGoToProjects }) {
               onClick={onGoToProjects}
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-950 text-white font-mono text-xs font-bold rounded-lg shadow-md hover:bg-slate-800 transition-all cursor-pointer"
             >
-              <span>Explore Interactive Projects Desk</span>
+              <span>Check Out Interactive Projects Desk</span>
               <ArrowRightIcon className="w-4 h-4 text-yellow-300" />
             </button>
           </div>

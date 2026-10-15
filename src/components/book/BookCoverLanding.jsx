@@ -25,12 +25,12 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
   const [activeModalSection, setActiveModalSection] = useState(null);
 
   const quotes = [
-    "A week of coding can save an hour of architectural planning.",
-    "System architecture first, data flows second, code third.",
-    "WebSockets are live, coordinate broadcasts under 50ms.",
-    "Omnitrix Sovereign AI: 100% offline, zero data egress.",
+    "I explore architectures to find the best one... though I mess up and redraw often!",
+    "Aspiring game designer, currently having fun with full-stack and DevOps.",
+    "BusBuddy was born because our college bus schedule was pure chaos.",
+    "Omnitrix SIH: Running offline AI models inside a private company intranet.",
+    "Animal Crossing, Pokémon, Minecraft, and late-night problem solving.",
     "Click [MY PROJECTS] to drag artifacts across the desk!",
-    "Full-stack means taking a real problem to production.",
   ];
 
   const handleCharacterClick = () => {
@@ -91,7 +91,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
         <div className="relative flex-1 pl-6 sm:pl-16 md:pl-20 pr-6 sm:pr-10 py-5 sm:py-7 flex flex-col justify-between overflow-y-auto custom-scrollbar z-20">
           
           {/* ======================================================== */}
-          {/* TOP SECTION: Matches Draft Sketch Exactly (Avatar + Yo wassuh!) */}
+          {/* TOP SECTION: Matches Draft Sketch (Avatar + Yo wassuh!) */}
           {/* ======================================================== */}
           <div className="pt-2">
             <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
@@ -138,9 +138,19 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                     <div className="w-full h-1 bg-slate-950 rounded-full mt-1" />
                     <div className="w-4/5 h-0.5 bg-slate-700 rounded-full mt-0.5" />
                   </div>
-                  <span className="text-xs sm:text-sm font-mono text-slate-600 block mt-1.5 font-bold">
-                    [ Architect • Backend Systems • Air-Gapped LLMs • DevOps ]
-                  </span>
+                  
+                  {/* Clear Personal Details */}
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    <span className="text-xs sm:text-sm font-mono text-slate-800 font-bold bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300">
+                      Mayank Teli (@nyren-10)
+                    </span>
+                    <span className="text-xs sm:text-sm font-mono text-slate-700 font-medium">
+                      B.Tech at Techno NJR, Udaipur
+                    </span>
+                    <span className="text-xs font-mono text-slate-500 hidden md:inline">
+                      • Aspiring Game Dev & Designer • Full-Stack Explorer
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -216,7 +226,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                         EXPERIENCE
                       </h4>
                       <p className="font-mono text-xs text-slate-600 mt-1">
-                        SIH Hackathon, BusBuddy Lead Dev, Enterprise Collabs
+                        SIH Hackathon, BusBuddy Campus Lead, Real Deployments
                       </p>
                     </div>
                   </div>
@@ -243,7 +253,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                         CERTIFICATES
                       </h4>
                       <p className="font-mono text-xs text-slate-600 mt-1">
-                        University of Helsinki Full Stack Open & Verified Badges
+                        University of Helsinki Full Stack Open & Coursework
                       </p>
                     </div>
                   </div>
@@ -265,7 +275,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 className="relative bg-white border-3 border-slate-950 rounded-xl p-3 sm:p-4 shadow-[4px_4px_0px_#0f172a] text-center max-w-sm mb-3 z-30 cursor-pointer"
                 onClick={handleCharacterClick}
-                title="Tap character for another insight!"
+                title="Tap character for another thought!"
               >
                 <p className="font-hand text-base sm:text-xl font-extrabold text-slate-950 leading-snug">
                   "{characterQuote}"
@@ -317,7 +327,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
               {/* Tag below character */}
               <div className="font-mono text-xs font-bold text-slate-700 mt-2 bg-white/80 px-3.5 py-1 rounded-full border-2 border-slate-900 shadow-sm flex items-center gap-1.5">
                 <SparkleStarIcon className="w-3.5 h-3.5 text-amber-500" />
-                <span>Lead Full-Stack • System Architect • DevOps</span>
+                <span>Aspiring Game Designer • Full Stack & DevOps</span>
               </div>
             </div>
 
@@ -329,9 +339,9 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
           <div className="pt-3 border-t-3 border-slate-950 flex flex-wrap items-center justify-between text-xs font-mono text-slate-700">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
-              <span className="font-bold text-slate-950">PORTFOLIO // VOL. 1</span>
+              <span className="font-bold text-slate-950">MAYANK TELI // PORTFOLIO</span>
               <span className="text-slate-400 hidden sm:inline">•</span>
-              <span className="hidden sm:inline text-slate-600">Built with React, Tailwind & Framer Motion</span>
+              <span className="hidden sm:inline text-slate-600">Techno NJR Institute of Technology, Udaipur</span>
             </div>
             
             <div className="flex items-center gap-4">
@@ -339,7 +349,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                 onClick={() => handleButtonClick("about")}
                 className="font-bold hover:text-slate-950 underline underline-offset-2 cursor-pointer"
               >
-                [ Read Full Dossier ]
+                [ Read About Me ]
               </button>
               <a
                 href="https://github.com/nyren-10"
@@ -357,7 +367,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
       </motion.div>
 
       {/* ======================================================== */}
-      {/* RICH INLINE MODALS FOR SECTIONS (NO EMOJIS, REAL CONTENT) */}
+      {/* RICH INLINE MODALS FOR SECTIONS (NO EMOJIS, HUMAN TONE) */}
       {/* ======================================================== */}
       <AnimatePresence>
         {activeModalSection && (
@@ -380,16 +390,53 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                 <span>CLOSE</span>
               </button>
 
+              {/* ABOUT ME MODAL (if opened as modal) */}
+              {activeModalSection === "about" && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-amber-800">
+                    <UserIcon className="w-4 h-4" />
+                    <span>CHAPTER 01 // WHO AM I</span>
+                  </div>
+                  
+                  <h3 className="font-hand text-3xl sm:text-4xl font-extrabold text-slate-950">
+                    About Mayank Teli
+                  </h3>
+
+                  <div className="space-y-3 font-sans text-xs sm:text-sm text-slate-800 leading-relaxed bg-white/80 p-4 rounded-xl border-2 border-slate-900">
+                    <p>
+                      I'm <strong>Mayank Teli</strong> from Udaipur, Rajasthan, currently doing my B.Tech degree from <strong>Techno NJR Institute of Technology</strong>.
+                    </p>
+                    <p>
+                      My real dream is to be a <strong>game developer or game designer</strong>. Right now, I'm exploring full-stack web development, working on backend architectures, and doing DevOps stuff to learn how systems actually run.
+                    </p>
+                    <p>
+                      When I'm not coding, I write poetries, draw quick doodles, play peaceful games (like <em>Animal Crossing: New Horizons</em>, <em>Pokémon: Let's Go, Pikachu!</em>, and <em>Minecraft</em>), and very rarely read mystery thriller novels when I have plenty of free time.
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      setActiveModalSection(null);
+                      if (onOpenAboutMe) onOpenAboutMe();
+                    }}
+                    className="w-full py-3 bg-slate-950 text-white font-mono text-xs font-bold rounded-lg hover:bg-slate-800 flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                  >
+                    <span>Read Full Dossier Page</span>
+                    <ArrowRightIcon className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+
               {/* EXPERIENCE CHAPTER */}
               {activeModalSection === "experience" && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 font-mono text-xs font-bold text-blue-800">
                     <BriefcaseIcon className="w-4 h-4" />
-                    <span>CHAPTER 02 // WORK & INITIATIVES</span>
+                    <span>CHAPTER 02 // REAL WORK & HACKATHONS</span>
                   </div>
                   
                   <h3 className="font-hand text-3xl sm:text-4xl font-extrabold text-slate-950">
-                    Experience & Hackathons
+                    Experience & Projects
                   </h3>
 
                   <div className="space-y-3 font-sans text-xs sm:text-sm text-slate-800">
@@ -401,45 +448,43 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                           Smart India Hackathon (SIH) — Omnitrix
                         </span>
                         <span className="font-mono text-[10px] font-bold bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded border border-emerald-300">
-                          NATIONAL FINALIST
+                          HACKATHON TEAM
                         </span>
                       </div>
                       <div className="font-mono text-blue-700 text-xs font-bold mt-0.5 mb-2">
-                        Sovereign AI Workbench & Multi-Model Orchestration
+                        Sovereign AI Workbench for Private Intranets
                       </div>
                       <p className="leading-relaxed text-slate-700">
-                        Engineered a Sovereign AI workbench consisting of multiple offline, air-gapped LLMs running entirely within an enterprise's private intranet. Implemented dynamic task routing where specific local models execute queries and generate documents (.docx, .xlsx) with zero external network egress.
+                        Built for companies that have strictly confidential data. We orchestrated multiple local offline models (via Ollama) inside a private intranet with zero cloud egress. An orchestrator model delegates tasks to the best local model for code, text, or spreadsheet analysis.
                       </p>
                       <div className="mt-2 pt-2 border-t border-slate-200 flex flex-wrap gap-1.5 font-mono text-[10px]">
                         <span className="bg-slate-100 px-2 py-0.5 rounded border">Python</span>
                         <span className="bg-slate-100 px-2 py-0.5 rounded border">Ollama</span>
-                        <span className="bg-slate-100 px-2 py-0.5 rounded border">Air-Gapped Intranet</span>
-                        <span className="bg-slate-100 px-2 py-0.5 rounded border">Docx/Xlsx Engine</span>
+                        <span className="bg-slate-100 px-2 py-0.5 rounded border">Offline Intranet</span>
                       </div>
                     </div>
 
-                    {/* BusBuddy Lead Architect */}
+                    {/* BusBuddy Lead Dev */}
                     <div className="bg-white p-4 rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a]">
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-slate-950 text-base">
-                          BusBuddy Campus Transit Service
+                          BusBuddy College Transit
                         </span>
                         <span className="font-mono text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded border border-amber-300">
-                          LEAD DEV & ARCHITECT
+                          LEAD DEV & CREATOR
                         </span>
                       </div>
                       <div className="font-mono text-amber-800 text-xs font-bold mt-0.5 mb-2">
-                        Real-Time Fleet Ecosystem (WebSockets + Node + Android + Web)
+                        Live Bus Tracking Built for College Students
                       </div>
                       <p className="leading-relaxed text-slate-700">
-                        Identified the recurring college commute chaos, conceived the entire system, and built the end-to-end platform: high-throughput WebSocket GPS broadcasting server, native Android driver telemetry app, real-time student web map, and admin management dashboard.
+                        Saw my fellow college students struggling every day with erratic bus timings. Conceived the whole idea and built the entire system: WebSockets server for real-time GPS streaming, Android driver app, student web map, and Docker deployment.
                       </p>
                       <div className="mt-2 pt-2 border-t border-slate-200 flex flex-wrap gap-1.5 font-mono text-[10px]">
                         <span className="bg-slate-100 px-2 py-0.5 rounded border">Node.js</span>
                         <span className="bg-slate-100 px-2 py-0.5 rounded border">WebSockets</span>
                         <span className="bg-slate-100 px-2 py-0.5 rounded border">PostgreSQL</span>
-                        <span className="bg-slate-100 px-2 py-0.5 rounded border">Docker Compose</span>
-                        <span className="bg-slate-100 px-2 py-0.5 rounded border">Leaflet/OSM</span>
+                        <span className="bg-slate-100 px-2 py-0.5 rounded border">Docker</span>
                       </div>
                     </div>
 
@@ -463,11 +508,11 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 font-mono text-xs font-bold text-emerald-800">
                     <CertificateIcon className="w-4 h-4" />
-                    <span>CHAPTER 03 // CREDENTIALS & MASTERY</span>
+                    <span>CHAPTER 03 // LEARNING & CREDENTIALS</span>
                   </div>
                   
                   <h3 className="font-hand text-3xl sm:text-4xl font-extrabold text-slate-950">
-                    Certificates & Training
+                    Certificates & Studies
                   </h3>
 
                   <div className="bg-white p-5 rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] space-y-2">
@@ -480,12 +525,12 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                       </span>
                     </div>
                     <p className="font-sans text-xs sm:text-sm text-slate-700 leading-relaxed">
-                      Deep rigor in modern production web development: React state lifecycles, Redux, Node.js & Express REST APIs, MongoDB & relational databases, GraphQL APIs, and TypeScript strict safety.
+                      Learned practical modern full-stack web development: React state, Redux, Node.js and Express REST APIs, PostgreSQL and MongoDB database persistence, and TypeScript typing.
                     </p>
                     <div className="pt-2 flex flex-wrap gap-1.5 font-mono text-[10px]">
                       <span className="bg-slate-100 px-2 py-0.5 rounded border">React & TypeScript</span>
                       <span className="bg-slate-100 px-2 py-0.5 rounded border">Node / Express</span>
-                      <span className="bg-slate-100 px-2 py-0.5 rounded border">State Architecture</span>
+                      <span className="bg-slate-100 px-2 py-0.5 rounded border">REST & Databases</span>
                     </div>
                   </div>
 
@@ -496,7 +541,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                     }}
                     className="w-full py-3 bg-slate-950 text-white font-mono text-xs font-bold rounded-lg hover:bg-slate-800 flex items-center justify-center gap-2 cursor-pointer shadow-md"
                   >
-                    <span>Inspect Project Implementations</span>
+                    <span>Explore My Desk</span>
                     <ArrowRightIcon className="w-4 h-4" />
                   </button>
                 </div>
