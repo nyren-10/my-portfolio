@@ -392,8 +392,8 @@ export default function App() {
 
           {/* Draggable Ambient Desk Props Spread Across Center & Far Right */}
           <React.Fragment key={`decorations-${positionsKey}`}>
-            <DraggablePencil initial={spreadPositions.pencil} rotation={26} />
-            <DraggableSticker initial={spreadPositions.sticker} rotation={-6} />
+            <DraggablePencil initial={spreadPositions.pencil} rotation={26} deskRef={deskRef} />
+            <DraggableSticker initial={spreadPositions.sticker} rotation={-6} deskRef={deskRef} />
           </React.Fragment>
 
           {/* Main Draggable Interactive Project Artifacts Spread Over Full Canvas */}

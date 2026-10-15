@@ -42,10 +42,12 @@ export function CoffeeStain({ className = "", style = {} }) {
   );
 }
 
-export function DraggablePencil({ initial = { x: 1050, y: 380 }, rotation = 35 }) {
+export function DraggablePencil({ initial = { x: 1050, y: 380 }, rotation = 35, deskRef = null }) {
   return (
     <motion.div
       drag
+      dragConstraints={deskRef}
+      dragElastic={0.12}
       dragMomentum={true}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98, cursor: "grabbing" }}
@@ -72,10 +74,12 @@ export function DraggablePencil({ initial = { x: 1050, y: 380 }, rotation = 35 }
   );
 }
 
-export function DraggableSticker({ initial = { x: 420, y: 460 }, rotation = -12 }) {
+export function DraggableSticker({ initial = { x: 420, y: 460 }, rotation = -12, deskRef = null }) {
   return (
     <motion.div
       drag
+      dragConstraints={deskRef}
+      dragElastic={0.12}
       dragMomentum={true}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.95, cursor: "grabbing" }}
