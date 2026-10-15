@@ -2,10 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { RocketIcon, PinIcon } from "../ui/Icons";
 
-export function CoffeeStain({ className = "" }) {
+export function CoffeeStain({ className = "", style = {} }) {
   return (
     <svg
       viewBox="0 0 160 160"
+      style={style}
       className={`w-36 h-36 opacity-25 pointer-events-none select-none ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

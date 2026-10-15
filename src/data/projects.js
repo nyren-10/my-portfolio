@@ -86,7 +86,7 @@ export const projects = [
     status: "PERSONAL OPS // ACTIVE",
     stamp: "AI HUB",
     stampColor: "text-purple-800 border-purple-800 bg-purple-50",
-    initialPos: { x: 860, y: 100 },
+    initialPos: { x: 920, y: 110 },
     rotation: 5,
     description:
       "My automated personal command center and productivity engine featuring dual AI research synthesis, automated task management, structured note-taking, and predictive academic tracking.",
@@ -126,7 +126,7 @@ export const projects = [
     status: "ALGORITHM ENGINE",
     stamp: "RECURSION",
     stampColor: "text-teal-800 border-teal-800 bg-teal-50",
-    initialPos: { x: 870, y: 440 },
+    initialPos: { x: 1360, y: 220 },
     rotation: -6,
     description:
       "An interactive algorithmic visualization platform demonstrating the classic Tower of Hanoi mathematical puzzle. Features a step-by-step recursive auto-solver, manual play mode, and fluid spring animations.",
@@ -162,7 +162,7 @@ export const projects = [
     status: "PUBLIC REPO // OSS",
     stamp: "VOICE I/O",
     stampColor: "text-blue-800 border-blue-800 bg-blue-50",
-    initialPos: { x: 480, y: 470 },
+    initialPos: { x: 500, y: 580 },
     rotation: -3,
     description:
       "Voice recognition and speech synthesis utility built with Python. Captures real-time microphone input, dynamically adjusts for ambient background acoustic noise, and recognizes spoken speech via Google Speech API with audio feedback.",
@@ -197,7 +197,7 @@ export const projects = [
     status: "ENGINEERING PHILOSOPHY",
     stamp: "SYSTEM ARCHITECT",
     stampColor: "text-amber-800 border-amber-800 bg-amber-50",
-    initialPos: { x: 120, y: 460 },
+    initialPos: { x: 80, y: 560 },
     rotation: 6,
     description:
       "Deep love for end-to-end problem solving, sketching holistic system architectures, and blueprinting data flows before diving into code. Seasoned in resilient backend engineering, event-driven pipelines, and orchestrating LLMs within both cloud and air-gapped enterprise environments.",
