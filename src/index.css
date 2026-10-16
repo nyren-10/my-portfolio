@@ -54,6 +54,16 @@
     background-size: 48px 48px, 36px 36px, 24px 24px, 56px 56px;
     background-position: 0 0, 18px 18px, 8px 12px, 28px 30px;
   }
+
+  /* Rich Tactile Leather Hardcover Texture */
+  .bg-leather-cover {
+    background-color: #24160f;
+    background-image:
+      radial-gradient(ellipse at 50% 20%, rgba(95, 55, 30, 0.4) 0%, transparent 70%),
+      radial-gradient(circle at 10% 90%, rgba(20, 10, 5, 0.6) 0%, transparent 60%),
+      radial-gradient(circle at 90% 85%, rgba(20, 10, 5, 0.6) 0%, transparent 60%),
+      linear-gradient(135deg, #341d13 0%, #22120b 45%, #150a05 100%);
+  }
 }
 
 /* Custom scrollbar for modal content */
