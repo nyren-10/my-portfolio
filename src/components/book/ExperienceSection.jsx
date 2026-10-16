@@ -14,34 +14,152 @@ import {
 } from "../ui/Icons";
 
 /**
- * 3D Pushpin Graphic Component
+ * Photorealistic 3D Pushpin Graphic Component
+ * Designed to look realistically pinned through the paper into the corkboard with puncture hole and contact shadow
  */
-function PushPin({ color = "red", className = "" }) {
+function PushPin({ color = "red", className = "", tilt = 0 }) {
   const colorMap = {
-    red: { head: "#dc2626", highlight: "#f87171", shadow: "#991b1b" },
-    blue: { head: "#2563eb", highlight: "#60a5fa", shadow: "#1e40af" },
-    yellow: { head: "#eab308", highlight: "#fde047", shadow: "#a16207" },
-    emerald: { head: "#059669", highlight: "#34d399", shadow: "#065f46" },
-    purple: { head: "#9333ea", highlight: "#c084fc", shadow: "#6b21a8" },
-    rose: { head: "#e11d48", highlight: "#fb7185", shadow: "#9f1239" },
-    teal: { head: "#0d9488", highlight: "#2dd4bf", shadow: "#115e59" },
+    red: {
+      headLight: "#f87171",
+      headMid: "#dc2626",
+      headDark: "#991b1b",
+      baseLight: "#ef4444",
+      baseDark: "#7f1d1d",
+      rim: "#b91c1c",
+    },
+    blue: {
+      headLight: "#60a5fa",
+      headMid: "#2563eb",
+      headDark: "#1e40af",
+      baseLight: "#3b82f6",
+      baseDark: "#1e3a8a",
+      rim: "#1d4ed8",
+    },
+    yellow: {
+      headLight: "#fef08a",
+      headMid: "#eab308",
+      headDark: "#a16207",
+      baseLight: "#facc15",
+      baseDark: "#713f12",
+      rim: "#ca8a04",
+    },
+    emerald: {
+      headLight: "#6ee7b7",
+      headMid: "#059669",
+      headDark: "#065f46",
+      baseLight: "#10b981",
+      baseDark: "#064e3b",
+      rim: "#047857",
+    },
+    purple: {
+      headLight: "#d8b4fe",
+      headMid: "#9333ea",
+      headDark: "#6b21a8",
+      baseLight: "#a855f7",
+      baseDark: "#581c87",
+      rim: "#7e22ce",
+    },
+    rose: {
+      headLight: "#fda4af",
+      headMid: "#e11d48",
+      headDark: "#9f1239",
+      baseLight: "#f43f5e",
+      baseDark: "#881337",
+      rim: "#be123c",
+    },
+    teal: {
+      headLight: "#5eead4",
+      headMid: "#0d9488",
+      headDark: "#115e59",
+      baseLight: "#14b8a6",
+      baseDark: "#134e4a",
+      rim: "#0f766e",
+    },
   };
 
   const c = colorMap[color] || colorMap.red;
+  const gradId = `pin-${color}`;
 
   return (
-    <div className={`relative w-6 h-7 pointer-events-none drop-shadow-[2px_4px_3px_rgba(0,0,0,0.5)] ${className}`}>
-      <svg viewBox="0 0 24 28" className="w-full h-full" fill="none">
-        {/* Metal Pin Shaft */}
-        <path d="M12 18 L12 26" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M12 26 L12 28" stroke="#334155" strokeWidth="1.5" strokeLinecap="round" />
-        {/* Shadow under Pin Head */}
-        <ellipse cx="12" cy="18" rx="5" ry="2" fill={c.shadow} />
-        {/* Main Round Pin Head */}
-        <circle cx="12" cy="10" r="7" fill={c.head} />
-        {/* Top Spherical Highlight */}
-        <circle cx="10" cy="8" r="4.5" fill={c.highlight} opacity="0.8" />
-        <circle cx="9" cy="7" r="2" fill="#ffffff" opacity="0.9" />
+    <div
+      style={{ transform: `rotate(${tilt}deg)` }}
+      className={`relative w-6 h-8 pointer-events-none select-none ${className}`}
+    >
+      <svg
+        viewBox="0 0 28 36"
+        className="w-full h-full overflow-visible"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          {/* Soft contact shadow cast directly onto paper */}
+          <radialGradient id={`${gradId}-shadow`} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#000000" stopOpacity="0.75" />
+            <stop offset="55%" stopColor="#000000" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+          </radialGradient>
+
+          {/* 3D acrylic head gradient */}
+          <radialGradient id={`${gradId}-head`} cx="38%" cy="30%" r="65%">
+            <stop offset="0%" stopColor={c.headLight} />
+            <stop offset="50%" stopColor={c.headMid} />
+            <stop offset="100%" stopColor={c.headDark} />
+          </radialGradient>
+
+          {/* Pin grip neck gradient */}
+          <linearGradient id={`${gradId}-neck`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={c.headDark} />
+            <stop offset="48%" stopColor={c.headLight} />
+            <stop offset="100%" stopColor={c.headDark} />
+          </linearGradient>
+
+          {/* Base collar gradient */}
+          <linearGradient id={`${gradId}-base`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={c.baseLight} />
+            <stop offset="100%" stopColor={c.baseDark} />
+          </linearGradient>
+        </defs>
+
+        {/* 1. CONTACT SHADOW CAST ONTO PAPER */}
+        <ellipse cx="14" cy="32" rx="9.5" ry="3.5" fill={`url(#${gradId}-shadow)`} />
+
+        {/* 2. PUNCTURE HOLE IN PAPER (where needle goes through the paper into cork) */}
+        <ellipse cx="14" cy="30.5" rx="3" ry="1.2" fill="#090d16" />
+        <ellipse cx="14" cy="31" rx="1.8" ry="0.6" fill="#1e293b" />
+
+        {/* 3. STEEL NEEDLE ENTERING PAPER */}
+        <path d="M 12.8 24 L 13.5 30 L 14.5 30 L 15.2 24 Z" fill="#94a3b8" />
+        <path d="M 13.5 24 L 13.8 30 L 14.2 30 L 14.5 24 Z" fill="#cbd5e1" />
+
+        {/* 4. FLARED BASE COLLAR (resting flat against paper) */}
+        <ellipse cx="14" cy="24" rx="7.5" ry="2.6" fill={c.rim} />
+        <ellipse cx="14" cy="23.2" rx="7" ry="2.2" fill={`url(#${gradId}-base)`} />
+
+        {/* 5. TAPERED HOURGLASS WAIST / GRIP */}
+        <path
+          d="M 10 13.5 C 10 18, 8.5 21.5, 6.8 23 C 9.5 24.2, 18.5 24.2, 21.2 23 C 19.5 21.5, 18 18, 18 13.5 Z"
+          fill={`url(#${gradId}-neck)`}
+        />
+
+        {/* 6. MAIN SPHERICAL THUMB CAP */}
+        <ellipse cx="14" cy="11.5" rx="9" ry="7.5" fill={c.rim} />
+        <ellipse cx="14" cy="10.5" rx="8.5" ry="7" fill={`url(#${gradId}-head)`} />
+
+        {/* 7. INNER DOME HIGHLIGHT */}
+        <ellipse cx="14" cy="8.5" rx="6.8" ry="5" fill={`url(#${gradId}-head)`} />
+
+        {/* 8. CRISP GLOSSY WHITE SPECULAR REFLECTION */}
+        <ellipse cx="11.5" cy="7" rx="3.2" ry="1.8" fill="#ffffff" opacity="0.82" />
+        <circle cx="10" cy="6" r="1.2" fill="#ffffff" opacity="0.95" />
+
+        {/* 9. PAPER REFLECTION ACCENT ON BOTTOM RIM */}
+        <path
+          d="M 8.5 13 C 10.5 15, 17.5 15, 19.5 13"
+          stroke={c.headLight}
+          strokeWidth="0.8"
+          strokeLinecap="round"
+          opacity="0.6"
+        />
       </svg>
     </div>
   );
@@ -86,7 +204,7 @@ function SideMemoNote({ pinColor = "yellow", title, text, tag, tilt = "-3deg", c
       style={{ transform: `rotate(${tilt})` }}
       className={`relative w-full max-w-[270px] bg-[#fffde7] p-4 rounded-sm border-2 border-slate-900 shadow-[5px_8px_16px_rgba(0,0,0,0.35)] select-none shrink-0 ${className}`}
     >
-      <PushPin color={pinColor} className="absolute -top-3.5 left-6 z-20" />
+      <PushPin color={pinColor} className="absolute top-2 left-5 z-20" />
       <PaperClip className="absolute -top-2 right-4 z-20" />
       <div className="font-hand text-lg font-bold text-slate-950 leading-tight mb-1 border-b border-amber-300 pb-1">
         {title}
@@ -346,8 +464,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
 
             {/* Top Pinned Banner */}
             <div className="relative bg-[#fffdf5] p-5 sm:p-6 rounded border-3 border-slate-950 shadow-[6px_8px_16px_rgba(0,0,0,0.35)] transform -rotate-1 mb-10 max-w-4xl mx-auto">
-              <PushPin color="red" className="absolute -top-3.5 left-6" />
-              <PushPin color="yellow" className="absolute -top-3.5 right-6" />
+              <PushPin color="red" className="absolute top-2 left-6 z-20" />
+              <PushPin color="yellow" className="absolute top-2 right-6 z-20" />
               <TapeStrip className="absolute -top-2.5 left-1/2 -translate-x-1/2" rotation="1.5deg" />
 
               <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-300 pb-2.5 mb-2.5">
@@ -407,7 +525,7 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
                           >
                             <PushPin
                               color={exp.pinColor}
-                              className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30"
+                              className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30"
                             />
                             <PaperClip className="absolute -top-2 left-4 z-20" />
                             <TapeStrip
@@ -460,7 +578,7 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
                           >
                             <PushPin
                               color={exp.pinColor}
-                              className={`absolute -top-3.5 ${isLeft ? "right-6" : "left-6"} z-20`}
+                              className={`absolute top-2 ${isLeft ? "right-5" : "left-5"} z-20`}
                             />
 
                             {/* Top Badges */}
@@ -537,8 +655,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
                 style={{ transform: "rotate(-2deg)" }}
                 className="relative bg-[#fef08a] p-5 sm:p-6 rounded-md border-3 border-slate-950 shadow-[6px_10px_20px_rgba(0,0,0,0.4)] max-w-lg text-left"
               >
-                <PushPin color="red" className="absolute -top-3.5 left-8 z-20" />
-                <PushPin color="yellow" className="absolute -top-3.5 right-8 z-20" />
+                <PushPin color="red" className="absolute top-2 left-8 z-20" />
+                <PushPin color="yellow" className="absolute top-2 right-8 z-20" />
 
                 <div className="flex items-center gap-2 mb-1.5 text-slate-900">
                   <MapPinIcon className="w-4 h-4 text-amber-900" />
