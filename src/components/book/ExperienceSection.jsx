@@ -60,7 +60,7 @@ function TapeStrip({ className = "", rotation = "-2deg" }) {
 }
 
 /**
- * Paper Clip Graphic
+ * Paper Clip Graphic (matching PolaroidItem style)
  */
 function PaperClip({ className = "" }) {
   return (
@@ -113,8 +113,8 @@ function YarnConnector({ fromLeftToRight = true }) {
         <path
           d={
             fromLeftToRight
-              ? "M 130 0 C 130 75, 870 45, 870 120"
-              : "M 870 0 C 870 75, 130 45, 130 120"
+              ? "M 140 0 C 140 75, 860 45, 860 120"
+              : "M 860 0 C 860 75, 140 45, 140 120"
           }
           fill="none"
           stroke="#dc2626"
@@ -124,8 +124,8 @@ function YarnConnector({ fromLeftToRight = true }) {
           filter="drop-shadow(2px 4px 3px rgba(0,0,0,0.45))"
         />
         {/* Subtle red pin anchor dots */}
-        <circle cx={fromLeftToRight ? "130" : "870"} cy="0" r="4.5" fill="#991b1b" />
-        <circle cx={fromLeftToRight ? "870" : "130"} cy="120" r="4.5" fill="#991b1b" />
+        <circle cx={fromLeftToRight ? "140" : "860"} cy="0" r="4.5" fill="#991b1b" />
+        <circle cx={fromLeftToRight ? "860" : "140"} cy="120" r="4.5" fill="#991b1b" />
       </svg>
     </div>
   );
@@ -133,7 +133,8 @@ function YarnConnector({ fromLeftToRight = true }) {
 
 /**
  * Tagboard Experience Section following the user's exact hand-drawn draft sketch:
- * - Staggered pairs: Polaroid Box and Text Card stay tightly together as a unit (~680px max)
+ * - Standard Landscape Polaroid photos (matching the Tower of Hanoi desk item format)
+ * - Staggered pairs: Polaroid Box and Text Card stay tightly together as a unit (~720px max)
  * - The pairs alternate across the board: Left-aligned pair -> Right-aligned pair -> Left-aligned pair
  * - Authentic pinned side memos in the opposing gaps to balance space naturally
  * - Diagonal sweeping red yarn connecting the pinned boxes across the board
@@ -152,6 +153,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         "Road trip with the squad from Udaipur to GIT Jaipur for Codefiesta 5.0! Over 250 teams from all over competed. We locked in, pulled an all-nighter on chai and snacks, debugged until the morning bell, and bagged 7th rank overall with a 5,000 INR prize cheque!",
       tags: ["#JaipurTrip", "#Codefiesta5", "#Top7Rank", "#HackathonSprint", "#CashPrize"],
       cardType: "award",
+      image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80",
+      photoBadge: "JAIPUR // 7TH RANK",
       polaroidLabel: "Codefiesta 5.0 // GIT Jaipur",
       polaroidSubtitle: "Top 7 / 250 Teams • 5,000 INR Prize",
       pinColor: "red",
@@ -175,6 +178,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         "Returned to SIH in my second year with our team project Omnitrix. Built for companies that cannot leak confidential files to cloud LLMs. We ran multiple offline Ollama models inside private intranet hardware with a smart routing model directing code, text, and data tasks.",
       tags: ["#SIH2026", "#SovereignAI", "#OfflineOllama", "#PrivateIntranet", "#TeamSprint"],
       cardType: "sih",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      photoBadge: "SOVEREIGN AI // OLLAMA",
       polaroidLabel: "SIH // Omnitrix Project",
       polaroidSubtitle: "Air-Gapped Intranet AI",
       pinColor: "emerald",
@@ -198,6 +203,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         "Saw fellow college students struggling every day with erratic bus timings and missed rides. Took the initiative, brought the whole idea to life, and built the full stack: Node.js WebSockets server for live GPS coordinate streaming, PostgreSQL database, Android driver GPS app, and student web map.",
       tags: ["#CampusTransit", "#NodeJS", "#WebSockets", "#Postgres", "#AndroidKotlin", "#Docker"],
       cardType: "bus",
+      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80",
+      photoBadge: "CAMPUS FLEET // GPS",
       polaroidLabel: "BusBuddy Transit Engine",
       polaroidSubtitle: "Live Tracking for College",
       pinColor: "blue",
@@ -221,6 +228,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         "Jumped into an intensive XR/VR workshop with my mate exploring spatial interfaces, 3D interaction design, and immersive headsets. Put our heads together for the final hands-on build challenge and walked away with 1st place!",
       tags: ["#XRVR", "#1stPrize", "#SpatialComputing", "#VirtualReality", "#TeamWin"],
       cardType: "vr",
+      image: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=600&q=80",
+      photoBadge: "XR/VR // 1ST PLACE",
       polaroidLabel: "XR / VR Workshop",
       polaroidSubtitle: "1st Prize Trophy",
       pinColor: "purple",
@@ -244,6 +253,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         "Fast-paced design sprint workshop on component systems, wireframing, and intuitive user flows. Designed user journeys that tackled actual user friction points, and our team clinched 1st position in the workshop competition!",
       tags: ["#Figma", "#UIUXDesign", "#InteractivePrototypes", "#DesignSprint", "#TeamVictory"],
       cardType: "figma",
+      image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80",
+      photoBadge: "FIGMA // DESIGN SPRINT",
       polaroidLabel: "Figma Design Sprint",
       polaroidSubtitle: "Winning Interactive Prototype",
       pinColor: "rose",
@@ -267,6 +278,8 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         "Participated in SIH right in my first year of B.Tech at Techno NJR. Solving a national-scale problem was intimidating at first, but working alongside seniors and feeling the adrenaline of building under the clock hooked me for good.",
       tags: ["#FirstYear", "#SIHJourney", "#LearningToBuild", "#Teamwork", "#CampusHackathon"],
       cardType: "learning",
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80",
+      photoBadge: "SIH // 1ST YEAR FRESHER",
       polaroidLabel: "SIH Year 1 // Fresh Beginnings",
       polaroidSubtitle: "The Hackathon Bug Bit Here",
       pinColor: "teal",
@@ -379,128 +392,61 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
                           isLeft ? "lg:justify-start" : "lg:justify-end"
                         }`}
                       >
-                        {/* 1. TIGHT PAIR UNIT: Polaroid Box and Text Card comfortably side by side */}
+                        {/* 1. TIGHT PAIR UNIT: Landscape Polaroid and Text Card comfortably side by side */}
                         <div
                           className={`flex flex-col sm:flex-row items-center sm:items-stretch gap-4 sm:gap-5 w-full lg:w-auto lg:max-w-3xl ${
                             isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
                           }`}
                         >
-                          {/* POLAROID / BOX (Matching the [Box] in your sketch) */}
+                          {/* POLAROID / LANDSCAPE PHOTO BOX (Standard Landscape Polaroid like Tower of Hanoi) */}
                           <motion.div
-                            whileHover={{ scale: 1.04, rotate: 0 }}
+                            whileHover={{ scale: 1.03, rotate: 0 }}
                             transition={{ duration: 0.15 }}
                             style={{ transform: `rotate(${exp.polaroidTilt})` }}
-                            className="relative w-full sm:w-[230px] bg-white p-3 pb-3.5 rounded-sm shadow-[6px_10px_18px_rgba(0,0,0,0.4)] border border-slate-300 shrink-0 flex flex-col justify-between"
+                            className="relative w-full sm:w-[280px] lg:w-[300px] bg-white p-3 sm:p-3.5 pb-4 sm:pb-5 rounded-md shadow-[6px_10px_20px_rgba(0,0,0,0.4)] border border-slate-200/90 shrink-0 flex flex-col justify-between"
                           >
                             <PushPin
                               color={exp.pinColor}
                               className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30"
                             />
+                            <PaperClip className="absolute -top-2 left-4 z-20" />
                             <TapeStrip
                               className="absolute -top-2 right-1 opacity-90 z-20"
-                              rotation={isLeft ? "8deg" : "-8deg"}
+                              rotation={isLeft ? "7deg" : "-7deg"}
                             />
 
-                            {/* Photo window */}
-                            <div className="relative h-38 bg-[#090d16] rounded-sm overflow-hidden flex flex-col items-center justify-center p-3 text-center border-2 border-slate-900 shadow-inner">
-                              <div className="absolute inset-0 bg-graph-paper opacity-15" />
+                            {/* Standard Landscape Photo Window */}
+                            <div className="relative aspect-[4/3] w-full bg-[#090d16] rounded-sm overflow-hidden border-2 border-slate-900 shadow-inner group">
+                              <img
+                                src={exp.image}
+                                alt={exp.polaroidLabel}
+                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                loading="lazy"
+                              />
 
-                              {/* Graphical Icon Badge */}
-                              {exp.cardType === "award" && (
-                                <div className="relative z-10 flex flex-col items-center gap-1">
-                                  <div className="w-11 h-11 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-300">
-                                    <TrophyIcon className="w-6 h-6" />
-                                  </div>
-                                  <span className="font-mono text-xs font-bold text-amber-300">
-                                    5,000 INR CHEQUE
-                                  </span>
-                                  <span className="font-mono text-[9px] text-amber-100/80">
-                                    7th Rank / 250 Teams
-                                  </span>
-                                </div>
-                              )}
+                              {/* Realistic film gloss glare line */}
+                              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none" />
+                              
+                              {/* Bottom dark vignette */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
-                              {exp.cardType === "sih" && (
-                                <div className="relative z-10 flex flex-col items-center gap-1">
-                                  <div className="w-11 h-11 rounded-full bg-emerald-400/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-300">
-                                    <CpuIcon className="w-6 h-6" />
-                                  </div>
-                                  <span className="font-mono text-xs font-bold text-emerald-300">
-                                    SOVEREIGN AI
-                                  </span>
-                                  <span className="font-mono text-[9px] text-emerald-100/80">
-                                    Air-Gapped Intranet
-                                  </span>
-                                </div>
-                              )}
-
-                              {exp.cardType === "bus" && (
-                                <div className="relative z-10 flex flex-col items-center gap-1">
-                                  <div className="w-11 h-11 rounded-full bg-blue-400/20 border-2 border-blue-400 flex items-center justify-center text-blue-300">
-                                    <BusIcon className="w-6 h-6" />
-                                  </div>
-                                  <span className="font-mono text-xs font-bold text-blue-300">
-                                    BUSBUDDY TRANSIT
-                                  </span>
-                                  <span className="font-mono text-[9px] text-blue-100/80">
-                                    Live GPS Fleet
-                                  </span>
-                                </div>
-                              )}
-
-                              {exp.cardType === "vr" && (
-                                <div className="relative z-10 flex flex-col items-center gap-1">
-                                  <div className="w-11 h-11 rounded-full bg-purple-400/20 border-2 border-purple-400 flex items-center justify-center text-purple-300">
-                                    <SparkleStarIcon className="w-6 h-6 text-purple-300" />
-                                  </div>
-                                  <span className="font-mono text-xs font-bold text-purple-300">
-                                    XR / VR 1ST PRIZE
-                                  </span>
-                                  <span className="font-mono text-[9px] text-purple-100/80">
-                                    Spatial Interaction
-                                  </span>
-                                </div>
-                              )}
-
-                              {exp.cardType === "figma" && (
-                                <div className="relative z-10 flex flex-col items-center gap-1">
-                                  <div className="w-11 h-11 rounded-full bg-rose-400/20 border-2 border-rose-400 flex items-center justify-center text-rose-300">
-                                    <CodeIcon className="w-6 h-6 text-rose-300" />
-                                  </div>
-                                  <span className="font-mono text-xs font-bold text-rose-300">
-                                    FIGMA WORKSHOP WIN
-                                  </span>
-                                  <span className="font-mono text-[9px] text-rose-100/80">
-                                    Winning Prototype
-                                  </span>
-                                </div>
-                              )}
-
-                              {exp.cardType === "learning" && (
-                                <div className="relative z-10 flex flex-col items-center gap-1">
-                                  <div className="w-11 h-11 rounded-full bg-teal-400/20 border-2 border-teal-400 flex items-center justify-center text-teal-300">
-                                    <TerminalIcon className="w-6 h-6 text-teal-300" />
-                                  </div>
-                                  <span className="font-mono text-xs font-bold text-teal-300">
-                                    1ST YEAR FRESHER RUN
-                                  </span>
-                                  <span className="font-mono text-[9px] text-teal-100/80">
-                                    SIH Hackathon Sprint
-                                  </span>
-                                </div>
-                              )}
-
-                              <span className="absolute bottom-1 right-1.5 font-mono text-[8px] text-slate-500 uppercase">
-                                [ SNAPSHOT ]
-                              </span>
+                              {/* Snapshot HUD Badge */}
+                              <div className="absolute bottom-1.5 left-1.5 right-1.5 flex items-center justify-between pointer-events-none">
+                                <span className="font-mono text-[8.5px] font-bold text-amber-200 bg-slate-950/85 px-1.5 py-0.5 rounded border border-amber-500/30 backdrop-blur-xs">
+                                  {exp.photoBadge}
+                                </span>
+                                <span className="font-mono text-[8px] font-semibold text-slate-300 bg-black/60 px-1 py-0.5 rounded">
+                                  SNAPSHOT
+                                </span>
+                              </div>
                             </div>
 
-                            {/* Caption under Photo */}
-                            <div className="mt-2 text-center">
-                              <p className="font-hand text-base font-bold text-slate-900 leading-tight">
+                            {/* Handwritten Polaroid Caption */}
+                            <div className="mt-2.5 px-0.5 text-center sm:text-left">
+                              <p className="font-hand text-lg sm:text-xl font-extrabold text-slate-950 leading-tight">
                                 {exp.polaroidLabel}
                               </p>
-                              <p className="font-mono text-[9px] text-slate-500 mt-0.5">
+                              <p className="font-mono text-[9.5px] text-slate-500 mt-0.5">
                                 {exp.polaroidSubtitle}
                               </p>
                             </div>
@@ -510,7 +456,7 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
                           <motion.div
                             whileHover={{ scale: 1.01 }}
                             style={{ transform: `rotate(${exp.noteTilt})` }}
-                            className="relative flex-1 w-full sm:w-[380px] bg-[#fffef8] p-4 sm:p-5 rounded-md shadow-[5px_8px_16px_rgba(0,0,0,0.3)] border-2 border-slate-900 space-y-2.5 flex flex-col justify-between"
+                            className="relative flex-1 w-full sm:w-[380px] lg:w-[410px] bg-[#fffef8] p-4 sm:p-5 rounded-md shadow-[5px_8px_16px_rgba(0,0,0,0.3)] border-2 border-slate-900 space-y-2.5 flex flex-col justify-between"
                           >
                             <PushPin
                               color={exp.pinColor}
