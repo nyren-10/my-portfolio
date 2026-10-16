@@ -14,8 +14,53 @@ import {
 } from "../ui/Icons";
 
 /**
- * Full-screen Experience & Hackathon Roadmap
- * Winding path / serpentine road aesthetic with alternating polaroid & text cards
+ * 3D Pushpin Graphic Component
+ */
+function PushPin({ color = "red", className = "" }) {
+  const colorMap = {
+    red: { head: "#dc2626", highlight: "#f87171", shadow: "#991b1b" },
+    blue: { head: "#2563eb", highlight: "#60a5fa", shadow: "#1e40af" },
+    yellow: { head: "#eab308", highlight: "#fde047", shadow: "#a16207" },
+    emerald: { head: "#059669", highlight: "#34d399", shadow: "#065f46" },
+    purple: { head: "#9333ea", highlight: "#c084fc", shadow: "#6b21a8" },
+    rose: { head: "#e11d48", highlight: "#fb7185", shadow: "#9f1239" },
+    teal: { head: "#0d9488", highlight: "#2dd4bf", shadow: "#115e59" },
+  };
+
+  const c = colorMap[color] || colorMap.red;
+
+  return (
+    <div className={`relative w-6 h-7 pointer-events-none drop-shadow-[2px_4px_3px_rgba(0,0,0,0.45)] ${className}`}>
+      <svg viewBox="0 0 24 28" className="w-full h-full" fill="none">
+        {/* Metal Pin Shaft */}
+        <path d="M12 18 L12 26" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M12 26 L12 28" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" />
+        {/* Shadow under Pin Head */}
+        <ellipse cx="12" cy="18" rx="5" ry="2" fill={c.shadow} />
+        {/* Main Round Pin Head */}
+        <circle cx="12" cy="10" r="7" fill={c.head} />
+        {/* Top Spherical Highlight */}
+        <circle cx="10" cy="8" r="4.5" fill={c.highlight} opacity="0.8" />
+        <circle cx="9" cy="7" r="2" fill="#ffffff" opacity="0.9" />
+      </svg>
+    </div>
+  );
+}
+
+/**
+ * Vintage Masking Tape Strip
+ */
+function TapeStrip({ className = "", rotation = "-2deg" }) {
+  return (
+    <div
+      style={{ transform: `rotate(${rotation})` }}
+      className={`h-5 w-24 bg-[#fef08a]/80 border-t border-b border-amber-300/80 shadow-sm pointer-events-none ${className}`}
+    />
+  );
+}
+
+/**
+ * Uneven, Asymmetric Cork Tagboard Experience Section
  */
 export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
   const experiences = [
@@ -28,13 +73,16 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       period: "2026 // ROAD TRIP TO JAIPUR",
       highlight: "Won 5,000 INR Cash Prize Cheque",
       summary:
-        "Hopped on a road trip with the team from Udaipur to GIT Jaipur to take part in Codefiesta 5.0. It was an intense hackathon with over 250 teams from colleges everywhere. We coded straight through the night, survived on chai and snacks, debugged until the last second, and ended up landing 7th rank overall with a 5,000 INR prize cheque!",
-      tags: ["#JaipurRoadTrip", "#Codefiesta5", "#Top7Rank", "#HackathonSprint", "#CashPrize"],
+        "Road trip with the squad from Udaipur to GIT Jaipur for Codefiesta 5.0! Over 250 teams from all over turned up. We locked in, pulled an all-nighter on chai and snacks, debugged until the morning bell, and bagged 7th rank overall with a 5,000 INR prize cheque!",
+      tags: ["#JaipurTrip", "#Codefiesta5", "#Top7Rank", "#HackathonSprint", "#CashPrize"],
       cardType: "award",
       polaroidLabel: "Codefiesta 5.0 // GIT Jaipur",
-      polaroidSubtitle: "7th Rank • 5,000 INR Prize",
-      accentBorder: "border-amber-400",
-      tagColor: "bg-amber-50 text-amber-950 border-amber-300",
+      polaroidSubtitle: "Top 7 / 250 Teams • 5,000 INR Prize",
+      pinColor: "red",
+      polaroidTilt: "-6.5deg",
+      noteTilt: "3.2deg",
+      layoutSide: "left",
+      offsetClass: "md:pl-4",
     },
     {
       id: "sih-2nd-year",
@@ -45,13 +93,16 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       period: "2026 // 2ND YEAR B.TECH",
       highlight: "Omnitrix: Air-Gapped Intranet AI",
       summary:
-        "Came back to SIH in my second year with a big idea: building an air-gapped sovereign AI workbench for companies with strictly confidential data. We orchestrated multiple local Ollama models on private hardware with an orchestrator model that intelligently routes tasks (code, docs, excel) without leaking a single byte of data to the public internet.",
+        "Returned to SIH in my second year with our team project Omnitrix. Built for companies that cannot leak confidential files to cloud LLMs. We ran multiple offline Ollama models inside private intranet hardware with a smart routing model directing code, text, and data tasks.",
       tags: ["#SIH2026", "#SovereignAI", "#OfflineOllama", "#PrivateIntranet", "#TeamSprint"],
       cardType: "sih",
       polaroidLabel: "SIH // Omnitrix Project",
       polaroidSubtitle: "Air-Gapped Intranet AI",
-      accentBorder: "border-emerald-500",
-      tagColor: "bg-emerald-50 text-emerald-950 border-emerald-300",
+      pinColor: "emerald",
+      polaroidTilt: "7.2deg",
+      noteTilt: "-3.5deg",
+      layoutSide: "right",
+      offsetClass: "md:pr-6",
     },
     {
       id: "busbuddy",
@@ -62,13 +113,16 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       period: "2025 - 2026 // ACTIVE",
       highlight: "End-to-End Live Bus Tracking",
       summary:
-        "Got tired of students missing college buses every morning because nobody knew where the buses were. Conceived the whole idea and built the entire system: WebSocket server for sub-second GPS coordinate streaming, PostgreSQL database, an Android driver app with big buttons for easy tracking, and a live web map for students.",
+        "Saw fellow college students struggling every day with erratic bus timings and missed rides. Took the initiative, brought the whole idea to life, and built the full stack: Node.js WebSockets server for live GPS coordinate streaming, PostgreSQL database, Android driver GPS app, and student web map.",
       tags: ["#CampusTransit", "#NodeJS", "#WebSockets", "#Postgres", "#AndroidKotlin", "#Docker"],
       cardType: "bus",
       polaroidLabel: "BusBuddy Transit Engine",
       polaroidSubtitle: "Live Tracking for College",
-      accentBorder: "border-blue-400",
-      tagColor: "bg-blue-50 text-blue-950 border-blue-300",
+      pinColor: "blue",
+      polaroidTilt: "-5.2deg",
+      noteTilt: "4.8deg",
+      layoutSide: "left",
+      offsetClass: "md:pl-10",
     },
     {
       id: "xr-vr-workshop",
@@ -79,13 +133,16 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       period: "2025 // WORKSHOP SPRINT",
       highlight: "1st Place with My Teammate",
       summary:
-        "Teamed up with my mate for an intensive XR/VR workshop. We explored spatial computing, 3D environment interactions, and immersive UI concepts, pushed through the hands-on project challenge, and took home 1st place in the workshop competition!",
+        "Jumped into an intensive XR/VR workshop with my mate exploring spatial interfaces, 3D interaction design, and immersive headsets. Put our heads together for the final hands-on build challenge and walked away with 1st place!",
       tags: ["#XRVR", "#1stPrize", "#SpatialComputing", "#VirtualReality", "#TeamWin"],
       cardType: "vr",
       polaroidLabel: "XR / VR Workshop",
       polaroidSubtitle: "1st Prize Trophy",
-      accentBorder: "border-purple-400",
-      tagColor: "bg-purple-50 text-purple-950 border-purple-300",
+      pinColor: "purple",
+      polaroidTilt: "8.5deg",
+      noteTilt: "-4.2deg",
+      layoutSide: "right",
+      offsetClass: "md:pr-12",
     },
     {
       id: "figma-workshop",
@@ -96,13 +153,16 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       period: "2025 // DESIGN SPRINT",
       highlight: "1st Position with Design Team",
       summary:
-        "Jumped into a competitive design sprint workshop centered around wireframing, component systems, and intuitive user flows. Collaborated with my team on an interactive prototype that solved real user pain points, and our team ended up winning the workshop challenge!",
+        "Fast-paced design sprint workshop on component systems, wireframing, and interactive UI flows. Designed user journeys that tackled actual user friction points, and our team clinched 1st position in the workshop!",
       tags: ["#Figma", "#UIUXDesign", "#InteractivePrototypes", "#DesignSprint", "#TeamVictory"],
       cardType: "figma",
       polaroidLabel: "Figma Design Sprint",
       polaroidSubtitle: "Winning Interactive Prototype",
-      accentBorder: "border-rose-400",
-      tagColor: "bg-rose-50 text-rose-950 border-rose-300",
+      pinColor: "rose",
+      polaroidTilt: "-7.8deg",
+      noteTilt: "2.5deg",
+      layoutSide: "left",
+      offsetClass: "md:pl-2",
     },
     {
       id: "sih-1st-year",
@@ -113,350 +173,342 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       period: "2024 // 1ST YEAR B.TECH",
       highlight: "Diving In Head-First as a Fresher",
       summary:
-        "Right in my first year of B.Tech at Techno NJR, I jumped straight into SIH. Working on a national-level problem statement was crazy exciting and a little intimidating at first, but it taught me so much about working under tight deadlines, collaborating with seniors, and turning ideas into working code.",
+        "Participated in SIH right in my first year of B.Tech at Techno NJR. Solving a national-scale problem was intimidating at first, but working alongside seniors and feeling the adrenaline of building under the clock hooked me for good.",
       tags: ["#FirstYear", "#SIHJourney", "#LearningToBuild", "#Teamwork", "#CampusHackathon"],
       cardType: "learning",
       polaroidLabel: "SIH Year 1 // Fresh Beginnings",
       polaroidSubtitle: "The Hackathon Bug Bit Here",
-      accentBorder: "border-teal-400",
-      tagColor: "bg-teal-50 text-teal-950 border-teal-300",
+      pinColor: "teal",
+      polaroidTilt: "6.2deg",
+      noteTilt: "-3.8deg",
+      layoutSide: "right",
+      offsetClass: "md:pr-4",
     },
   ];
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#1a1410] flex items-center justify-center select-none">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-desk-wood opacity-80 pointer-events-none" />
+    <div className="relative w-screen h-screen overflow-hidden bg-[#160f0a] flex items-center justify-center select-none">
+      {/* Background Ambience with Desk Lamp Glow */}
+      <div className="absolute inset-0 bg-desk-wood opacity-85 pointer-events-none" />
       <div className="absolute inset-0 lamp-glow pointer-events-none z-10" />
 
-      {/* Main Full-Screen Open Dossier Spread */}
+      {/* ======================================================== */}
+      {/* MAIN CORK TAGBOARD / PINBOARD CONTAINER WITH WOODEN FRAME */}
+      {/* ======================================================== */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.98 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
-        className="relative w-full h-full bg-[#fbf9f4] flex flex-col justify-between overflow-hidden z-20 border-[6px] border-[#2c1d11] shadow-2xl"
+        className="relative w-full h-full bg-tagboard flex flex-col justify-between overflow-hidden z-20 border-[10px] sm:border-[16px] border-[#55381f] shadow-[inset_0_0_60px_rgba(0,0,0,0.55),0_20px_50px_rgba(0,0,0,0.8)]"
       >
-        {/* Graph paper texture */}
-        <div className="absolute inset-0 bg-graph-paper opacity-50 pointer-events-none" />
+        {/* Subtle Cork Texture Vignette */}
+        <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_80px_rgba(40,20,10,0.45)]" />
 
-        {/* Vintage Drafting Tape Strips on Top Corners */}
-        <div className="absolute top-3 left-20 w-28 h-6 bg-[#fef08a]/85 border-t border-b border-amber-300 transform -rotate-2 pointer-events-none shadow-sm z-30" />
-        <div className="absolute top-3 right-6 w-32 h-6 bg-[#fef08a]/85 border-t border-b border-amber-300 transform rotate-1 pointer-events-none shadow-sm z-30" />
-
-        {/* Book Spine / Stitched Left Margin on Desktop */}
-        <div className="absolute top-0 bottom-0 left-0 w-8 md:w-12 bg-[#2d1e16] border-r-4 border-[#1a0f08] hidden sm:flex flex-col justify-around items-center py-6 shadow-2xl z-30 pointer-events-none">
-          {[...Array(12)].map((_, i) => (
-            <div key={i} className="flex flex-col items-center gap-1">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#120a06] border border-[#6b4c35]" />
-              <div className="w-0.5 h-6 bg-[#d4af37] opacity-60" />
-            </div>
-          ))}
-        </div>
-
-        {/* Top Header Bar */}
-        <header className="relative z-30 px-6 sm:px-12 py-3.5 border-b-3 border-slate-950 bg-white/90 backdrop-blur-sm flex items-center justify-between">
+        {/* Top Header Bar Pinned onto the Tagboard */}
+        <header className="relative z-30 px-4 sm:px-8 py-3 bg-[#422915]/90 border-b-4 border-[#2b190c] backdrop-blur-sm flex items-center justify-between shadow-md">
           <button
             onClick={onBackToCover}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white hover:bg-slate-100 text-slate-950 border-2 border-slate-950 rounded-lg font-mono text-xs font-bold shadow-[2px_2px_0px_#0f172a] transition-all active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#fef08a] hover:bg-[#fde047] text-slate-950 border-2 border-slate-950 rounded-md font-mono text-xs font-bold shadow-[2px_2px_0px_#000] transition-all active:scale-95 cursor-pointer"
           >
             <ArrowLeftIcon className="w-3.5 h-3.5" />
             <span>Book Cover</span>
           </button>
 
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-extrabold text-slate-700 bg-slate-200/90 px-3 py-1 rounded border border-slate-400">
-              CHAPTER 02 // HACKATHONS & ROADMAP
+            <span className="font-mono text-xs font-extrabold text-amber-200 bg-[#2d1b0e] px-3 py-1 rounded border border-[#6b4724] tracking-wider uppercase">
+              TAGBOARD // EXPERIENCE & HACKATHONS
             </span>
           </div>
 
           <button
             onClick={onGoToProjects}
-            className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#facc15] hover:bg-[#eab308] text-slate-950 border-2 border-slate-950 rounded-lg font-mono text-xs font-bold shadow-[2px_2px_0px_#0f172a] transition-all active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#facc15] hover:bg-[#eab308] text-slate-950 border-2 border-slate-950 rounded-md font-mono text-xs font-bold shadow-[2px_2px_0px_#000] transition-all active:scale-95 cursor-pointer"
           >
             <span>Projects Desk</span>
             <ArrowRightIcon className="w-3.5 h-3.5" />
           </button>
         </header>
 
-        {/* Scrollable Roadmap Canvas */}
-        <div className="relative z-20 flex-1 overflow-y-auto custom-scrollbar p-6 sm:p-10 max-w-5xl mx-auto w-full">
+        {/* Scrollable Corkboard Area */}
+        <div className="relative z-20 flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-8 py-6 max-w-5xl mx-auto w-full">
           
-          {/* Section Hero Banner */}
-          <div className="bg-white/90 p-6 sm:p-7 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] mb-10">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-200 pb-3 mb-3">
+          {/* Tagboard Title Card Pinned with Two Corner Pins */}
+          <div className="relative bg-[#fffdf5] p-5 sm:p-6 rounded-lg border-3 border-slate-950 shadow-[6px_6px_0px_rgba(0,0,0,0.35)] transform -rotate-1 mb-12">
+            {/* Top Pushpins */}
+            <PushPin color="red" className="absolute -top-3 left-4" />
+            <PushPin color="yellow" className="absolute -top-3 right-4" />
+            <TapeStrip className="absolute -top-2.5 left-1/2 -translate-x-1/2" rotation="1deg" />
+
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-300 pb-2 mb-2">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-lg bg-amber-100 border-2 border-slate-900 flex items-center justify-center text-amber-900 shrink-0">
-                  <BriefcaseIcon className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-lg bg-amber-100 border-2 border-slate-950 flex items-center justify-center text-amber-900 shrink-0">
+                  <BriefcaseIcon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h1 className="font-hand text-3xl sm:text-4xl font-extrabold text-slate-950 leading-tight">
-                    My Hackathon & Experience Roadmap
+                  <h1 className="font-hand text-3xl sm:text-4xl font-extrabold text-slate-950 leading-none">
+                    Hackathons, Trips & Real Work Pinboard
                   </h1>
-                  <p className="font-mono text-xs text-slate-600">
+                  <p className="font-mono text-xs text-slate-600 mt-1">
                     B.Tech 2nd Year • Techno NJR Institute of Technology, Udaipur
                   </p>
                 </div>
               </div>
 
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 border-2 border-amber-300 rounded-lg font-mono text-xs font-bold text-amber-950">
-                <TrophyIcon className="w-4 h-4 text-amber-600" />
-                <span>Competitions, Trips & Sprints</span>
-              </div>
+              <span className="font-mono text-xs font-bold bg-amber-100 text-amber-950 px-2.5 py-1 rounded border border-amber-300">
+                2024 — PRESENT
+              </span>
             </div>
 
-            <p className="font-sans text-xs sm:text-sm text-slate-700 leading-relaxed">
-              Here is my journey so far—from taking on SIH in my very first year to traveling to Jaipur for Codefiesta 5.0, winning workshop challenges, and building real transit software for our campus. The road is constantly expanding as I take on new challenges!
+            <p className="font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">
+              Pinned snapshots, artifacts, and stories from my journey so far: road-tripping to Jaipur for Codefiesta, diving into national SIH challenges since 1st year, winning workshops with teammates, and architecting BusBuddy for our college campus.
             </p>
           </div>
 
           {/* ======================================================== */}
-          {/* THE WINDING ROAD TIMELINE (MATCHING USER'S DRAFT SKETCH) */}
+          {/* ASYMMETRICAL PINBOARD CARDS WITH CONNECTING STRING */}
           {/* ======================================================== */}
-          <div className="relative my-8">
+          <div className="relative space-y-16 sm:space-y-20 pb-12">
             
-            {/* The Winding Connecting Road (Vertical SVG Path in Center) */}
-            <div className="absolute top-8 bottom-8 left-1/2 -translate-x-1/2 w-16 pointer-events-none hidden md:block z-0">
-              <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1000">
+            {/* Winding Red Yarn / String Overlay Connecting the Pins */}
+            <div className="absolute top-8 bottom-12 left-1/2 -translate-x-1/2 w-48 pointer-events-none hidden md:block z-0 opacity-80">
+              <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 1200">
                 <path
-                  d="M 50 0 C 15 150, 85 200, 50 350 C 15 500, 85 550, 50 700 C 15 850, 85 920, 50 1000"
+                  d="M 20 20 Q 90 120, 85 240 T 15 480 T 80 720 T 25 960 T 60 1200"
                   fill="none"
-                  stroke="#cbd5e1"
-                  strokeWidth="8"
-                  strokeDasharray="12 8"
+                  stroke="#dc2626"
+                  strokeWidth="3.5"
                   strokeLinecap="round"
-                />
-                <path
-                  d="M 50 0 C 15 150, 85 200, 50 350 C 15 500, 85 550, 50 700 C 15 850, 85 920, 50 1000"
-                  fill="none"
-                  stroke="#64748b"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
+                  strokeDasharray="8 4"
+                  filter="drop-shadow(2px 3px 2px rgba(0,0,0,0.4))"
                 />
               </svg>
             </div>
 
-            {/* List of Experience Cards - Alternating Left & Right */}
-            <div className="space-y-12 sm:space-y-16 relative z-10">
-              {experiences.map((exp, index) => {
-                const isEven = index % 2 === 0;
+            {/* List of Uneven Asymmetric Entries */}
+            {experiences.map((exp, index) => {
+              const isLeft = exp.layoutSide === "left";
 
-                return (
+              return (
+                <div
+                  key={exp.id}
+                  className={`relative z-10 flex flex-col md:flex-row items-center gap-6 sm:gap-10 ${
+                    isLeft ? "md:flex-row" : "md:flex-row-reverse"
+                  } ${exp.offsetClass}`}
+                >
+                  
+                  {/* 1. TILTED POLAROID PHOTO FRAME */}
                   <motion.div
-                    key={exp.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 ${
-                      isEven ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
+                    whileHover={{ scale: 1.05, rotate: 0 }}
+                    transition={{ duration: 0.2 }}
+                    style={{ transform: `rotate(${exp.polaroidTilt})` }}
+                    className="relative w-full max-w-[280px] sm:max-w-[300px] bg-white p-3.5 pb-4 rounded-sm shadow-[6px_10px_20px_rgba(0,0,0,0.4)] border border-slate-300 shrink-0"
                   >
-                    {/* 1. POLAROID / SNAPSHOT BADGE (Image Box from Draft) */}
-                    <div className="w-full md:w-5/12 flex justify-center">
-                      <motion.div
-                        whileHover={{ scale: 1.03, rotate: isEven ? -2 : 2 }}
-                        className={`w-full max-w-sm bg-white p-3.5 pb-4 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] transform ${
-                          isEven ? "rotate-[-1.5deg]" : "rotate-[1.5deg]"
-                        }`}
-                      >
-                        {/* Polaroid Inner Window with Graphic Illustration */}
-                        <div className="relative h-44 bg-slate-900 rounded-lg border-2 border-slate-800 overflow-hidden flex flex-col items-center justify-center p-4 text-center">
-                          {/* Ambient drafting grid background */}
-                          <div className="absolute inset-0 bg-graph-paper opacity-20" />
-                          
-                          {/* Specialized Icon Graphic based on cardType */}
-                          {exp.cardType === "award" && (
-                            <div className="relative z-10 flex flex-col items-center gap-2">
-                              <div className="w-14 h-14 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-300 shadow-inner">
-                                <TrophyIcon className="w-8 h-8" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-amber-300">
-                                5,000 INR CHEQUE
-                              </span>
-                              <span className="font-mono text-[10px] text-amber-200/80">
-                                Top 7 / 250 Teams • Jaipur
-                              </span>
-                            </div>
-                          )}
+                    {/* Push Pin at top */}
+                    <PushPin
+                      color={exp.pinColor}
+                      className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30"
+                    />
 
-                          {exp.cardType === "sih" && (
-                            <div className="relative z-10 flex flex-col items-center gap-2">
-                              <div className="w-14 h-14 rounded-full bg-emerald-400/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-300 shadow-inner">
-                                <CpuIcon className="w-8 h-8" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-emerald-300">
-                                OMNITRIX SOVEREIGN AI
-                              </span>
-                              <span className="font-mono text-[10px] text-emerald-200/80">
-                                Air-Gapped Local Model Fleet
-                              </span>
-                            </div>
-                          )}
+                    {/* Masking tape on opposite corner for authentic pinned look */}
+                    <TapeStrip
+                      className="absolute -top-2 right-2 opacity-90 z-20"
+                      rotation={isLeft ? "12deg" : "-10deg"}
+                    />
 
-                          {exp.cardType === "bus" && (
-                            <div className="relative z-10 flex flex-col items-center gap-2">
-                              <div className="w-14 h-14 rounded-full bg-blue-400/20 border-2 border-blue-400 flex items-center justify-center text-blue-300 shadow-inner">
-                                <BusIcon className="w-8 h-8" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-blue-300">
-                                BUSBUDDY TRANSIT
-                              </span>
-                              <span className="font-mono text-[10px] text-blue-200/80">
-                                Live GPS • Driver & Student App
-                              </span>
-                            </div>
-                          )}
+                    {/* Photo Window */}
+                    <div className="relative h-44 bg-[#0b0f17] rounded-sm overflow-hidden flex flex-col items-center justify-center p-3 text-center border-2 border-slate-900 shadow-inner">
+                      <div className="absolute inset-0 bg-graph-paper opacity-15" />
 
-                          {exp.cardType === "vr" && (
-                            <div className="relative z-10 flex flex-col items-center gap-2">
-                              <div className="w-14 h-14 rounded-full bg-purple-400/20 border-2 border-purple-400 flex items-center justify-center text-purple-300 shadow-inner">
-                                <SparkleStarIcon className="w-8 h-8 text-purple-300" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-purple-300">
-                                XR / VR 1ST PRIZE
-                              </span>
-                              <span className="font-mono text-[10px] text-purple-200/80">
-                                Spatial Interaction Sprint
-                              </span>
-                            </div>
-                          )}
-
-                          {exp.cardType === "figma" && (
-                            <div className="relative z-10 flex flex-col items-center gap-2">
-                              <div className="w-14 h-14 rounded-full bg-rose-400/20 border-2 border-rose-400 flex items-center justify-center text-rose-300 shadow-inner">
-                                <CodeIcon className="w-8 h-8 text-rose-300" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-rose-300">
-                                FIGMA WORKSHOP WIN
-                              </span>
-                              <span className="font-mono text-[10px] text-rose-200/80">
-                                Team UI/UX Design System
-                              </span>
-                            </div>
-                          )}
-
-                          {exp.cardType === "learning" && (
-                            <div className="relative z-10 flex flex-col items-center gap-2">
-                              <div className="w-14 h-14 rounded-full bg-teal-400/20 border-2 border-teal-400 flex items-center justify-center text-teal-300 shadow-inner">
-                                <TerminalIcon className="w-8 h-8 text-teal-300" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-teal-300">
-                                1ST YEAR FRESHER RUN
-                              </span>
-                              <span className="font-mono text-[10px] text-teal-200/80">
-                                National Level Problem Solving
-                              </span>
-                            </div>
-                          )}
-
-                          {/* Stamp watermark */}
-                          <div className="absolute bottom-2 right-2 text-[9px] font-mono text-slate-500 uppercase tracking-widest">
-                            [ PHOTO ARTIFACT ]
+                      {/* Icon Graphics */}
+                      {exp.cardType === "award" && (
+                        <div className="relative z-10 flex flex-col items-center gap-1.5">
+                          <div className="w-12 h-12 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-300">
+                            <TrophyIcon className="w-7 h-7" />
                           </div>
-                        </div>
-
-                        {/* Handwritten Polaroid Caption */}
-                        <div className="mt-3 text-center">
-                          <p className="font-hand text-lg font-bold text-slate-900 leading-tight">
-                            {exp.polaroidLabel}
-                          </p>
-                          <p className="font-mono text-[10px] text-slate-500 mt-0.5">
-                            {exp.polaroidSubtitle}
-                          </p>
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    {/* Central Road Connector Node */}
-                    <div className="hidden md:flex w-2/12 justify-center items-center relative">
-                      <div className="w-6 h-6 rounded-full bg-white border-3 border-slate-950 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center z-20">
-                        <div className="w-2 h-2 rounded-full bg-amber-500" />
-                      </div>
-                    </div>
-
-                    {/* 2. DESCRIPTION TEXT CARD (Lines of Text from Draft) */}
-                    <div className="w-full md:w-5/12">
-                      <div className="bg-white p-5 sm:p-6 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] space-y-3">
-                        
-                        {/* Header Badges */}
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <span className={`font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${exp.badgeColor}`}>
-                            {exp.badge}
+                          <span className="font-mono text-xs font-bold text-amber-300">
+                            5,000 INR CHEQUE
                           </span>
-                          <span className="font-mono text-[11px] text-slate-500 font-semibold">
-                            {exp.period}
+                          <span className="font-mono text-[9.5px] text-amber-100/80">
+                            Top 7 / 250 Teams • Jaipur
                           </span>
                         </div>
+                      )}
 
-                        {/* Title & Role */}
-                        <div>
-                          <h3 className="font-hand text-2xl font-extrabold text-slate-950 leading-tight">
-                            {exp.title}
-                          </h3>
-                          <p className="font-mono text-xs font-bold text-blue-700 mt-0.5">
-                            {exp.role}
-                          </p>
+                      {exp.cardType === "sih" && (
+                        <div className="relative z-10 flex flex-col items-center gap-1.5">
+                          <div className="w-12 h-12 rounded-full bg-emerald-400/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-300">
+                            <CpuIcon className="w-7 h-7" />
+                          </div>
+                          <span className="font-mono text-xs font-bold text-emerald-300">
+                            SOVEREIGN AI WORKBENCH
+                          </span>
+                          <span className="font-mono text-[9.5px] text-emerald-100/80">
+                            Intranet Ollama Cluster
+                          </span>
                         </div>
+                      )}
 
-                        {/* Story Summary */}
-                        <p className="font-sans text-xs sm:text-[13px] text-slate-800 leading-relaxed bg-[#fbf9f4] p-3 rounded-lg border border-slate-200">
-                          {exp.summary}
-                        </p>
-
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {exp.tags.map((t, idx) => (
-                            <span
-                              key={idx}
-                              className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded border ${exp.tagColor}`}
-                            >
-                              {t}
-                            </span>
-                          ))}
+                      {exp.cardType === "bus" && (
+                        <div className="relative z-10 flex flex-col items-center gap-1.5">
+                          <div className="w-12 h-12 rounded-full bg-blue-400/20 border-2 border-blue-400 flex items-center justify-center text-blue-300">
+                            <BusIcon className="w-7 h-7" />
+                          </div>
+                          <span className="font-mono text-xs font-bold text-blue-300">
+                            BUSBUDDY TRANSIT
+                          </span>
+                          <span className="font-mono text-[9.5px] text-blue-100/80">
+                            Live Coordinates • Campus Fleet
+                          </span>
                         </div>
+                      )}
 
-                      </div>
+                      {exp.cardType === "vr" && (
+                        <div className="relative z-10 flex flex-col items-center gap-1.5">
+                          <div className="w-12 h-12 rounded-full bg-purple-400/20 border-2 border-purple-400 flex items-center justify-center text-purple-300">
+                            <SparkleStarIcon className="w-7 h-7 text-purple-300" />
+                          </div>
+                          <span className="font-mono text-xs font-bold text-purple-300">
+                            XR / VR 1ST PRIZE
+                          </span>
+                          <span className="font-mono text-[9.5px] text-purple-100/80">
+                            Spatial Interaction Trophy
+                          </span>
+                        </div>
+                      )}
+
+                      {exp.cardType === "figma" && (
+                        <div className="relative z-10 flex flex-col items-center gap-1.5">
+                          <div className="w-12 h-12 rounded-full bg-rose-400/20 border-2 border-rose-400 flex items-center justify-center text-rose-300">
+                            <CodeIcon className="w-7 h-7 text-rose-300" />
+                          </div>
+                          <span className="font-mono text-xs font-bold text-rose-300">
+                            FIGMA WORKSHOP WIN
+                          </span>
+                          <span className="font-mono text-[9.5px] text-rose-100/80">
+                            Winning UI/UX Prototype
+                          </span>
+                        </div>
+                      )}
+
+                      {exp.cardType === "learning" && (
+                        <div className="relative z-10 flex flex-col items-center gap-1.5">
+                          <div className="w-12 h-12 rounded-full bg-teal-400/20 border-2 border-teal-400 flex items-center justify-center text-teal-300">
+                            <TerminalIcon className="w-7 h-7 text-teal-300" />
+                          </div>
+                          <span className="font-mono text-xs font-bold text-teal-300">
+                            1ST YEAR FRESHER RUN
+                          </span>
+                          <span className="font-mono text-[9.5px] text-teal-100/80">
+                            SIH Hackathon Sprint
+                          </span>
+                        </div>
+                      )}
+
+                      <span className="absolute bottom-1.5 right-2 font-mono text-[8px] text-slate-500 uppercase">
+                        [ POLAROID SNAPSHOT ]
+                      </span>
                     </div>
 
+                    {/* Handwritten Caption under Photo */}
+                    <div className="mt-2.5 text-center">
+                      <p className="font-hand text-lg font-bold text-slate-900 leading-tight">
+                        {exp.polaroidLabel}
+                      </p>
+                      <p className="font-mono text-[10px] text-slate-500 mt-0.5">
+                        {exp.polaroidSubtitle}
+                      </p>
+                    </div>
                   </motion.div>
-                );
-              })}
-            </div>
+
+                  {/* 2. TILTED PAPER NOTE CARD (UNEVEN DESCRIPTION) */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    style={{ transform: `rotate(${exp.noteTilt})` }}
+                    className="relative flex-1 bg-[#fffef8] p-5 sm:p-6 rounded-md shadow-[5px_8px_16px_rgba(0,0,0,0.3)] border-2 border-slate-900 space-y-2.5 max-w-xl"
+                  >
+                    {/* Pin holding the note */}
+                    <PushPin
+                      color={exp.pinColor}
+                      className="absolute -top-3.5 right-6 z-20"
+                    />
+
+                    {/* Badge and Period */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+                      <span className={`font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${exp.badgeColor}`}>
+                        {exp.badge}
+                      </span>
+                      <span className="font-mono text-[11px] text-slate-500 font-semibold">
+                        {exp.period}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <div>
+                      <h3 className="font-hand text-2xl font-extrabold text-slate-950 leading-tight">
+                        {exp.title}
+                      </h3>
+                      <p className="font-mono text-xs font-bold text-blue-800 mt-0.5">
+                        {exp.role}
+                      </p>
+                    </div>
+
+                    {/* Humanized Story Content */}
+                    <p className="font-sans text-xs sm:text-[13px] text-slate-800 leading-relaxed bg-[#faf7ee] p-3 rounded border border-slate-200/90">
+                      {exp.summary}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {exp.tags.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50/80 text-slate-800 border border-amber-200"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                </div>
+              );
+            })}
 
             {/* ======================================================== */}
-            {/* INFINITE WINDING TRAIL (SUGGESTING MORE TO COME) */}
+            {/* INFINITE YARN TRAIL & MORE ADVENTURES NOTE */}
             {/* ======================================================== */}
-            <div className="pt-16 pb-8 text-center relative">
-              {/* Sinuous dotted line running into the distance */}
-              <div className="w-1 h-20 border-l-3 border-dashed border-slate-400 mx-auto mb-4" />
-
+            <div className="pt-12 pb-6 text-center relative flex justify-center">
               <motion.div
-                whileHover={{ scale: 1.03 }}
-                className="inline-block bg-[#fef08a] p-5 rounded-xl border-3 border-slate-950 shadow-[4px_4px_0px_#0f172a] transform -rotate-1 max-w-md text-left"
+                whileHover={{ scale: 1.04, rotate: 0 }}
+                style={{ transform: "rotate(-2.5deg)" }}
+                className="relative bg-[#fef08a] p-5 sm:p-6 rounded-md border-3 border-slate-950 shadow-[6px_10px_20px_rgba(0,0,0,0.4)] max-w-md text-left"
               >
+                <PushPin color="red" className="absolute -top-3 left-6 z-20" />
+                <PushPin color="yellow" className="absolute -top-3 right-6 z-20" />
+
                 <div className="flex items-center gap-2 mb-1.5 text-slate-900">
-                  <MapPinIcon className="w-4 h-4 text-amber-800" />
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider">
-                    The Road Goes Ever On...
+                  <MapPinIcon className="w-4 h-4 text-amber-900" />
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-950">
+                    The Board Never Stops Growing...
                   </span>
                 </div>
                 <p className="font-hand text-xl font-extrabold text-slate-950 leading-snug">
-                  More hackathons, team sprints, real-world projects & blunders currently in the making!
+                  More hackathons, team sprints, late-night bugs & road trips to be pinned here soon!
                 </p>
                 <p className="font-mono text-[11px] text-slate-700 mt-2">
-                  (Currently in 2nd year B.Tech • Always up for building exciting things with passionate people.)
+                  (B.Tech 2nd Year • Always exploring architectures, breaking things & building cool stuff.)
                 </p>
               </motion.div>
             </div>
 
           </div>
 
-          {/* Bottom Navigation Strip */}
-          <div className="pt-6 border-t-3 border-slate-950 flex flex-wrap items-center justify-between gap-4">
+          {/* Bottom Navigation Strip Pinned on the Board */}
+          <div className="pt-6 border-t-2 border-[#8c5a2b] flex flex-wrap items-center justify-between gap-4">
             <button
               onClick={onBackToCover}
-              className="font-mono text-xs font-bold text-slate-800 hover:text-slate-950 underline underline-offset-4 cursor-pointer flex items-center gap-1.5"
+              className="px-4 py-2 bg-[#fffdf5] text-slate-950 font-mono text-xs font-bold rounded border-2 border-slate-950 shadow-[3px_3px_0px_#000] hover:bg-slate-100 cursor-pointer flex items-center gap-1.5"
             >
               <ArrowLeftIcon className="w-3.5 h-3.5" />
               <span>Return to Book Cover</span>
@@ -464,10 +516,10 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
 
             <button
               onClick={onGoToProjects}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-950 text-white font-mono text-xs font-bold rounded-lg shadow-md hover:bg-slate-800 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2 bg-[#facc15] text-slate-950 font-mono text-xs font-bold rounded border-2 border-slate-950 shadow-[3px_3px_0px_#000] hover:bg-[#eab308] transition-all cursor-pointer"
             >
               <span>Explore My 2D Interactive Desk</span>
-              <ArrowRightIcon className="w-4 h-4 text-yellow-300" />
+              <ArrowRightIcon className="w-4 h-4 text-slate-950" />
             </button>
           </div>
 

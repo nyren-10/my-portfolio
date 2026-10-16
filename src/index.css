@@ -42,6 +42,18 @@
     background-image: linear-gradient(#e0d7c3 1px, transparent 1px);
     background-size: 100% 24px;
   }
+
+  /* Realistic Cork / Tagboard Bulletin Pattern */
+  .bg-tagboard {
+    background-color: #cb9b60;
+    background-image: 
+      radial-gradient(#b88344 14%, transparent 16%),
+      radial-gradient(#a36f32 14%, transparent 16%),
+      radial-gradient(#dfad71 10%, transparent 11%),
+      radial-gradient(rgba(0, 0, 0, 0.08) 12%, transparent 14%);
+    background-size: 48px 48px, 36px 36px, 24px 24px, 56px 56px;
+    background-position: 0 0, 18px 18px, 8px 12px, 28px 30px;
+  }
 }
 
 /* Custom scrollbar for modal content */
