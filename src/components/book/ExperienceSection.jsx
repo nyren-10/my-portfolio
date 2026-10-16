@@ -60,25 +60,72 @@ function TapeStrip({ className = "", rotation = "-2deg" }) {
 }
 
 /**
- * Curved Red Yarn S-Curve connecting Box to Box (from draft sketch)
+ * Paper Clip Graphic
+ */
+function PaperClip({ className = "" }) {
+  return (
+    <svg className={`w-4 h-7 text-slate-700 pointer-events-none drop-shadow-sm ${className}`} viewBox="0 0 16 32" fill="none">
+      <path
+        d="M5 10 L5 24 C5 27 11 27 11 24 L11 6 C11 2 1 2 1 6 L1 22 C1 28 15 28 15 22 L15 10"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/**
+ * Organic Side Memo Note pinned across the board to fill space naturally without separating the pair
+ */
+function SideMemoNote({ pinColor = "yellow", title, text, tag, tilt = "-3deg", className = "" }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.05, rotate: 0 }}
+      transition={{ duration: 0.15 }}
+      style={{ transform: `rotate(${tilt})` }}
+      className={`relative w-full max-w-[270px] bg-[#fffde7] p-4 rounded-sm border-2 border-slate-900 shadow-[5px_8px_16px_rgba(0,0,0,0.35)] select-none shrink-0 ${className}`}
+    >
+      <PushPin color={pinColor} className="absolute -top-3.5 left-6 z-20" />
+      <PaperClip className="absolute -top-2 right-4 z-20" />
+      <div className="font-hand text-lg font-bold text-slate-950 leading-tight mb-1 border-b border-amber-300 pb-1">
+        {title}
+      </div>
+      <p className="font-sans text-xs text-slate-800 leading-relaxed italic">
+        "{text}"
+      </p>
+      {tag && (
+        <span className="inline-block mt-2 font-mono text-[9px] font-bold text-amber-950 bg-amber-200/90 px-2 py-0.5 rounded border border-amber-300">
+          {tag}
+        </span>
+      )}
+    </motion.div>
+  );
+}
+
+/**
+ * Sweeping Diagonal Red Yarn connecting Box to Box across the corkboard
  */
 function YarnConnector({ fromLeftToRight = true }) {
   return (
-    <div className="w-full h-20 sm:h-24 my-[-8px] pointer-events-none relative z-0 hidden sm:block">
-      <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 800 100">
+    <div className="w-full h-24 sm:h-32 my-[-14px] pointer-events-none relative z-0 hidden lg:block overflow-visible">
+      <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 120">
         <path
           d={
             fromLeftToRight
-              ? "M 130 0 C 130 50, 670 50, 670 100"
-              : "M 670 0 C 670 50, 130 50, 130 100"
+              ? "M 130 0 C 130 75, 870 45, 870 120"
+              : "M 870 0 C 870 75, 130 45, 130 120"
           }
           fill="none"
           stroke="#dc2626"
-          strokeWidth="3"
-          strokeDasharray="8 5"
+          strokeWidth="3.5"
+          strokeDasharray="9 6"
           strokeLinecap="round"
-          filter="drop-shadow(2px 3px 2px rgba(0,0,0,0.35))"
+          filter="drop-shadow(2px 4px 3px rgba(0,0,0,0.45))"
         />
+        {/* Subtle red pin anchor dots */}
+        <circle cx={fromLeftToRight ? "130" : "870"} cy="0" r="4.5" fill="#991b1b" />
+        <circle cx={fromLeftToRight ? "870" : "130"} cy="120" r="4.5" fill="#991b1b" />
       </svg>
     </div>
   );
@@ -86,12 +133,10 @@ function YarnConnector({ fromLeftToRight = true }) {
 
 /**
  * Tagboard Experience Section following the user's exact hand-drawn draft sketch:
- * - Row 1: [Polaroid Box (Left)] [Text (Right)]
- * - S-Curve Yarn from Box 1 to Box 2
- * - Row 2: [Text (Left)] [Polaroid Box (Right)]
- * - S-Curve Yarn from Box 2 to Box 3
- * - Row 3: [Polaroid Box (Left)] [Text (Right)]
- * - Organic, realistic proximity between photo and text on a corkboard wall
+ * - Staggered pairs: Polaroid Box and Text Card stay tightly together as a unit (~680px max)
+ * - The pairs alternate across the board: Left-aligned pair -> Right-aligned pair -> Left-aligned pair
+ * - Authentic pinned side memos in the opposing gaps to balance space naturally
+ * - Diagonal sweeping red yarn connecting the pinned boxes across the board
  */
 export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
   const experiences = [
@@ -110,9 +155,13 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       polaroidLabel: "Codefiesta 5.0 // GIT Jaipur",
       polaroidSubtitle: "Top 7 / 250 Teams • 5,000 INR Prize",
       pinColor: "red",
-      polaroidTilt: "-5deg",
-      noteTilt: "2deg",
+      polaroidTilt: "-4.5deg",
+      noteTilt: "1.5deg",
       boxOnLeft: true,
+      memoTitle: "Road Trip to Jaipur",
+      memoText: "Drove with the squad from Udaipur to GIT Jaipur. 250 teams, all-nighter on chai and snacks, debugged until the final buzzer!",
+      memoTag: "#5000INR_Cheque",
+      memoTilt: "4deg",
     },
     {
       id: "sih-2nd-year",
@@ -129,9 +178,13 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       polaroidLabel: "SIH // Omnitrix Project",
       polaroidSubtitle: "Air-Gapped Intranet AI",
       pinColor: "emerald",
-      polaroidTilt: "5.5deg",
+      polaroidTilt: "5deg",
       noteTilt: "-2deg",
       boxOnLeft: false,
+      memoTitle: "Air-Gapped Intranet AI",
+      memoText: "Built Omnitrix for enterprise confidentiality: 100% air-gapped local hardware with a smart routing model handling text & code with 0 cloud data egress.",
+      memoTag: "#PrivateOllama",
+      memoTilt: "-3deg",
     },
     {
       id: "busbuddy",
@@ -148,9 +201,13 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       polaroidLabel: "BusBuddy Transit Engine",
       polaroidSubtitle: "Live Tracking for College",
       pinColor: "blue",
-      polaroidTilt: "-4.5deg",
-      noteTilt: "2.5deg",
+      polaroidTilt: "-5deg",
+      noteTilt: "2deg",
       boxOnLeft: true,
+      memoTitle: "Live GPS on Campus",
+      memoText: "Got tired of erratic college bus times. Built the full stack myself with WebSockets streaming so students can track buses in real-time.",
+      memoTag: "#LiveTransit",
+      memoTilt: "3.5deg",
     },
     {
       id: "xr-vr-workshop",
@@ -167,9 +224,13 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       polaroidLabel: "XR / VR Workshop",
       polaroidSubtitle: "1st Prize Trophy",
       pinColor: "purple",
-      polaroidTilt: "6deg",
+      polaroidTilt: "4.5deg",
       noteTilt: "-2.5deg",
       boxOnLeft: false,
+      memoTitle: "Spatial 3D Interaction",
+      memoText: "Teamed up for an intensive XR/VR hackathon sprint exploring spatial interfaces and walked away with 1st place!",
+      memoTag: "#1stPlaceTrophy",
+      memoTilt: "-4deg",
     },
     {
       id: "figma-workshop",
@@ -186,9 +247,13 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       polaroidLabel: "Figma Design Sprint",
       polaroidSubtitle: "Winning Interactive Prototype",
       pinColor: "rose",
-      polaroidTilt: "-5.5deg",
-      noteTilt: "2deg",
+      polaroidTilt: "-4deg",
+      noteTilt: "1.5deg",
       boxOnLeft: true,
+      memoTitle: "Design Sprint Victory",
+      memoText: "Designed frictionless user journeys, interactive wireframes and components to win 1st place with our design squad.",
+      memoTag: "#FigmaChampions",
+      memoTilt: "3deg",
     },
     {
       id: "sih-1st-year",
@@ -205,9 +270,13 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
       polaroidLabel: "SIH Year 1 // Fresh Beginnings",
       polaroidSubtitle: "The Hackathon Bug Bit Here",
       pinColor: "teal",
-      polaroidTilt: "4.5deg",
+      polaroidTilt: "5deg",
       noteTilt: "-2deg",
       boxOnLeft: false,
+      memoTitle: "Where It All Started",
+      memoText: "Fresher year diving head-first into national SIH. Intimidated at first, but hooked on the adrenaline of building under the clock forever.",
+      memoTag: "#TheBeginning",
+      memoTilt: "-3.5deg",
     },
   ];
 
@@ -258,12 +327,12 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         {/* ======================================================== */}
         {/* SCROLLABLE PINBOARD CANVAS (MATCHING EXACT DRAFT SKETCH) */}
         {/* ======================================================== */}
-        <div className="relative z-20 flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-8 py-8 w-full">
+        <div className="relative z-20 flex-1 overflow-y-auto custom-scrollbar px-3 sm:px-8 lg:px-12 py-8 w-full">
           
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
             {/* Top Pinned Banner */}
-            <div className="relative bg-[#fffdf5] p-5 sm:p-6 rounded border-3 border-slate-950 shadow-[6px_8px_16px_rgba(0,0,0,0.35)] transform -rotate-1 mb-12">
+            <div className="relative bg-[#fffdf5] p-5 sm:p-6 rounded border-3 border-slate-950 shadow-[6px_8px_16px_rgba(0,0,0,0.35)] transform -rotate-1 mb-10 max-w-4xl mx-auto">
               <PushPin color="red" className="absolute -top-3.5 left-6" />
               <PushPin color="yellow" className="absolute -top-3.5 right-6" />
               <TapeStrip className="absolute -top-2.5 left-1/2 -translate-x-1/2" rotation="1.5deg" />
@@ -294,7 +363,7 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
             </div>
 
             {/* ======================================================== */}
-            {/* ROWS FOLLOWING THE DRAFT SKETCH WITH S-CURVE YARN */}
+            {/* STAGGERED PAIRS FOLLOWING THE DRAFT SKETCH WITH S-CURVE YARN */}
             {/* ======================================================== */}
             <div className="relative space-y-6 sm:space-y-8">
               {experiences.map((exp, index) => {
@@ -303,187 +372,211 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
 
                 return (
                   <React.Fragment key={exp.id}>
-                    {/* The Row (Photo Box and Text Card comfortably side by side) */}
-                    <div
-                      className={`flex flex-col sm:flex-row items-center sm:items-stretch gap-5 sm:gap-6 relative z-10 ${
-                        isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
-                      }`}
-                    >
-                      {/* 1. POLAROID / BOX (Matching the [Box] in your sketch) */}
-                      <motion.div
-                        whileHover={{ scale: 1.04, rotate: 0 }}
-                        transition={{ duration: 0.15 }}
-                        style={{ transform: `rotate(${exp.polaroidTilt})` }}
-                        className="relative w-full sm:w-[250px] bg-white p-3 pb-3.5 rounded-sm shadow-[6px_10px_18px_rgba(0,0,0,0.4)] border border-slate-300 shrink-0 flex flex-col justify-between"
+                    {/* The Row Container: Staggered across board */}
+                    <div className="relative">
+                      <div
+                        className={`flex flex-col lg:flex-row items-center gap-6 lg:gap-10 relative z-10 ${
+                          isLeft ? "lg:justify-start" : "lg:justify-end"
+                        }`}
                       >
-                        <PushPin
-                          color={exp.pinColor}
-                          className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30"
-                        />
-                        <TapeStrip
-                          className="absolute -top-2 right-1 opacity-90 z-20"
-                          rotation={isLeft ? "8deg" : "-8deg"}
-                        />
+                        {/* 1. TIGHT PAIR UNIT: Polaroid Box and Text Card comfortably side by side */}
+                        <div
+                          className={`flex flex-col sm:flex-row items-center sm:items-stretch gap-4 sm:gap-5 w-full lg:w-auto lg:max-w-3xl ${
+                            isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
+                          }`}
+                        >
+                          {/* POLAROID / BOX (Matching the [Box] in your sketch) */}
+                          <motion.div
+                            whileHover={{ scale: 1.04, rotate: 0 }}
+                            transition={{ duration: 0.15 }}
+                            style={{ transform: `rotate(${exp.polaroidTilt})` }}
+                            className="relative w-full sm:w-[230px] bg-white p-3 pb-3.5 rounded-sm shadow-[6px_10px_18px_rgba(0,0,0,0.4)] border border-slate-300 shrink-0 flex flex-col justify-between"
+                          >
+                            <PushPin
+                              color={exp.pinColor}
+                              className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30"
+                            />
+                            <TapeStrip
+                              className="absolute -top-2 right-1 opacity-90 z-20"
+                              rotation={isLeft ? "8deg" : "-8deg"}
+                            />
 
-                        {/* Photo window */}
-                        <div className="relative h-40 bg-[#090d16] rounded-sm overflow-hidden flex flex-col items-center justify-center p-3 text-center border-2 border-slate-900 shadow-inner">
-                          <div className="absolute inset-0 bg-graph-paper opacity-15" />
+                            {/* Photo window */}
+                            <div className="relative h-38 bg-[#090d16] rounded-sm overflow-hidden flex flex-col items-center justify-center p-3 text-center border-2 border-slate-900 shadow-inner">
+                              <div className="absolute inset-0 bg-graph-paper opacity-15" />
 
-                          {/* Graphical Icon Badge */}
-                          {exp.cardType === "award" && (
-                            <div className="relative z-10 flex flex-col items-center gap-1">
-                              <div className="w-12 h-12 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-300">
-                                <TrophyIcon className="w-7 h-7" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-amber-300">
-                                5,000 INR CHEQUE
-                              </span>
-                              <span className="font-mono text-[9px] text-amber-100/80">
-                                7th Rank / 250 Teams
+                              {/* Graphical Icon Badge */}
+                              {exp.cardType === "award" && (
+                                <div className="relative z-10 flex flex-col items-center gap-1">
+                                  <div className="w-11 h-11 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-300">
+                                    <TrophyIcon className="w-6 h-6" />
+                                  </div>
+                                  <span className="font-mono text-xs font-bold text-amber-300">
+                                    5,000 INR CHEQUE
+                                  </span>
+                                  <span className="font-mono text-[9px] text-amber-100/80">
+                                    7th Rank / 250 Teams
+                                  </span>
+                                </div>
+                              )}
+
+                              {exp.cardType === "sih" && (
+                                <div className="relative z-10 flex flex-col items-center gap-1">
+                                  <div className="w-11 h-11 rounded-full bg-emerald-400/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-300">
+                                    <CpuIcon className="w-6 h-6" />
+                                  </div>
+                                  <span className="font-mono text-xs font-bold text-emerald-300">
+                                    SOVEREIGN AI
+                                  </span>
+                                  <span className="font-mono text-[9px] text-emerald-100/80">
+                                    Air-Gapped Intranet
+                                  </span>
+                                </div>
+                              )}
+
+                              {exp.cardType === "bus" && (
+                                <div className="relative z-10 flex flex-col items-center gap-1">
+                                  <div className="w-11 h-11 rounded-full bg-blue-400/20 border-2 border-blue-400 flex items-center justify-center text-blue-300">
+                                    <BusIcon className="w-6 h-6" />
+                                  </div>
+                                  <span className="font-mono text-xs font-bold text-blue-300">
+                                    BUSBUDDY TRANSIT
+                                  </span>
+                                  <span className="font-mono text-[9px] text-blue-100/80">
+                                    Live GPS Fleet
+                                  </span>
+                                </div>
+                              )}
+
+                              {exp.cardType === "vr" && (
+                                <div className="relative z-10 flex flex-col items-center gap-1">
+                                  <div className="w-11 h-11 rounded-full bg-purple-400/20 border-2 border-purple-400 flex items-center justify-center text-purple-300">
+                                    <SparkleStarIcon className="w-6 h-6 text-purple-300" />
+                                  </div>
+                                  <span className="font-mono text-xs font-bold text-purple-300">
+                                    XR / VR 1ST PRIZE
+                                  </span>
+                                  <span className="font-mono text-[9px] text-purple-100/80">
+                                    Spatial Interaction
+                                  </span>
+                                </div>
+                              )}
+
+                              {exp.cardType === "figma" && (
+                                <div className="relative z-10 flex flex-col items-center gap-1">
+                                  <div className="w-11 h-11 rounded-full bg-rose-400/20 border-2 border-rose-400 flex items-center justify-center text-rose-300">
+                                    <CodeIcon className="w-6 h-6 text-rose-300" />
+                                  </div>
+                                  <span className="font-mono text-xs font-bold text-rose-300">
+                                    FIGMA WORKSHOP WIN
+                                  </span>
+                                  <span className="font-mono text-[9px] text-rose-100/80">
+                                    Winning Prototype
+                                  </span>
+                                </div>
+                              )}
+
+                              {exp.cardType === "learning" && (
+                                <div className="relative z-10 flex flex-col items-center gap-1">
+                                  <div className="w-11 h-11 rounded-full bg-teal-400/20 border-2 border-teal-400 flex items-center justify-center text-teal-300">
+                                    <TerminalIcon className="w-6 h-6 text-teal-300" />
+                                  </div>
+                                  <span className="font-mono text-xs font-bold text-teal-300">
+                                    1ST YEAR FRESHER RUN
+                                  </span>
+                                  <span className="font-mono text-[9px] text-teal-100/80">
+                                    SIH Hackathon Sprint
+                                  </span>
+                                </div>
+                              )}
+
+                              <span className="absolute bottom-1 right-1.5 font-mono text-[8px] text-slate-500 uppercase">
+                                [ SNAPSHOT ]
                               </span>
                             </div>
-                          )}
 
-                          {exp.cardType === "sih" && (
-                            <div className="relative z-10 flex flex-col items-center gap-1">
-                              <div className="w-12 h-12 rounded-full bg-emerald-400/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-300">
-                                <CpuIcon className="w-7 h-7" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-emerald-300">
-                                SOVEREIGN AI WORKBENCH
+                            {/* Caption under Photo */}
+                            <div className="mt-2 text-center">
+                              <p className="font-hand text-base font-bold text-slate-900 leading-tight">
+                                {exp.polaroidLabel}
+                              </p>
+                              <p className="font-mono text-[9px] text-slate-500 mt-0.5">
+                                {exp.polaroidSubtitle}
+                              </p>
+                            </div>
+                          </motion.div>
+
+                          {/* TEXT CARD (Matching the lines of text in your sketch) */}
+                          <motion.div
+                            whileHover={{ scale: 1.01 }}
+                            style={{ transform: `rotate(${exp.noteTilt})` }}
+                            className="relative flex-1 w-full sm:w-[380px] bg-[#fffef8] p-4 sm:p-5 rounded-md shadow-[5px_8px_16px_rgba(0,0,0,0.3)] border-2 border-slate-900 space-y-2.5 flex flex-col justify-between"
+                          >
+                            <PushPin
+                              color={exp.pinColor}
+                              className={`absolute -top-3.5 ${isLeft ? "right-6" : "left-6"} z-20`}
+                            />
+
+                            {/* Top Badges */}
+                            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+                              <span className={`font-mono text-[9.5px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${exp.badgeColor}`}>
+                                {exp.badge}
                               </span>
-                              <span className="font-mono text-[9px] text-emerald-100/80">
-                                Air-Gapped Intranet
+                              <span className="font-mono text-[10.5px] text-slate-500 font-semibold">
+                                {exp.period}
                               </span>
                             </div>
-                          )}
 
-                          {exp.cardType === "bus" && (
-                            <div className="relative z-10 flex flex-col items-center gap-1">
-                              <div className="w-12 h-12 rounded-full bg-blue-400/20 border-2 border-blue-400 flex items-center justify-center text-blue-300">
-                                <BusIcon className="w-7 h-7" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-blue-300">
-                                BUSBUDDY TRANSIT
-                              </span>
-                              <span className="font-mono text-[9px] text-blue-100/80">
-                                Live GPS Fleet
-                              </span>
+                            {/* Heading & Role */}
+                            <div>
+                              <h3 className="font-hand text-xl sm:text-2xl font-extrabold text-slate-950 leading-tight">
+                                {exp.title}
+                              </h3>
+                              <p className="font-mono text-xs font-bold text-blue-800 mt-0.5">
+                                {exp.role}
+                              </p>
                             </div>
-                          )}
 
-                          {exp.cardType === "vr" && (
-                            <div className="relative z-10 flex flex-col items-center gap-1">
-                              <div className="w-12 h-12 rounded-full bg-purple-400/20 border-2 border-purple-400 flex items-center justify-center text-purple-300">
-                                <SparkleStarIcon className="w-7 h-7 text-purple-300" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-purple-300">
-                                XR / VR 1ST PRIZE
-                              </span>
-                              <span className="font-mono text-[9px] text-purple-100/80">
-                                Spatial Interaction
-                              </span>
+                            {/* Real-world Story Text */}
+                            <p className="font-sans text-xs sm:text-[12.5px] text-slate-800 leading-relaxed bg-[#faf7ee] p-2.5 rounded border border-slate-200/90">
+                              {exp.summary}
+                            </p>
+
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-1.5 pt-0.5">
+                              {exp.tags.map((t, idx) => (
+                                <span
+                                  key={idx}
+                                  className="font-mono text-[9.5px] font-bold px-2 py-0.5 rounded bg-amber-50 text-slate-800 border border-amber-200"
+                                >
+                                  {t}
+                                </span>
+                              ))}
                             </div>
-                          )}
-
-                          {exp.cardType === "figma" && (
-                            <div className="relative z-10 flex flex-col items-center gap-1">
-                              <div className="w-12 h-12 rounded-full bg-rose-400/20 border-2 border-rose-400 flex items-center justify-center text-rose-300">
-                                <CodeIcon className="w-7 h-7 text-rose-300" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-rose-300">
-                                FIGMA WORKSHOP WIN
-                              </span>
-                              <span className="font-mono text-[9px] text-rose-100/80">
-                                Winning Prototype
-                              </span>
-                            </div>
-                          )}
-
-                          {exp.cardType === "learning" && (
-                            <div className="relative z-10 flex flex-col items-center gap-1">
-                              <div className="w-12 h-12 rounded-full bg-teal-400/20 border-2 border-teal-400 flex items-center justify-center text-teal-300">
-                                <TerminalIcon className="w-7 h-7 text-teal-300" />
-                              </div>
-                              <span className="font-mono text-xs font-bold text-teal-300">
-                                1ST YEAR FRESHER RUN
-                              </span>
-                              <span className="font-mono text-[9px] text-teal-100/80">
-                                SIH Hackathon Sprint
-                              </span>
-                            </div>
-                          )}
-
-                          <span className="absolute bottom-1 right-1.5 font-mono text-[8px] text-slate-500 uppercase">
-                            [ SNAPSHOT ]
-                          </span>
+                          </motion.div>
                         </div>
 
-                        {/* Caption under Photo */}
-                        <div className="mt-2 text-center">
-                          <p className="font-hand text-base font-bold text-slate-900 leading-tight">
-                            {exp.polaroidLabel}
-                          </p>
-                          <p className="font-mono text-[9.5px] text-slate-500 mt-0.5">
-                            {exp.polaroidSubtitle}
-                          </p>
+                        {/* 2. AUTHENTIC PINNED SIDE MEMO in the opposing space (Fills the board naturally with no huge empty voids!) */}
+                        <div
+                          className={`hidden lg:flex items-center ${
+                            isLeft ? "lg:ml-auto lg:mr-4" : "lg:mr-auto lg:ml-4 lg:order-first"
+                          }`}
+                        >
+                          <SideMemoNote
+                            pinColor={exp.pinColor}
+                            title={exp.memoTitle}
+                            text={exp.memoText}
+                            tag={exp.memoTag}
+                            tilt={exp.memoTilt}
+                          />
                         </div>
-                      </motion.div>
+                      </div>
 
-                      {/* 2. TEXT CARD (Matching the lines of text in your sketch) */}
-                      <motion.div
-                        whileHover={{ scale: 1.01 }}
-                        style={{ transform: `rotate(${exp.noteTilt})` }}
-                        className="relative flex-1 w-full bg-[#fffef8] p-5 rounded-md shadow-[5px_8px_16px_rgba(0,0,0,0.3)] border-2 border-slate-900 space-y-2.5 flex flex-col justify-between"
-                      >
-                        <PushPin
-                          color={exp.pinColor}
-                          className={`absolute -top-3.5 ${isLeft ? "right-6" : "left-6"} z-20`}
-                        />
-
-                        {/* Top Badges */}
-                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
-                          <span className={`font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${exp.badgeColor}`}>
-                            {exp.badge}
-                          </span>
-                          <span className="font-mono text-[11px] text-slate-500 font-semibold">
-                            {exp.period}
-                          </span>
-                        </div>
-
-                        {/* Heading & Role */}
-                        <div>
-                          <h3 className="font-hand text-2xl font-extrabold text-slate-950 leading-tight">
-                            {exp.title}
-                          </h3>
-                          <p className="font-mono text-xs font-bold text-blue-800 mt-0.5">
-                            {exp.role}
-                          </p>
-                        </div>
-
-                        {/* Real-world Story Text */}
-                        <p className="font-sans text-xs sm:text-[13px] text-slate-800 leading-relaxed bg-[#faf7ee] p-3 rounded border border-slate-200/90">
-                          {exp.summary}
-                        </p>
-
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {exp.tags.map((t, idx) => (
-                            <span
-                              key={idx}
-                              className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-slate-800 border border-amber-200"
-                            >
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
+                      {/* S-CURVE YARN PATH FROM BOX TO BOX (Sweeps diagonally across the board) */}
+                      {nextExp && (
+                        <YarnConnector fromLeftToRight={isLeft} />
+                      )}
                     </div>
-
-                    {/* S-CURVE YARN PATH FROM BOX TO BOX (Exactly like the draft sketch) */}
-                    {nextExp && (
-                      <YarnConnector fromLeftToRight={isLeft} />
-                    )}
                   </React.Fragment>
                 );
               })}
