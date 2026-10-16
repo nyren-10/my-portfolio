@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "./data/projects";
 import BookCoverLanding from "./components/book/BookCoverLanding";
 import AboutMeSection from "./components/book/AboutMeSection";
+import ExperienceSection from "./components/book/ExperienceSection";
 import OmnitrixItem from "./components/desk-items/OmnitrixItem";
 import NotebookItem from "./components/desk-items/NotebookItem";
 import FloppyDiskItem from "./components/desk-items/FloppyDiskItem";
@@ -16,7 +17,7 @@ import {
   InstructionsNote,
 } from "./components/desk-items/Decorations";
 import Modal from "./components/Modal";
-import { BookOpenIcon, ExternalLinkIcon, UserIcon } from "./components/ui/Icons";
+import { BookOpenIcon, ExternalLinkIcon, UserIcon, BriefcaseIcon } from "./components/ui/Icons";
 
 /**
  * Dedicated Draggable Item Component with bulletproof Drag vs Click detection.
@@ -247,6 +248,7 @@ export default function App() {
           <BookCoverLanding
             onOpenProjects={() => setActiveView("projects")}
             onOpenAboutMe={() => setActiveView("about")}
+            onOpenExperience={() => setActiveView("experience")}
           />
         </motion.div>
       )}
@@ -268,7 +270,24 @@ export default function App() {
         </motion.div>
       )}
 
-      {/* 3. 2D INTERACTIVE DESK VIEW (SPREAD ACROSS ENTIRE VIEWPORT) */}
+      {/* 3. EXPERIENCE ROADMAP VIEW (FULL SCREEN SPREAD) */}
+      {activeView === "experience" && (
+        <motion.div
+          key="experience-view"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.3 }}
+          className="w-screen h-screen overflow-hidden"
+        >
+          <ExperienceSection
+            onBackToCover={() => setActiveView("cover")}
+            onGoToProjects={() => setActiveView("projects")}
+          />
+        </motion.div>
+      )}
+
+      {/* 4. 2D INTERACTIVE DESK VIEW (SPREAD ACROSS ENTIRE VIEWPORT) */}
       {activeView === "projects" && (
         <motion.div
           key="projects-desk-view"
@@ -353,6 +372,15 @@ export default function App() {
               >
                 <UserIcon className="w-3.5 h-3.5 text-slate-950" />
                 <span>About Me</span>
+              </button>
+
+              <button
+                onClick={() => setActiveView("experience")}
+                className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-950 border-2 border-slate-950 rounded-lg font-mono text-xs font-bold shadow-[2px_2px_0px_#0f172a] transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                title="Open Experience Roadmap"
+              >
+                <BriefcaseIcon className="w-3.5 h-3.5 text-slate-950" />
+                <span>Experience</span>
               </button>
 
               <div className="hidden md:flex items-center gap-2.5 bg-[#111c19]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-emerald-900/60 shadow-lg">

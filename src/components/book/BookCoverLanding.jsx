@@ -20,7 +20,7 @@ import {
 } from "../ui/Icons";
 import { PythonLogo, NodeLogo, ReactLogo, PostgresLogo, DockerLogo, GeminiLogo } from "../ui/TechLogos";
 
-export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpenSection }) {
+export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpenExperience, onOpenSection }) {
   const [characterQuote, setCharacterQuote] = useState(
     "Click [MY PROJECTS] to enter the 2D interactive desk!"
   );
@@ -31,6 +31,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
     "Aspiring game designer, currently having fun with full-stack and DevOps.",
     "BusBuddy was born because our college bus schedule was pure chaos.",
     "Omnitrix SIH: Running offline AI models inside a private company intranet.",
+    "Road trip to Jaipur with the squad for Codefiesta 5.0 — 7th rank out of 250 teams!",
     "Animal Crossing, Pokémon, Minecraft, and late-night problem solving.",
     "Click [MY PROJECTS] to drag artifacts across the desk!",
   ];
@@ -48,6 +49,12 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
         onOpenAboutMe();
       } else {
         setActiveModalSection("about");
+      }
+    } else if (section === "experience") {
+      if (onOpenExperience) {
+        onOpenExperience();
+      } else {
+        setActiveModalSection("experience");
       }
     } else {
       setActiveModalSection(section);
@@ -227,12 +234,12 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                         EXPERIENCE
                       </h4>
                       <p className="font-mono text-xs text-slate-600 mt-1">
-                        SIH Hackathon, BusBuddy Campus Lead, Real Deployments
+                        Codefiesta Jaipur, SIH Hackathons, VR & Design Sprints
                       </p>
                     </div>
                   </div>
-                  <span className="font-mono text-xs font-bold text-slate-600 border border-slate-300 px-2 py-1 rounded bg-slate-100">
-                    [ View ]
+                  <span className="font-mono text-xs font-bold text-blue-900 border border-blue-300 px-2 py-1 rounded bg-blue-50">
+                    [ Roadmap ]
                   </span>
                 </div>
               </motion.button>
