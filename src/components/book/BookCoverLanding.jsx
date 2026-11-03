@@ -224,7 +224,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
 
               {/* Tech Stack Indicator Ribbon (Zero Emojis - Real SVG Logos) */}
               <div className="hidden lg:flex items-center gap-2 bg-white/90 border-2 border-slate-900 rounded-lg p-2 shadow-[2px_2px_0px_#0f172a]">
-                <NodeLogo className="w-5 h-5" />
+                <ReactLogo className="w-5 h-5" />
                 <PythonLogo className="w-5 h-5" />
                 <PostgresLogo className="w-5 h-5" />
                 <DockerLogo className="w-5 h-5" />

@@ -13,8 +13,7 @@ export const projects = [
     description:
       "BusBuddy was born out of pure frustration with our college bus schedule. Students had no clue when the bus would arrive, and people were constantly missing rides or stranded waiting. I took the idea, designed the whole flow, and ended up building the entire system—from the backend WebSocket server and PostgreSQL database to the student web portal, the Android driver GPS app, and Docker setups. Basically an all-in-one developer here! Seeing students actually use it every morning to catch their bus made all the late-night debugging completely worth it.",
     tech: [
-      "Node.js & Express",
-      "WebSockets (ws)",
+      "WebSockets (Real-Time Streams)",
       "PostgreSQL (pg)",
       "Docker & Compose",
       "React 19 (Student Portal)",
@@ -193,10 +192,10 @@ export const projects = [
     initialPos: { x: 80, y: 560 },
     rotation: 6,
     description:
-      "Whenever I start a project, I don't just dive head-first into writing code. I love sitting down with a notebook and drawing out the system architecture and data flows first. Figuring out how everything connects, finding where things might break, and exploring around to find the cleanest design—even though it gets messy pretty often and I end up re-sketching it a bunch of times! Most of my time goes into backend development with Node.js and Python, designing database schemas, and experimenting with LLMs in real and air-gapped environments.",
+      "Whenever I start a project, I don't just dive head-first into writing code. I love sitting down with a notebook and drawing out the system architecture and data flows first. Figuring out how everything connects, finding where things might break, and exploring around to find the cleanest design—even though it gets messy pretty often and I end up re-sketching it a bunch of times! Most of my time goes into backend development with Python, designing database schemas, and experimenting with LLMs in real and air-gapped environments.",
     tech: [
       "System Architecture & Flow Diagrams",
-      "Backend (Node.js & Python)",
+      "Backend (Python & System Design)",
       "LLMs (Gemini & Local Ollama)",
       "WebSockets & Real-Time Streams",
       "PostgreSQL Schemas",

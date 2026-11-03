@@ -102,7 +102,7 @@ function DraggableDeskArtifact({
       style={{
         zIndex: zIndex || 10,
       }}
-      className="absolute cursor-grab touch-none select-none"
+      className="absolute cursor-grab touch-none select-none transform-gpu will-change-transform"
     >
       {renderGraphic(project.type)}
     </motion.div>

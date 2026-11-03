@@ -81,7 +81,7 @@ export default function GitHubDevHub({ isOpen, onClose, onSelectProject }) {
       category: "fullstack",
       description:
         "Live college bus tracking ecosystem born to end chaotic student commutes. Real-time GPS coordinate streaming over WebSockets, PostgreSQL route storage, Android driver app, and student web map.",
-      tech: ["Node.js", "WebSockets", "PostgreSQL", "Docker", "Android Kotlin", "React"],
+      tech: ["WebSockets", "PostgreSQL", "Docker", "Android Kotlin", "React"],
       repoUrl: "https://github.com/nyren-10/BusBuddy-Backend",
       demoUrl: "https://github.com/nyren-10/BusBuddy-Student",
       demoLabel: "Student App Repo",

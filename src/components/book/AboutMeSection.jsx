@@ -96,9 +96,6 @@ export default function AboutMeSection({ onBackToCover, onGoToProjects }) {
               <div className="pt-2 flex flex-wrap items-center gap-2 font-mono text-xs text-slate-700">
                 <span className="font-bold text-slate-900">Tech I fiddle with:</span>
                 <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
-                  <NodeLogo className="w-3.5 h-3.5" /> Node.js
-                </span>
-                <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
                   <PythonLogo className="w-3.5 h-3.5" /> Python / Flask
                 </span>
                 <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded">
@@ -175,7 +172,7 @@ export default function AboutMeSection({ onBackToCover, onGoToProjects }) {
                 [ My Natural Workflow ]
               </div>
               <p className="font-sans text-xs sm:text-sm text-slate-800">
-                1. Notice a real pain point (like college buses running blind) → 2. Grab a notebook and sketch out how data should flow → 3. Realize the first design has flaws, tweak and re-sketch → 4. Build the backend core (Node/Python, PostgreSQL, WebSockets) → 5. Craft the frontend client → 6. Dockerize and get it working in the real world.
+                1. Notice a real pain point (like college buses running blind) → 2. Grab a notebook and sketch out how data should flow → 3. Realize the first design has flaws, tweak and re-sketch → 4. Build the backend core (Python, PostgreSQL, WebSockets) → 5. Craft the frontend client → 6. Dockerize and get it working in the real world.
               </p>
             </div>
           </div>

@@ -7,7 +7,7 @@ export function CoffeeStain({ className = "", style = {} }) {
     <svg
       viewBox="0 0 160 160"
       style={style}
-      className={`w-36 h-36 opacity-25 pointer-events-none select-none ${className}`}
+      className={`w-36 h-36 opacity-30 pointer-events-none select-none transform-gpu ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -17,10 +17,10 @@ export function CoffeeStain({ className = "", style = {} }) {
         cy="80"
         r="68"
         stroke="#78350f"
-        strokeWidth="6"
+        strokeWidth="5"
         strokeDasharray="40 10 70 8 30 15"
         strokeLinecap="round"
-        filter="blur(1px)"
+        opacity="0.8"
       />
       {/* Inner thin splatter ring */}
       <circle
@@ -30,10 +30,10 @@ export function CoffeeStain({ className = "", style = {} }) {
         stroke="#92400e"
         strokeWidth="2"
         strokeDasharray="15 25 35 15"
-        opacity="0.6"
+        opacity="0.5"
       />
       {/* Central wash stain */}
-      <circle cx="80" cy="80" r="60" fill="#b45309" opacity="0.08" filter="blur(4px)" />
+      <circle cx="80" cy="80" r="60" fill="#b45309" opacity="0.06" />
       {/* Splatter droplets */}
       <circle cx="152" cy="74" r="3" fill="#78350f" opacity="0.4" />
       <circle cx="146" cy="98" r="2" fill="#78350f" opacity="0.3" />
