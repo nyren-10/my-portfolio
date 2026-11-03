@@ -284,21 +284,21 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                 onClick={() => handleButtonClick("experience")}
                 className="text-left w-full p-3 sm:p-3.5 bg-white hover:bg-slate-50 border-3 border-slate-950 rounded-xl shadow-[4px_4px_0px_#0f172a] transition-all cursor-pointer"
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
                     <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-100 border-2 border-slate-900 flex items-center justify-center text-blue-900 shrink-0">
                       <BriefcaseIcon className="w-5 h-5" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <h4 className="font-hand text-2xl sm:text-3xl font-extrabold text-slate-950 leading-none">
                         EXPERIENCE
                       </h4>
-                      <p className="font-mono text-xs text-slate-600 mt-0.5">
+                      <p className="font-mono text-xs text-slate-600 mt-0.5 truncate sm:whitespace-normal">
                         Codefiesta Jaipur, SIH Hackathons, VR & Design Sprints
                       </p>
                     </div>
                   </div>
-                  <span className="font-mono text-xs font-bold text-blue-900 border border-blue-300 px-2 py-1 rounded bg-blue-50">
+                  <span className="font-mono text-xs font-bold text-blue-900 border border-blue-300 px-2.5 py-1 rounded bg-blue-50 whitespace-nowrap shrink-0">
                     [ Roadmap ]
                   </span>
                 </div>
@@ -311,21 +311,21 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                 onClick={() => handleButtonClick("certificates")}
                 className="text-left w-full p-3 sm:p-3.5 bg-white hover:bg-slate-50 border-3 border-slate-950 rounded-xl shadow-[4px_4px_0px_#0f172a] transition-all cursor-pointer"
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
                     <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-100 border-2 border-slate-900 flex items-center justify-center text-emerald-900 shrink-0">
                       <CertificateIcon className="w-5 h-5" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <h4 className="font-hand text-2xl sm:text-3xl font-extrabold text-slate-950 leading-none">
                         CERTIFICATES
                       </h4>
-                      <p className="font-mono text-xs text-slate-600 mt-0.5">
+                      <p className="font-mono text-xs text-slate-600 mt-0.5 truncate sm:whitespace-normal">
                         University of Helsinki Full Stack Open & Coursework
                       </p>
                     </div>
                   </div>
-                  <span className="font-mono text-xs font-bold text-slate-600 border border-slate-300 px-2 py-1 rounded bg-slate-100">
+                  <span className="font-mono text-xs font-bold text-slate-600 border border-slate-300 px-2.5 py-1 rounded bg-slate-100 whitespace-nowrap shrink-0">
                     [ Inspect ]
                   </span>
                 </div>
