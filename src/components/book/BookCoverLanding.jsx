@@ -412,7 +412,17 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
               <span className="hidden sm:inline text-slate-600">Techno NJR Institute of Technology, Udaipur</span>
             </div>
             
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
+              <a
+                href="./resume.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-[#fef08a] hover:bg-[#fde047] text-slate-950 font-mono text-xs font-bold rounded-md shadow-[2px_2px_0px_#0f172a] transition-all flex items-center gap-1.5 cursor-pointer border border-slate-950"
+                title="View & Download Mayank's Resume (PDF)"
+              >
+                <span>Resume (PDF) ↗</span>
+              </a>
+
               <motion.button
                 whileHover={{ scale: 1.05, y: -1 }}
                 whileTap={{ scale: 0.96 }}

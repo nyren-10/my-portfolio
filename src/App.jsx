@@ -416,6 +416,16 @@ export default function App() {
             </div>
 
             <div className="flex items-center gap-2 pointer-events-auto">
+              <a
+                href="./resume.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-[#fef08a] hover:bg-[#fde047] text-slate-950 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5 border border-slate-950"
+                title="View & Download Mayank's Resume (PDF)"
+              >
+                <span>Resume (PDF)</span>
+              </a>
+
               <button
                 onClick={handleResetPositions}
                 className="px-3 py-1.5 bg-[#111c19]/90 hover:bg-[#1a2c27] text-emerald-300 border border-emerald-900/70 rounded-lg font-mono text-xs shadow-md transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
