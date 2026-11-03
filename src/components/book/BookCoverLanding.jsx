@@ -74,7 +74,7 @@ function TapeStrip({ className = "", rotation = "-2deg" }) {
   );
 }
 
-export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpenExperience, onOpenSection }) {
+export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpenExperience, onOpenSection, onOpenGitHub }) {
   const [characterQuote, setCharacterQuote] = useState(
     "Click [MY PROJECTS] to enter the 2D interactive desk!"
   );
@@ -264,7 +264,7 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
                       MY PROJECTS
                     </h3>
                     <p className="font-mono text-xs sm:text-sm text-slate-900 font-semibold">
-                      BusBuddy, Omnitrix SIH, Noicee, Hanoi & more
+                      BusBuddy, Omnitrix SIH, FloodSafe GIS, Noicee & more
                     </p>
                   </div>
 
@@ -413,19 +413,23 @@ export default function BookCoverLanding({ onOpenProjects, onOpenAboutMe, onOpen
             </div>
             
             <div className="flex items-center">
-              <motion.a
+              <motion.button
                 whileHover={{ scale: 1.05, y: -1 }}
                 whileTap={{ scale: 0.96 }}
-                href="https://github.com/nyren-10"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3.5 py-1.5 bg-slate-950 hover:bg-slate-800 text-white font-mono text-xs font-bold rounded-md shadow-[2px_2px_0px_#0f172a] transition-all flex items-center gap-2 cursor-pointer"
-                title="Visit Mayank's GitHub Profile (@nyren-10)"
+                onClick={() => {
+                  if (onOpenGitHub) {
+                    onOpenGitHub();
+                  } else {
+                    window.open("https://github.com/nyren-10", "_blank");
+                  }
+                }}
+                className="px-3.5 py-1.5 bg-slate-950 hover:bg-slate-800 text-white font-mono text-xs font-bold rounded-md shadow-[2px_2px_0px_#0f172a] transition-all flex items-center gap-2 cursor-pointer border border-emerald-500/50"
+                title="Open Mayank's GitHub Dev Hub (@nyren-10)"
               >
-                <GitHubIcon className="w-3.5 h-3.5 fill-current" />
-                <span>GitHub @nyren-10</span>
-                <ExternalLinkIcon className="w-3 h-3 text-amber-300" />
-              </motion.a>
+                <GitHubIcon className="w-3.5 h-3.5 fill-current text-emerald-400" />
+                <span>GitHub Dev Hub</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
+              </motion.button>
             </div>
           </div>
 

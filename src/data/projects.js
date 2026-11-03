@@ -217,4 +217,45 @@ export const projects = [
     },
     accentColor: "#b45309",
   },
+  {
+    id: "map-simulation",
+    type: "map",
+    title: "FloodSafe // Evacuation & Map Simulation",
+    subtitle: "Spatial GIS routing, H3 hexagonal population grids, and flood shelter planner",
+    docNumber: "GIS-SIM // FLOODSAFE-OSM",
+    status: "LIVE PROTOTYPE // GIS ENGINE",
+    stamp: "EVACUATION SIM",
+    stampColor: "text-teal-800 border-teal-800 bg-teal-50",
+    initialPos: { x: 1080, y: 530 },
+    rotation: -2,
+    description:
+      "When a flash flood hits, standard navigation maps will happily steer evacuees right into inundated roads and submerged underpasses. For FloodSafe, I designed a spatial evacuation engine in Python and Flask that couples Uber H3 hexagonal population grids with OpenStreetMap (OSM) road networks. The system models dynamic flood water levels, flags submerged graph edges as impassable, and recalculates safe evacuation routes to the nearest high-elevation relief shelter. You can see the live interactive web demo running on Vercel with real-time hazard toggles.",
+    tech: [
+      "Python Flask",
+      "Uber H3 Hexagonal Grid (h3-py)",
+      "OpenStreetMap (OSM / OSMnx)",
+      "GIS Spatial Routing",
+      "NetworkX Graph Algorithms",
+      "JavaScript / Leaflet / Folium",
+      "Vercel Deployment"
+    ],
+    features: [
+      "H3 Hexagonal Spatial Indexing: Groups population densities and water inundation telemetry into multi-resolution Uber H3 hexagons.",
+      "Hazard-Aware Graph Routing: Dynamic road network weights penalize or completely sever roads submerged under flood waters.",
+      "Multi-Shelter Evacuation Planner: Computes shortest safe paths from displaced sectors to the nearest high-ground relief centers.",
+      "Interactive Simulation Web UI: Visualizes flood progression, affected population counts, and evacuation paths live in the browser.",
+      "Live Deployed Prototype: Built and deployed on Vercel with interactive demo maps."
+    ],
+    architecture:
+      "A Flask GIS service consumes OSM street topologies into a NetworkX graph, overlays H3 hexagonal flood polygons, and executes hazard-penalized Dijkstra routing to relief shelters, serialized to GeoJSON for the web UI.",
+    links: {
+      github: "https://github.com/nyren-10/Map_Simulation",
+      githubLabel: "Simulation Repo",
+      demo: "https://map-simulation-three.vercel.app/",
+      demoLabel: "Live Prototype",
+      overview: "https://github.com/nyren-10/floodsafe-site",
+      overviewLabel: "FloodSafe Site",
+    },
+    accentColor: "#0d9488",
+  },
 ];

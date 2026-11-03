@@ -10,6 +10,8 @@ import FloppyDiskItem from "./components/desk-items/FloppyDiskItem";
 import PolaroidItem from "./components/desk-items/PolaroidItem";
 import CassetteItem from "./components/desk-items/CassetteItem";
 import CoffeeMugItem from "./components/desk-items/CoffeeMugItem";
+import MapSimulationItem from "./components/desk-items/MapSimulationItem";
+import GitHubDevHub from "./components/github/GitHubDevHub";
 import {
   CoffeeStain,
   DraggablePencil,
@@ -17,7 +19,7 @@ import {
   InstructionsNote,
 } from "./components/desk-items/Decorations";
 import Modal from "./components/Modal";
-import { BookOpenIcon, ExternalLinkIcon, UserIcon, BriefcaseIcon } from "./components/ui/Icons";
+import { BookOpenIcon, ExternalLinkIcon, UserIcon, BriefcaseIcon, GitHubIcon } from "./components/ui/Icons";
 
 /**
  * Dedicated Draggable Item Component with bulletproof Drag vs Click detection.
@@ -110,6 +112,7 @@ export default function App() {
   const [activeView, setActiveView] = useState("cover"); // "cover" | "about" | "projects"
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGitHubHubOpen, setIsGitHubHubOpen] = useState(false);
   const [topZIndex, setTopZIndex] = useState(15);
   const [zIndexes, setZIndexes] = useState({
     omnitrix: 12,
@@ -118,6 +121,7 @@ export default function App() {
     "coffee-about": 9,
     "visual-hanoi": 8,
     "speech-recognition": 7,
+    "map-simulation": 13,
   });
   const [positionsKey, setPositionsKey] = useState(0);
 
@@ -181,7 +185,12 @@ export default function App() {
         x: Math.min(w - 270, Math.max(760, Math.round(w * 0.72))),
         y: Math.max(120, Math.round(h * 0.24)),
       },
-      // Zone 8: Far Right (Top) -> Yellow Drafting Pencil
+      // Zone 8: Right Side (Lower-Mid) -> FloodSafe GIS Map Simulation
+      "map-simulation": {
+        x: Math.min(w - 330, Math.max(720, Math.round(w * 0.69))),
+        y: Math.max(440, Math.round(h * 0.54)),
+      },
+      // Zone 9: Far Right (Top) -> Yellow Drafting Pencil
       pencil: {
         x: Math.min(w - 80, Math.max(920, Math.round(w * 0.88))),
         y: Math.max(110, Math.round(h * 0.18)),
@@ -228,6 +237,8 @@ export default function App() {
         return <CassetteItem />;
       case "coffee":
         return <CoffeeMugItem />;
+      case "map":
+        return <MapSimulationItem />;
       default:
         return null;
     }
@@ -249,6 +260,7 @@ export default function App() {
             onOpenProjects={() => setActiveView("projects")}
             onOpenAboutMe={() => setActiveView("about")}
             onOpenExperience={() => setActiveView("experience")}
+            onOpenGitHub={() => setIsGitHubHubOpen(true)}
           />
         </motion.div>
       )}
@@ -403,15 +415,15 @@ export default function App() {
                 <span>Reset Desk</span>
               </button>
 
-              <a
-                href="https://github.com/nyren-10"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5"
+              <button
+                onClick={() => setIsGitHubHubOpen(true)}
+                className="px-3 py-1.5 bg-[#161b22] hover:bg-[#21262d] text-emerald-300 border-2 border-emerald-500/70 rounded-lg font-mono text-xs font-bold shadow-[2px_2px_0px_#042f2e] transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer group"
+                title="Open Nyren's GitHub Dev Hub (Terminal, Repos & Commit Log)"
               >
-                <span>GitHub</span>
-                <ExternalLinkIcon className="w-3.5 h-3.5" />
-              </a>
+                <GitHubIcon className="w-3.5 h-3.5 text-emerald-400 group-hover:rotate-12 transition-transform" />
+                <span>GitHub Hub</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
+              </button>
             </div>
           </header>
 
@@ -450,6 +462,20 @@ export default function App() {
           )}
         </motion.div>
       )}
+
+      {/* Global Interactive Doodled GitHub Dev Hub Modal */}
+      <GitHubDevHub
+        isOpen={isGitHubHubOpen}
+        onClose={() => setIsGitHubHubOpen(false)}
+        onSelectProject={(projectId) => {
+          setActiveView("projects");
+          const proj = projects.find((p) => p.id === projectId);
+          if (proj) {
+            bringToFront(proj.id);
+            handleItemClick(proj);
+          }
+        }}
+      />
     </AnimatePresence>
   );
 }
