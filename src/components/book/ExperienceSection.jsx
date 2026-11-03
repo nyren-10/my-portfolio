@@ -431,28 +431,12 @@ export default function ExperienceSection({ onBackToCover, onGoToProjects }) {
         <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_90px_rgba(30,15,5,0.45)]" />
 
         {/* Top Header Bar Pinned across Corkboard */}
-        <header className="relative z-30 px-4 sm:px-8 py-3 bg-[#3e2410]/95 border-b-4 border-[#241407] backdrop-blur-sm flex items-center justify-between shadow-lg">
-          <button
-            onClick={onBackToCover}
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#fef08a] hover:bg-[#fde047] text-slate-950 border-2 border-slate-950 rounded font-mono text-xs font-bold shadow-[2px_2px_0px_#000] transition-all active:scale-95 cursor-pointer"
-          >
-            <ArrowLeftIcon className="w-3.5 h-3.5" />
-            <span>Book Cover</span>
-          </button>
-
+        <header className="relative z-30 px-4 sm:px-8 py-3 bg-[#3e2410]/95 border-b-4 border-[#241407] backdrop-blur-sm flex items-center justify-center shadow-lg">
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs font-extrabold text-amber-200 bg-[#251408] px-3.5 py-1 rounded border border-[#6b4724] tracking-wider uppercase">
               TAGBOARD // EXPERIENCE & HACKATHONS
             </span>
           </div>
-
-          <button
-            onClick={onGoToProjects}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#facc15] hover:bg-[#eab308] text-slate-950 border-2 border-slate-950 rounded font-mono text-xs font-bold shadow-[2px_2px_0px_#000] transition-all active:scale-95 cursor-pointer"
-          >
-            <span>Projects Desk</span>
-            <ArrowRightIcon className="w-3.5 h-3.5" />
-          </button>
         </header>
 
         {/* ======================================================== */}

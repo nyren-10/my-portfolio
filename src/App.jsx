@@ -11,6 +11,7 @@ import PolaroidItem from "./components/desk-items/PolaroidItem";
 import CassetteItem from "./components/desk-items/CassetteItem";
 import CoffeeMugItem from "./components/desk-items/CoffeeMugItem";
 import MapSimulationItem from "./components/desk-items/MapSimulationItem";
+import FloodSafeOverviewItem from "./components/desk-items/FloodSafeOverviewItem";
 import GitHubDevHub from "./components/github/GitHubDevHub";
 import {
   CoffeeStain,
@@ -122,6 +123,7 @@ export default function App() {
     "visual-hanoi": 8,
     "speech-recognition": 7,
     "map-simulation": 13,
+    "floodsafe-overview": 14,
   });
   const [positionsKey, setPositionsKey] = useState(0);
 
@@ -175,22 +177,27 @@ export default function App() {
         x: Math.max(540, Math.round(w * 0.51)),
         y: Math.max(90, Math.round(h * 0.12)),
       },
-      // Zone 6: Center-Right (Mid) -> "NO BUGS // JUST FEATURES" Sticker
-      sticker: {
-        x: Math.max(480, Math.round(w * 0.47)),
-        y: Math.max(400, Math.round(h * 0.52)),
+      // Zone 6: Center-Bottom -> FloodSafe Incident Command Clipboard
+      "floodsafe-overview": {
+        x: Math.max(490, Math.round(w * 0.48)),
+        y: Math.max(450, Math.round(h * 0.57)),
       },
-      // Zone 7: Right Side (Upper-Mid) -> Visual Hanoi Polaroid
+      // Zone 7: Center-Right (Mid) -> "NO BUGS // JUST FEATURES" Sticker
+      sticker: {
+        x: Math.max(450, Math.round(w * 0.44)),
+        y: Math.max(370, Math.round(h * 0.45)),
+      },
+      // Zone 8: Right Side (Upper-Mid) -> Visual Hanoi Polaroid
       "visual-hanoi": {
         x: Math.min(w - 270, Math.max(760, Math.round(w * 0.72))),
         y: Math.max(120, Math.round(h * 0.24)),
       },
-      // Zone 8: Right Side (Lower-Mid) -> FloodSafe GIS Map Simulation
+      // Zone 9: Right Side (Lower-Mid) -> FloodSafe GIS Map Simulation
       "map-simulation": {
-        x: Math.min(w - 330, Math.max(720, Math.round(w * 0.69))),
-        y: Math.max(440, Math.round(h * 0.54)),
+        x: Math.min(w - 330, Math.max(720, Math.round(w * 0.70))),
+        y: Math.max(440, Math.round(h * 0.55)),
       },
-      // Zone 9: Far Right (Top) -> Yellow Drafting Pencil
+      // Zone 10: Far Right (Top) -> Yellow Drafting Pencil
       pencil: {
         x: Math.min(w - 80, Math.max(920, Math.round(w * 0.88))),
         y: Math.max(110, Math.round(h * 0.18)),
@@ -239,6 +246,8 @@ export default function App() {
         return <CoffeeMugItem />;
       case "map":
         return <MapSimulationItem />;
+      case "clipboard":
+        return <FloodSafeOverviewItem />;
       default:
         return null;
     }
